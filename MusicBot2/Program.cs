@@ -262,7 +262,10 @@ public class Program
             {
                 _isPlaying = true;
                 await CalledPlayListForBBAsync(channel, user);
-                await PlayNextSongAsync(channel, voiceChannel);
+                _ = Task.Run(async () =>
+                {
+                    await PlayNextSongAsync(channel, voiceChannel);
+                });
             }
             else
             {
@@ -521,11 +524,11 @@ public class Program
 
         try
         {
-            if(songUrl.Contains("bili"))
+            if (songUrl.Contains("bili"))
             {
                 filepath = await DownloadBilibiliAudioAsync(songUrl);
             }
-            else if(songUrl.Contains("youtube"))
+            else if (songUrl.Contains("youtube"))
             {
                 filepath = await DownloadAudioAsync(songUrl);
             }
@@ -539,48 +542,28 @@ public class Program
                 await channel.SendMessageAsync("成功連接語音頻道");
 
             }
+            IAudioClient audioClient = _audioClient;
 
-            // _是異步 反正就是不在同個程式時間內run
+            using (var ffmpeg = CreateStream(filepath))
+            using (var output = audioClient.CreatePCMStream(AudioApplication.Mixed))
+            {
+                try
+                {
+                    await ffmpeg.StandardOutput.BaseStream.CopyToAsync(output);
+                }
+                finally
+                {
+                    await output.FlushAsync();
+                    if (!ffmpeg.HasExited)
+                        ffmpeg.Kill();
+                }
+            }
+            // 播放完成後的清理
+            File.Delete(filepath);
+            // 播放下一首歌
             _ = Task.Run(async () =>
             {
-                IAudioClient audioClient = _audioClient;
-
-                var output = audioClient.CreatePCMStream(AudioApplication.Mixed);
-                using (var audioFile = new AudioFileReader(filepath))
-                {
-                    var sampleRate = audioFile.WaveFormat.SampleRate;
-                    var channels = audioFile.WaveFormat.Channels;
-                    //新增爆
-                    var modifiedSampleRate = _isEarRapeOn ? sampleRate / 10 : sampleRate;
-                    using (var resampler = new MediaFoundationResampler(audioFile, new WaveFormat(sampleRate, channels)))
-                    {
-                        resampler.ResamplerQuality = _isEarRapeOn ? 1 : 60; // 設置重取樣品質
-                        byte[] buffer = new byte[4096];
-                        int bytesRead;
-
-                        // 播放音樂
-                        while ((bytesRead = resampler.Read(buffer, 0, buffer.Length)) > 0)
-                        {
-                            audioFile.Volume = _isEarRapeOn ? 10.0f : 1.0f;
-                            if (_isSkipRequest)
-                            {
-                                await output.FlushAsync();
-                                _isSkipRequest = false;
-                                break;
-                            }
-                            await output.WriteAsync(buffer, 0, bytesRead);
-                        }
-                        await output.FlushAsync(); // 確保所有數據已發送
-                    }
-                }
-                // 播放完成後的清理
-                File.Delete(filepath);
-                // 停止音頻播放
-                //await audioClient.StopAsync();
-                output.Dispose();
-                // 播放下一首歌
                 await PlayNextSongAsync(channel, voiceChannel);
-
             });
         }
         catch (Exception ex)
@@ -789,6 +772,18 @@ public class Program
 
     #endregion
     #region 自訂func
+    private Process CreateStream(string path)
+    {
+        string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+        string ffmpegPath = Path.Combine(projectRoot, "ffmpeg-master-latest-win64-gpl-shared", "bin", "ffmpeg.exe");
+        return Process.Start(new ProcessStartInfo
+    {
+        FileName = ffmpegPath,
+        Arguments = $"-hide_banner -loglevel panic -i \"{path}\" -ac 2 -f s16le -ar 48000 pipe:1",
+        UseShellExecute = false,
+        RedirectStandardOutput = true
+    });
+    }
     private string GetRandomizedTitle(string title, IMessageChannel channel)
     {
         var _ignoreKeywords = new List<string>
