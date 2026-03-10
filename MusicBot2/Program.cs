@@ -21,9 +21,6 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Diagnostics;
 
-//ear rape之後會死掉?? 還是本來就會死掉? 死掉原因尚不明
-//10/15 11:34  又好像不會了? 電腦剛重啟效能不足?
-//待處理 looping & relate同時開啟時 
 public class Program
 {
     #region 變數
@@ -41,9 +38,7 @@ public class Program
     private bool _isRelatedOn = false;
     private SocketGuildUser? _uuser;
     private bool _RelateSwitch = true;
-    private string _LastPlayingName = "";
     private bool _isEarRapeOn = false;
-    string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=master;Trusted_Connection=True;";
     #endregion
 
     #region 基礎設定
@@ -199,10 +194,6 @@ public class Program
         else if (cmd.ToLower().StartsWith("e") || cmd.StartsWith("爆"))
         {
             await EarRapeAsync(channel, user);
-        }
-        else if(cmd.ToLower().StartsWith("qry"))
-        {
-            await qryData(channel, user);
         }
         else
         {
@@ -489,32 +480,6 @@ public class Program
         if (_isEarRapeOn) await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=18288&episode=4");
         else await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=22448&episode=7");
     }
-    private async Task qryData(IMessageChannel channel, SocketGuildUser user)
-    {
-        string query = "exec prGetTable1";
-        using (SqlConnection conn = new SqlConnection(connectionString))
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand command = new SqlCommand(query, conn);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    // 假設 table1 有 id, name 欄位
-                    await channel.SendMessageAsync($"欄1: {reader["Table_Column1"]}, 欄2: {reader["Table_Column2"]}");
-
-                }
-
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("錯誤：" + ex.Message);
-            }
-        }
-    }
     #endregion
 
     #region 撥放音樂
@@ -566,9 +531,13 @@ public class Program
             }
             await Task.Delay(2000);
 
-            if (_audioClient == null)
+
+            if (_audioClient == null || _audioClient.ConnectionState != Discord.ConnectionState.Connected)
             {
+                await channel.SendMessageAsync("正要連線");
                 _audioClient = await voiceChannel.ConnectAsync(selfDeaf: false, selfMute: false);
+                await channel.SendMessageAsync("成功連接語音頻道");
+
             }
 
             // _是異步 反正就是不在同個程式時間內run
