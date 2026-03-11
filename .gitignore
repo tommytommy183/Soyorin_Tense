@@ -20,6 +20,8 @@
 [Bb]uild/
 bld/
 [Bb]in/
+!ffmpeg-master-latest-win64-gpl-shared/bin/
+!ffmpeg-master-latest-win64-gpl-shared/bin/**
 [Oo]bj/
 
 # Visual Studio 2015 cache/options directory
