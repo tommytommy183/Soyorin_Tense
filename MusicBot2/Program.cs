@@ -2,7 +2,9 @@
 using Discord;
 using Discord.Audio;
 using Discord.Commands;
+using Discord.Interactions;
 using Discord.WebSocket;
+using MusicBot2.IGHelper;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using System;
@@ -62,6 +64,9 @@ public class Program
         _commands = new CommandService();
         _client.MessageReceived += MessageReceivedHandler;
         _client.Log += Log;
+        IGHelper iGHelper = new IGHelper();
+
+        _ = Task.Run(() => iGHelper.StartAsync(_client));
         _ = SetBotStatusAsync(_client);
         await _client.LoginAsync(TokenType.Bot, "");
         await _client.StartAsync();
@@ -69,6 +74,10 @@ public class Program
 
     }
 
+
+    #endregion
+
+    #region 額外的handler
     private Task Log(LogMessage log)
     {
         Console.WriteLine(log);
