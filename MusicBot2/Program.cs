@@ -78,20 +78,24 @@ public class Program
     {
         while (true)
         {
+            await _client.SetGameAsync("搜幽林轉生☆大★爆☆誕★", null, ActivityType.CustomStatus);
+            await Task.Delay(20000);
+            await _client.SetGameAsync("傻逼DISCORD加密 不如我苦來溪苦一根", null, ActivityType.CustomStatus);
+            await Task.Delay(20000);
             await _client.SetGameAsync("小祥辛酸打工畫面流出", "https://www.youtube.com/watch?v=_1xcBdtwEE4&ab_channel=supanasu", ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
             await _client.SetGameAsync("正在重組CRYCHIC", null, ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
             await _client.SetGameAsync("CRYCHIC新成員演唱", "https://www.youtube.com/watch?v=f9p0HWDQHxs&ab_channel=nlnl", ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
             await _client.SetGameAsync("有考慮當貝斯手嗎 我當然有考慮當貝斯手啊，那是我的夢想耶。我跟你說：當貝斯手比當工程師……我當……我當貝斯手，是……最想當的", null, ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
             await _client.SetGameAsync("寫程式真的很莫名其妙", null, ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
             await _client.SetGameAsync("那大家得多注意健康才行了", null, ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
             await _client.SetGameAsync("知ってたら止めたし😭セトリはもう終わってたのに急に演奏しだして😭みんなを止められなくてごめんね😭祥ちゃん、怒ってるよね😭怒るのも当然だと思う😭でも信じて欲しいの。春日影、本当に演奏する予定じゃなかったの😭本当にごめんね😭もう勝手に演奏したりしないって約束するよ😭ほかの子たちにも絶対にしないって約束させるから😭少しだけ話せないかな😭私、CRYCHICのこと本当に大切に思ってる😭だから、勝手に春日影演奏されたの祥ちゃんと同じくらい辛くて😭私の気持ちわかってほしいの😭お願い。どこても行くから😭バンドやらなきゃいけなかった理由もちゃんと話すから😭会って話せたら、きっとわかってもらえると思う😭私は祥ちゃんの味方だから😭会いたいの😭", null, ActivityType.CustomStatus);
-            await Task.Delay(20000);
+            await Task.Delay(10000);
         }
     }
     #endregion
@@ -525,46 +529,31 @@ public class Program
         try
         {
             if (songUrl.Contains("bili"))
-            {
                 filepath = await DownloadBilibiliAudioAsync(songUrl);
-            }
-            else if (songUrl.Contains("youtube"))
-            {
+            else
                 filepath = await DownloadAudioAsync(songUrl);
-            }
-            await Task.Delay(2000);
 
+            await Task.Delay(4000);
 
             if (_audioClient == null || _audioClient.ConnectionState != Discord.ConnectionState.Connected)
-            {
-                await channel.SendMessageAsync("正要連線");
                 _audioClient = await voiceChannel.ConnectAsync(selfDeaf: false, selfMute: false);
-                await channel.SendMessageAsync("成功連接語音頻道");
 
-            }
-            IAudioClient audioClient = _audioClient;
-
-            using (var ffmpeg = CreateStream(filepath))
-            using (var output = audioClient.CreatePCMStream(AudioApplication.Mixed))
+            using (var ffmpeg = CreatePcmStreamProcess(filepath))
+            using (var output = ffmpeg.StandardOutput.BaseStream)
+            using (var discord = _audioClient.CreatePCMStream(AudioApplication.Music))
             {
-                try
-                {
-                    await ffmpeg.StandardOutput.BaseStream.CopyToAsync(output);
-                }
-                finally
-                {
-                    await output.FlushAsync();
-                    if (!ffmpeg.HasExited)
-                        ffmpeg.Kill();
-                }
+                ffmpeg.ErrorDataReceived += (s, e) => {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg error: " + e.Data);
+                };
+                ffmpeg.BeginErrorReadLine();
+
+                try { await output.CopyToAsync(discord); }
+                finally { await discord.FlushAsync(); }
             }
-            // 播放完成後的清理
+
             File.Delete(filepath);
-            // 播放下一首歌
-            _ = Task.Run(async () =>
-            {
-                await PlayNextSongAsync(channel, voiceChannel);
-            });
+            await PlayNextSongAsync(channel, voiceChannel);
         }
         catch (Exception ex)
         {
@@ -772,17 +761,20 @@ public class Program
 
     #endregion
     #region 自訂func
-    private Process CreateStream(string path)
+
+    private Process CreatePcmStreamProcess(string path)
     {
         string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
         string ffmpegPath = Path.Combine(projectRoot, "ffmpeg-master-latest-win64-gpl-shared", "bin", "ffmpeg.exe");
+
         return Process.Start(new ProcessStartInfo
-    {
-        FileName = ffmpegPath,
-        Arguments = $"-hide_banner -loglevel panic -i \"{path}\" -ac 2 -f s16le -ar 48000 pipe:1",
-        UseShellExecute = false,
-        RedirectStandardOutput = true
-    });
+        {
+            FileName = ffmpegPath,
+            Arguments = $"-hide_banner -loglevel panic -i \"{path}\" -ac 2 -f s16le -ar 48000 pipe:1",
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+        });
     }
     private string GetRandomizedTitle(string title, IMessageChannel channel)
     {
