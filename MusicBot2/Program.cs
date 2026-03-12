@@ -1,25 +1,26 @@
-﻿using Discord.Commands;
+﻿using AngleSharp.Dom;
+using Discord;
 using Discord.Audio;
+using Discord.Commands;
 using Discord.WebSocket;
+using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using YoutubeExplode;
 using YoutubeExplode.Common;
-using YoutubeExplode.Videos.Streams;
 using YoutubeExplode.Exceptions;
-using Discord;
-using System.Collections;
-using AngleSharp.Dom;
 using YoutubeExplode.Search;
-using System.Text.RegularExpressions;
-using System.Text;
-using System.Data.SqlClient;
-using System.Data;
-using System.Diagnostics;
+using YoutubeExplode.Videos.Streams;
 
 public class Program
 {
@@ -533,26 +534,42 @@ public class Program
             else
                 filepath = await DownloadAudioAsync(songUrl);
 
-            await Task.Delay(4000);
+            await Task.Delay(2000);
 
             if (_audioClient == null || _audioClient.ConnectionState != Discord.ConnectionState.Connected)
                 _audioClient = await voiceChannel.ConnectAsync(selfDeaf: false, selfMute: false);
 
-            using (var ffmpeg = CreatePcmStreamProcess(filepath))
-            using (var output = ffmpeg.StandardOutput.BaseStream)
-            using (var discord = _audioClient.CreatePCMStream(AudioApplication.Music))
+            var output = _audioClient.CreatePCMStream(AudioApplication.Mixed);
+            using (var audioFile = new AudioFileReader(filepath))
             {
-                ffmpeg.ErrorDataReceived += (s, e) => {
-                    if (!string.IsNullOrEmpty(e.Data))
-                        Console.WriteLine("FFmpeg error: " + e.Data);
-                };
-                ffmpeg.BeginErrorReadLine();
+                var sampleRate = audioFile.WaveFormat.SampleRate;
+                var channels = audioFile.WaveFormat.Channels;
+                //新增爆
+                var modifiedSampleRate = _isEarRapeOn ? sampleRate / 10 : sampleRate;
+                using (var resampler = new MediaFoundationResampler(audioFile, new WaveFormat(sampleRate, channels)))
+                {
+                    resampler.ResamplerQuality = _isEarRapeOn ? 1 : 60; // 設置重取樣品質
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
 
-                try { await output.CopyToAsync(discord); }
-                finally { await discord.FlushAsync(); }
+                    // 播放音樂
+                    while ((bytesRead = resampler.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        audioFile.Volume = _isEarRapeOn ? 10.0f : 1.0f;
+                        if (_isSkipRequest)
+                        {
+                            await output.FlushAsync();
+                            _isSkipRequest = false;
+                            break;
+                        }
+                        await output.WriteAsync(buffer, 0, bytesRead);
+                    }
+                    await output.FlushAsync(); // 確保所有數據已發送
+                }
             }
 
             File.Delete(filepath);
+            output.Dispose();
             await PlayNextSongAsync(channel, voiceChannel);
         }
         catch (Exception ex)
