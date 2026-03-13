@@ -46,6 +46,9 @@ dlldata.c
 project.lock.json
 artifacts/
 
+# appsetting
+appsettings.json
+
 *_i.c
 *_p.c
 *_i.h

@@ -4,6 +4,7 @@ using Discord.Audio;
 using Discord.Commands;
 using Discord.Interactions;
 using Discord.WebSocket;
+using Microsoft.Extensions.Configuration;
 using MusicBot2.IGHelper;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
@@ -59,6 +60,13 @@ public class Program
                              GatewayIntents.GuildMessageReactions |
                              GatewayIntents.GuildMembers
         };
+        var builder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+        IConfiguration configer = builder.Build();
+
+        string token = configer["Discord:Token"];
 
         _client = new DiscordSocketClient(config);
         _commands = new CommandService();
@@ -67,7 +75,7 @@ public class Program
         //IGHelper iGHelper = new IGHelper();
         //_ = Task.Run(() => iGHelper.StartAsync(_client));
         _ = SetBotStatusAsync(_client);
-        await _client.LoginAsync(TokenType.Bot, "");
+        await _client.LoginAsync(TokenType.Bot, token);
         await _client.StartAsync();
         await Task.Delay(-1);
 
