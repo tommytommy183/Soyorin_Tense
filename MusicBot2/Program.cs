@@ -64,9 +64,8 @@ public class Program
         _commands = new CommandService();
         _client.MessageReceived += MessageReceivedHandler;
         _client.Log += Log;
-        IGHelper iGHelper = new IGHelper();
-
-        _ = Task.Run(() => iGHelper.StartAsync(_client));
+        //IGHelper iGHelper = new IGHelper();
+        //_ = Task.Run(() => iGHelper.StartAsync(_client));
         _ = SetBotStatusAsync(_client);
         await _client.LoginAsync(TokenType.Bot, "");
         await _client.StartAsync();
