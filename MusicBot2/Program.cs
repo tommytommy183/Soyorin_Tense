@@ -814,7 +814,7 @@ public class Program
         var _ignoreKeywords = new List<string>
     {
         "official", "video", "mv", "lyrics", "audio", "remastered", "hd", "live", "version", "ft.", "feat", "featuring","歌詞","拼音","ver" ,"music","movie","tv","高画質","amv","mad","1k","2k","3k","4k"
-        ,"弾き語り","fps" ,"hdr" ,"ultra","實況","精華","アニメ"
+        ,"弾き語り","fps" ,"hdr" ,"ultra","實況","精華","アニメ","official youTube channel"
     };
         StringBuilder sb = new StringBuilder();
         string ai = "";
