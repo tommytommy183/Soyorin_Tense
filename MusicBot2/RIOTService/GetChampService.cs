@@ -392,9 +392,16 @@ namespace MusicBot2.RIOTService
                             }
                         }
 
-                        if (correctSkillName.ToLower().Trim() == userGuess.ToLower().Trim())
+                        if(correctSkillName.ToLower().Trim().Contains(userGuess))
                         {
-                            await _channel.SendMessageAsync($"被你賽到瞜，獎勵你{GetRandomRewards()}");
+                            if (userGuess == userGuess.ToLower().Trim())
+                            {
+                                await _channel.SendMessageAsync($"完全被你賽到瞜，獎勵你{GetRandomRewards()}");
+                            }
+                            else
+                            {
+                                await _channel.SendMessageAsync($"被你賽到一半，獎勵你{GetRandomRewards()}");
+                            }
                         }
                         else
                         {
@@ -490,7 +497,18 @@ namespace MusicBot2.RIOTService
                 "和初華睡一晚",
                 "被傻屌愛音摳",
                 "一首夏夜晚風 芒果醬ver.",
-                "玩一小時 furry shades of gay"
+                "玩一小時 furry shades of gay",
+                "沒有墨水存檔，直接重頭開始",
+                "一份免費的discord硝基",
+                "一張陳俊佑的一日份屁眼使用卷",
+                "一張劉宗漢的一日份屁眼使用卷",
+                "一張陳偉鵬的一日份屁眼使用卷",
+                "一張吳霈辰的一日份屁眼使用卷",
+                "和外星人一起遨遊桃子腳",
+                "和王議員一起參選",
+                "邊洗澡邊尿尿",
+                "和柯比勞大一起搭直升機",
+                "和買狗成員一起演唱"
             };
 
             var random = new Random();
@@ -521,31 +539,28 @@ namespace MusicBot2.RIOTService
 
             if (input.Length < 10)
             {
-                ranCount = random.Next(1, 1);
+                ranCount = random.Next(1, 2);
             }
             else if (input.Length < 30)
             {
-                ranCount = random.Next(1, 2);
+                ranCount = random.Next(1, 3);
             }
             else if (input.Length >= 30)
             {
                 ranCount = random.Next(1, 6);
             }
 
-            // 取得原始字串長度，確保只在原始字元間插入
             int originalLength = input.Length;
 
-            // 儲存要插入的位置和文字
             var insertions = new Dictionary<int, string>();
 
             for (int i = 0; i < ranCount; i++)
             {
-                int position = random.Next(originalLength + 1);
+                int position = random.Next(originalLength);
 
-                // 如果該位置已有插入，跳過
                 while (insertions.ContainsKey(position))
                 {
-                    position = random.Next(originalLength + 1);
+                    position = random.Next(originalLength);
                 }
 
                 insertions[position] = fuckingWords[random.Next(fuckingWords.Count)];
