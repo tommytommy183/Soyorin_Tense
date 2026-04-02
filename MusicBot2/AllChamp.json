@@ -1,17 +1,407 @@
 {
   "type": "champion",
   "format": "standAloneComplex",
-  "version": "14.6.1",
+  "version": "16.7.1",
   "data": {
-    "Aatrox": {},
-    "Ahri": {},
-    "Akali": {},
-    "Akshan": {},
-    "Alistar": {},
-    "Amumu": {},
-    "Anivia": {},
+    "Aatrox": {
+      "version": "16.7.1",
+      "id": "Aatrox",
+      "key": "266",
+      "name": "厄薩斯",
+      "title": "冥血劍魔",
+      "blurb": "尊貴的蘇瑞瑪守護者過去曾為符文大地挺身對抗虛空，只不過厄薩斯和他的同伴們最後卻成為比虛空還要危險的威脅。然而，誰都沒有料想到強大的他居然會被人類的魔法所擊敗。厄薩斯的靈魂寄宿在冥血邪劍之中，經過數個世紀之後，他成為了首位發現如何重獲自由的冥血族。他侵蝕那些嘗試揮舞冥血邪劍的愚蠢人類，將他們的身心據為己有。現在他以近乎原始型態的軀體在符文大地遊蕩，誓言讓世界再次陷入末日來完成他的復仇。",
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 3,
+        "difficulty": 4
+      },
+      "image": {
+        "full": "Aatrox.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Fighter"
+      ],
+      "partype": "血池",
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 114,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 38,
+        "armorperlevel": 4.8,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 3,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.651
+      }
+    },
+    "Ahri": {
+      "version": "16.7.1",
+      "id": "Ahri",
+      "key": "103",
+      "name": "阿璃",
+      "title": "九尾妖狐",
+      "blurb": "阿璃是具有狐狸外形的梵斯塔雅人，天生就和靈界的魔法有著緊密的連結，能夠操縱獵物的情緒，並吸收他們的生命精華，在過程中也會看到他們的記憶斷片。阿璃曾經是個強大但無法控制自己的掠食者，現在她四處旅遊，尋找先祖留下的痕跡，同時嘗試創造自己的回憶，以取代被偷走的記憶。",
+      "info": {
+        "attack": 3,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      },
+      "image": {
+        "full": "Ahri.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 104,
+        "mp": 418,
+        "mpperlevel": 25,
+        "movespeed": 330,
+        "armor": 21,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 2.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.2,
+        "attackspeed": 0.668
+      }
+    },
+    "Akali": {
+      "version": "16.7.1",
+      "id": "Akali",
+      "key": "84",
+      "name": "阿卡莉",
+      "title": "隻影刺客",
+      "blurb": "阿卡莉拋棄了均衡教團與暗影之拳的稱號，獨自出擊，準備成為人民所需的致命武器。雖然她依舊記得慎師傅的教誨，但她已誓言守護愛歐尼亞免受敵人侵擾，見一個就殺一個。阿卡莉的行動雖然悄然無聲，但她傳達的訊息卻響亮清晰：孑然一身的刺客最令人畏懼。",
+      "info": {
+        "attack": 5,
+        "defense": 3,
+        "magic": 8,
+        "difficulty": 7
+      },
+      "image": {
+        "full": "Akali.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Assassin"
+      ],
+      "partype": "能量",
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 119,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 23,
+        "armorperlevel": 4.7,
+        "spellblock": 37,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 3.2,
+        "attackspeed": 0.625
+      }
+    },
+    "Akshan": {
+      "version": "16.7.1",
+      "id": "Akshan",
+      "key": "166",
+      "name": "埃可尚",
+      "title": "俠盜哨兵",
+      "blurb": "面對危險也只是挑個眉的埃可尚，帶著十足的個人魅力打擊邪惡，抱持正義的復仇心，不穿上衣一展豪爽作風。擅長隱身戰鬥的他，能夠避開敵人的耳目然後攻其不備。靠著熱血的正義感，以及能夠逆轉生死的傳說武器，他制伏了符文大地數不盡的惡徒，同時貫徹了自己的人生教條：「別當個混蛋」。",
+      "info": {
+        "attack": 0,
+        "defense": 0,
+        "magic": 0,
+        "difficulty": 0
+      },
+      "image": {
+        "full": "Akshan.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 107,
+        "mp": 350,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 26,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 4,
+        "attackspeed": 0.638
+      }
+    },
+    "Alistar": {
+      "version": "16.7.1",
+      "id": "Alistar",
+      "key": "12",
+      "name": "亞歷斯塔",
+      "title": "牛頭酋長",
+      "blurb": "身為令人畏懼的強大戰士，亞歷斯塔誓言替自己滅亡的氏族向諾克薩斯帝國報仇。雖然被奴役的他被迫成為角鬥士，但他堅不可摧的意志讓他仍能保有人性。現在，他逃離了前主人的束縛枷鎖，替那些飽受壓迫的下層社會人民戰鬥著。他滿腔的怒火以及他所擁有的堅韌之角、強勁之蹄將成為他為正義而戰的武器。",
+      "info": {
+        "attack": 6,
+        "defense": 9,
+        "magic": 5,
+        "difficulty": 7
+      },
+      "image": {
+        "full": "Alistar.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 192,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 685,
+        "hpperlevel": 120,
+        "mp": 350,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 40,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.85,
+        "mpregen": 8.5,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.125,
+        "attackspeed": 0.625
+      }
+    },
+    "Ambessa": {
+      "version": "16.7.1",
+      "id": "Ambessa",
+      "key": "799",
+      "name": "安比薩",
+      "title": "鐵血狼母",
+      "blurb": "所有知曉梅德拉達氏族之名的人，對其家族領袖「安比薩」都抱持著敬畏之心。身為一名諾克薩斯將領，她在戰場上就像是無情力量和無畏決心的致命化身。她身為族長的職責也與此無異，不只需要無比的機智來擴大梅德拉達氏族的勢力，而且沒有任何失敗或同情的餘地。安比薩徹底擁抱狼群的無情之道，即使得犧牲孩子的愛，她也將不惜一切代價，守護家族的長久榮耀。",
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 0,
+        "difficulty": 10
+      },
+      "image": {
+        "full": "Ambessa.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 240,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "partype": "能量",
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 110,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 335,
+        "armor": 35,
+        "armorperlevel": 4.9,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      }
+    },
+    "Amumu": {
+      "version": "16.7.1",
+      "id": "Amumu",
+      "key": "32",
+      "name": "阿姆姆",
+      "title": "殤之木乃伊",
+      "blurb": "傳說阿姆姆是一個來自古蘇瑞瑪，既寂寞又憂鬱的靈魂。他在這世上飄遊徘徊，只是為了尋找朋友。然而，身受古老詛咒的他註定永遠孤獨。遭他碰觸的生命必定死亡，被他關心的存在必然毀滅。那些曾經見過阿姆姆的人形容他是一個身形矮小的活屍，身上被綠色繃帶所纏繞。許多傳說、歌謠都曾訴說著阿姆姆的故事，代代傳誦下來，世人早已分不出哪些是真、哪些是假。",
+      "info": {
+        "attack": 2,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 3
+      },
+      "image": {
+        "full": "Amumu.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 288,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 685,
+        "hpperlevel": 94,
+        "mp": 285,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 33,
+        "armorperlevel": 4,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.85,
+        "mpregen": 7.4,
+        "mpregenperlevel": 0.55,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.18,
+        "attackspeed": 0.736
+      }
+    },
+    "Anivia": {
+      "version": "16.7.1",
+      "id": "Anivia",
+      "key": "34",
+      "name": "艾妮維亞",
+      "title": "冰晶鳳凰",
+      "blurb": "艾妮維亞是外型為冰晶鳳凰的神靈。仁慈的她歷經過無數次的生死循環，每一次重生都是為了保護弗雷爾卓德。她是從永凍冰晶與刺骨寒風之中誕生的半神，任何膽敢來侵犯她家鄉的不速之客，她都會用體內的元素之力加以擊退。艾妮維亞保護並引領著定居於嚴酷北境的部族，而他們也打從心底尊崇她，不僅視她為希望的象徵，也視她為重大變化的預兆。為了保護弗雷爾卓德，艾妮維亞會奮不顧身，不計代價。她知道即使自己犧牲了，她的記憶依舊存在，而最終她也將重生為嶄新的明日。",
+      "info": {
+        "attack": 1,
+        "defense": 4,
+        "magic": 10,
+        "difficulty": 10
+      },
+      "image": {
+        "full": "Anivia.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 336,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Mage"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 550,
+        "hpperlevel": 92,
+        "mp": 495,
+        "mpperlevel": 45,
+        "movespeed": 325,
+        "armor": 21,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 600,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 51,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 1.68,
+        "attackspeed": 0.658
+      }
+    },
     "Annie": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Annie",
       "key": "1",
       "name": "安妮",
@@ -23,17 +413,28 @@
         "magic": 10,
         "difficulty": 6
       },
-      "image": {},
-      "tags": [],
+      "image": {
+        "full": "Annie.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 384,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Mage",
+        "Support"
+      ],
       "partype": "魔力",
       "stats": {
         "hp": 560,
-        "hpperlevel": 102,
+        "hpperlevel": 96,
         "mp": 418,
         "mpperlevel": 25,
         "movespeed": 335,
-        "armor": 19,
-        "armorperlevel": 4.7,
+        "armor": 23,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 625,
@@ -44,13 +445,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 50,
-        "attackdamageperlevel": 2.65,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.36,
         "attackspeed": 0.61
       }
     },
     "Aphelios": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Aphelios",
       "key": "523",
       "name": "亞菲利歐",
@@ -66,7 +467,7 @@
         "full": "Aphelios.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 384,
+        "x": 432,
         "y": 0,
         "w": 48,
         "h": 48
@@ -76,7 +477,7 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 580,
+        "hp": 600,
         "hpperlevel": 102,
         "mp": 348,
         "mpperlevel": 42,
@@ -93,13 +494,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 2.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.1,
-        "attackspeed": 0.64
+        "attackspeed": 0.665
       }
     },
     "Ashe": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ashe",
       "key": "22",
       "name": "艾希",
@@ -115,8 +516,8 @@
         "full": "Ashe.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 432,
-        "y": 0,
+        "x": 0,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -126,7 +527,7 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 640,
+        "hp": 610,
         "hpperlevel": 101,
         "mp": 280,
         "mpperlevel": 35,
@@ -143,13 +544,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 2.95,
-        "attackspeedperlevel": 3.33,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 3,
         "attackspeed": 0.658
       }
     },
     "AurelionSol": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "AurelionSol",
       "key": "136",
       "name": "翱銳龍獸",
@@ -165,7 +566,7 @@
         "full": "AurelionSol.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 0,
+        "x": 48,
         "y": 48,
         "w": 48,
         "h": 48
@@ -175,11 +576,11 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 620,
+        "hp": 600,
         "hpperlevel": 90,
         "mp": 530,
         "mpperlevel": 40,
-        "movespeed": 335,
+        "movespeed": 340,
         "armor": 22,
         "armorperlevel": 4,
         "spellblock": 30,
@@ -191,14 +592,64 @@
         "mpregenperlevel": 0.75,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 55,
-        "attackdamageperlevel": 3.2,
+        "attackdamage": 58,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.625
       }
     },
+    "Aurora": {
+      "version": "16.7.1",
+      "id": "Aurora",
+      "key": "893",
+      "name": "歐羅拉",
+      "title": "跨界靈使",
+      "blurb": "從出生的那一刻起，歐羅拉就擁有獨一無二的能力，能夠在凡間與靈界之間自由穿梭。她下定決心要更深入了解棲息於靈界的生物，便離鄉背井，走上研究之路。在旅途中，她遇見了一個失去原貌、被時間遺忘的迷途半神。看到他絕望的神情後，歐羅拉決意要幫助這位兇猛的朋友找回失去的身分，便踏上一場走遍弗雷爾卓德的旅程。",
+      "info": {
+        "attack": 3,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      },
+      "image": {
+        "full": "Aurora.png",
+        "sprite": "champion0.png",
+        "group": "champion",
+        "x": 96,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 607,
+        "hpperlevel": 110,
+        "mp": 475,
+        "mpperlevel": 30,
+        "movespeed": 335,
+        "armor": 23,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.668
+      }
+    },
     "Azir": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Azir",
       "key": "268",
       "name": "阿祈爾",
@@ -214,7 +665,7 @@
         "full": "Azir.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 48,
         "w": 48,
         "h": 48
@@ -225,30 +676,30 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 550,
-        "hpperlevel": 119,
+        "hp": 575,
+        "hpperlevel": 108,
         "mp": 320,
         "mpperlevel": 40,
-        "movespeed": 335,
-        "armor": 22,
+        "movespeed": 330,
+        "armor": 25,
         "armorperlevel": 5,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 525,
-        "hpregen": 5,
+        "hpregen": 7,
         "hpregenperlevel": 0.75,
         "mpregen": 8,
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 52,
-        "attackdamageperlevel": 3.5,
-        "attackspeedperlevel": 6,
+        "attackdamage": 56,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 5,
         "attackspeed": 0.625
       }
     },
     "Bard": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Bard",
       "key": "432",
       "name": "巴德",
@@ -264,7 +715,7 @@
         "full": "Bard.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 48,
         "w": 48,
         "h": 48
@@ -279,7 +730,7 @@
         "hpperlevel": 103,
         "mp": 350,
         "mpperlevel": 50,
-        "movespeed": 330,
+        "movespeed": 335,
         "armor": 34,
         "armorperlevel": 5,
         "spellblock": 30,
@@ -292,13 +743,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 52,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.658
       }
     },
     "Belveth": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Belveth",
       "key": "200",
       "name": "貝爾薇斯",
@@ -314,7 +765,7 @@
         "full": "Belveth.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 48,
         "w": 48,
         "h": 48
@@ -325,7 +776,7 @@
       "partype": "",
       "stats": {
         "hp": 610,
-        "hpperlevel": 99,
+        "hpperlevel": 105,
         "mp": 60,
         "mpperlevel": 0,
         "movespeed": 340,
@@ -333,7 +784,7 @@
         "armorperlevel": 4.7,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
-        "attackrange": 175,
+        "attackrange": 150,
         "hpregen": 6,
         "hpregenperlevel": 0.6,
         "mpregen": 0,
@@ -341,13 +792,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 1.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 0,
         "attackspeed": 0.85
       }
     },
     "Blitzcrank": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Blitzcrank",
       "key": "53",
       "name": "布里茨",
@@ -363,18 +814,18 @@
         "full": "Blitzcrank.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Tank",
-        "Fighter"
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 650,
+        "hp": 600,
         "hpperlevel": 109,
         "mp": 267,
         "mpperlevel": 40,
@@ -391,13 +842,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.13,
         "attackspeed": 0.625
       }
     },
     "Brand": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Brand",
       "key": "63",
       "name": "布蘭德",
@@ -413,13 +864,14 @@
         "full": "Brand.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage"
+        "Mage",
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
@@ -435,18 +887,18 @@
         "attackrange": 550,
         "hpregen": 5.5,
         "hpregenperlevel": 0.55,
-        "mpregen": 10.65,
+        "mpregen": 9,
         "mpregenperlevel": 0.6,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 57,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.681
       }
     },
     "Braum": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Braum",
       "key": "201",
       "name": "布郎姆",
@@ -462,14 +914,14 @@
         "full": "Braum.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Support",
-        "Tank"
+        "Tank",
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
@@ -478,8 +930,8 @@
         "mp": 311,
         "mpperlevel": 45,
         "movespeed": 335,
-        "armor": 47,
-        "armorperlevel": 5.2,
+        "armor": 35,
+        "armorperlevel": 5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -490,13 +942,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.644
       }
     },
     "Briar": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Briar",
       "key": "233",
       "name": "布蕾爾",
@@ -512,7 +964,7 @@
         "full": "Briar.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 48,
         "w": 48,
         "h": 48
@@ -523,13 +975,13 @@
       ],
       "partype": "怒氣",
       "stats": {
-        "hp": 590,
+        "hp": 625,
         "hpperlevel": 100,
         "mp": 0,
         "mpperlevel": 0,
         "movespeed": 340,
         "armor": 30,
-        "armorperlevel": 4.2,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -540,18 +992,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.644
       }
     },
     "Caitlyn": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Caitlyn",
       "key": "51",
       "name": "凱特琳",
       "title": "執法者",
-      "blurb": "凱特琳以皮爾托福最優秀的執法者聞名世界，她也是幫助這座城市剷除那些難纏犯罪分子的最佳人選。她時常和菲艾一起搭檔，在旁人眼中，她謹慎冷靜的性格與菲艾衝動火爆的個性形成強烈的對比。雖然手裡拿著的是一把獨一無二的海克斯科技來福槍，但她最厲害的武器其實是她的聰明與機警。這兩項特質也使得凱特琳總是能佈下精心的陷阱，任何意圖破壞進步之城治安的不法之徒都逃不出她的手掌心。",
+      "blurb": "凱特琳．吉拉曼恩以皮爾托福最優秀的執法者聞名世界，她也是幫助這座城市擺脫那些難纏犯罪分子的最佳人選。她時常和菲艾一起搭檔，在旁人眼中，她謹慎冷靜的性格與菲艾衝動火爆的個性形成強烈的對比。雖然手裡拿著的是一把獨一無二的海克斯科技來福槍，但她最厲害的武器其實是她的聰明與機警。這兩項特質也使得凱特琳總是能佈下精心的陷阱，任何意圖破壞進步之城治安的不法之徒都逃不出她的手掌心。",
       "info": {
         "attack": 8,
         "defense": 2,
@@ -562,8 +1014,8 @@
         "full": "Caitlyn.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 384,
-        "y": 48,
+        "x": 0,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -588,14 +1040,14 @@
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 60,
-        "attackdamageperlevel": 3.8,
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 4,
         "attackspeed": 0.681
       }
     },
     "Camille": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Camille",
       "key": "164",
       "name": "卡蜜兒",
@@ -611,24 +1063,24 @@
         "full": "Camille.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 432,
-        "y": 48,
+        "x": 48,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Fighter",
-        "Tank"
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 670,
+        "hp": 650,
         "hpperlevel": 99,
         "mp": 339,
         "mpperlevel": 52,
         "movespeed": 340,
         "armor": 35,
-        "armorperlevel": 5,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -639,13 +1091,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 3.8,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.644
       }
     },
     "Cassiopeia": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Cassiopeia",
       "key": "69",
       "name": "卡莎碧雅",
@@ -661,7 +1113,7 @@
         "full": "Cassiopeia.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 0,
+        "x": 96,
         "y": 96,
         "w": 48,
         "h": 48
@@ -673,9 +1125,9 @@
       "stats": {
         "hp": 630,
         "hpperlevel": 104,
-        "mp": 350,
-        "mpperlevel": 60,
-        "movespeed": 328,
+        "mp": 480,
+        "mpperlevel": 40,
+        "movespeed": 335,
         "armor": 18,
         "armorperlevel": 4.7,
         "spellblock": 32,
@@ -688,13 +1140,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 53,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.647
       }
     },
     "Chogath": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Chogath",
       "key": "31",
       "name": "科加斯",
@@ -710,7 +1162,7 @@
         "full": "Chogath.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 96,
         "w": 48,
         "h": 48
@@ -727,7 +1179,7 @@
         "mpperlevel": 60,
         "movespeed": 345,
         "armor": 38,
-        "armorperlevel": 5,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -738,13 +1190,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 69,
-        "attackdamageperlevel": 4.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.44,
-        "attackspeed": 0.625
+        "attackspeed": 0.658
       }
     },
     "Corki": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Corki",
       "key": "42",
       "name": "庫奇",
@@ -760,45 +1212,46 @@
         "full": "Corki.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman"
+        "Marksman",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
         "hp": 610,
-        "hpperlevel": 103,
+        "hpperlevel": 100,
         "mp": 350,
-        "mpperlevel": 54,
+        "mpperlevel": 40,
         "movespeed": 325,
-        "armor": 28,
-        "armorperlevel": 4.7,
+        "armor": 27,
+        "armorperlevel": 4.5,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
         "hpregen": 5.5,
         "hpregenperlevel": 0.55,
         "mpregen": 7.4,
-        "mpregenperlevel": 0.55,
+        "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 61,
-        "attackdamageperlevel": 2.5,
-        "attackspeedperlevel": 2.3,
-        "attackspeed": 0.638
+        "attackdamage": 52,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.8,
+        "attackspeed": 0.644
       }
     },
     "Darius": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Darius",
       "key": "122",
       "name": "達瑞斯",
       "title": "諾克薩斯之力",
-      "blurb": "沒有任何人比達瑞斯還更能代表諾克薩斯的強盛與力量，他是整個國家上下最令人感到恐懼且身經百戰的指揮官。從一個名不見經傳的無名小卒到成為諾克薩斯之力的這段過程中，達瑞斯斬殺了無數名反抗帝國的敵人——其中不乏有諾克薩斯人。膽敢反抗這名特菲利安軍團首領的人皆深明，達瑞斯不曾懷疑自身信念的正當性，且一旦舉起斧頭下手絕不猶豫，因此他們也知道自己不該期望他會手下留情。",
+      "blurb": "沒有任何人比達瑞斯還更能代表諾克薩斯的強盛與力量，他是整個國家上下最令人感到恐懼且身經百戰的指揮官。從一個名不見經傳的無名小卒到成為諾克薩斯威能的這段過程中，達瑞斯斬殺了無數名反抗帝國的敵人——其中不乏有諾克薩斯人。膽敢反抗這名特菲利安軍團首領的人皆深明，達瑞斯不曾懷疑自身信念的正當性，且一旦舉起斧頭下手絕不猶豫，因此他們也知道自己不該期望他會手下留情。",
       "info": {
         "attack": 9,
         "defense": 5,
@@ -809,7 +1262,7 @@
         "full": "Darius.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 96,
         "w": 48,
         "h": 48
@@ -825,7 +1278,7 @@
         "mp": 263,
         "mpperlevel": 58,
         "movespeed": 340,
-        "armor": 39,
+        "armor": 37,
         "armorperlevel": 5.2,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -837,13 +1290,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1,
         "attackspeed": 0.625
       }
     },
     "Diana": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Diana",
       "key": "131",
       "name": "黛安娜",
@@ -859,14 +1312,14 @@
         "full": "Diana.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Fighter",
-        "Mage"
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
@@ -887,13 +1340,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 57,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
     "Draven": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Draven",
       "key": "119",
       "name": "達瑞文",
@@ -909,7 +1362,7 @@
         "full": "Draven.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 96,
         "w": 48,
         "h": 48
@@ -936,18 +1389,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 3.6,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.7,
         "attackspeed": 0.679
       }
     },
     "DrMundo": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "DrMundo",
       "key": "36",
       "name": "蒙多醫生",
       "title": "佐恩狂人",
-      "blurb": "蒙多醫生極度瘋狂，因悲慘遭遇而滿懷殺戮慾望，通身都是駭人的紫色，讓佐恩居民嚇得不敢在幽暗的夜裡出門。現在自稱醫生的他，過去曾是佐恩最惡名遠播的精神病院裡所收容的病患。在「治癒」了所有院內員工之後，蒙多醫生在他自己曾受治療的空病房裡開始執業，開始模仿過去親身體驗過的種種違背倫理的治療手段。現在，他有滿滿一櫃子的藥，卻幾乎毫無醫學知識，每一次注射都讓他變得更接近怪物，讓那些不小心接近他診間的不幸「病患」恐懼不已。",
+      "blurb": "蒙多醫生極度瘋狂，因悲慘遭遇而滿懷殺戮慾望，通身都是駭人的紫色，讓佐恩居民嚇得不敢在幽暗的夜裡出門。現在自稱醫生的他，過去曾是佐恩最惡名遠播的精神病院裡所收容的病患。在「治療」了所有院內員工之後，蒙多醫生在他自己曾受治療的空病房裡開始執業，開始模仿過去親身體驗過的種種違背倫理的治療手段。現在，他有滿滿一櫃子的藥，卻幾乎毫無醫學知識，每一次注射都讓他變得更接近怪物，讓那些不小心接近他診間的不幸「病患」恐懼不已。",
       "info": {
         "attack": 5,
         "defense": 7,
@@ -958,24 +1411,24 @@
         "full": "DrMundo.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter",
-        "Tank"
+        "Tank",
+        "Fighter"
       ],
       "partype": "無",
       "stats": {
-        "hp": 613,
+        "hp": 640,
         "hpperlevel": 103,
         "mp": 0,
         "mpperlevel": 0,
         "movespeed": 345,
         "armor": 32,
-        "armorperlevel": 3.7,
+        "armorperlevel": 4.5,
         "spellblock": 29,
         "spellblockperlevel": 2.3,
         "attackrange": 125,
@@ -986,18 +1439,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 2.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.3,
         "attackspeed": 0.67
       }
     },
     "Ekko": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ekko",
       "key": "245",
       "name": "艾克",
       "title": "時空少年",
-      "blurb": "艾克是一名來自佐恩街頭的天才，他能夠操控時間，扭轉局勢，並使用他的發明「驅動-Z」來探索平行時空，嘗試創造出完美的當下。雖然他很享受這樣的自由，但若朋友陷入險境，他會不顧一切保護他們。在不知情的旁觀者眼裡，艾克似乎總能達成不可能的任務，而且從不失手。",
+      "blurb": "艾克是來自佐恩街頭的少年天才，擁有操控時間扭轉情勢的力量。借著自己發明的「驅動-Z」之助，他能在平行時空中穿梭，每次都能在似乎第一次遇見的情況下，在最完美的時機化不可能為可能。雖然艾克往往在時空中來去自如，玩得不亦樂乎；但只要那些他所關心的人有難，他和野火幫就會不顧一切衝去保護。",
       "info": {
         "attack": 5,
         "defense": 3,
@@ -1008,14 +1461,14 @@
         "full": "Ekko.png",
         "sprite": "champion0.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Assassin",
-        "Fighter"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -1036,13 +1489,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.3,
         "attackspeed": 0.688
       }
     },
     "Elise": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Elise",
       "key": "60",
       "name": "伊莉絲",
@@ -1056,26 +1509,26 @@
       },
       "image": {
         "full": "Elise.png",
-        "sprite": "champion0.png",
+        "sprite": "champion1.png",
         "group": "champion",
-        "x": 384,
-        "y": 96,
+        "x": 0,
+        "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Fighter"
+        "Assassin",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 650,
+        "hp": 620,
         "hpperlevel": 109,
         "mp": 324,
         "mpperlevel": 50,
         "movespeed": 330,
         "armor": 30,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.5,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -1086,13 +1539,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.75,
         "attackspeed": 0.625
       }
     },
     "Evelynn": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Evelynn",
       "key": "28",
       "name": "伊芙琳",
@@ -1106,10 +1559,10 @@
       },
       "image": {
         "full": "Evelynn.png",
-        "sprite": "champion0.png",
+        "sprite": "champion1.png",
         "group": "champion",
-        "x": 432,
-        "y": 96,
+        "x": 48,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -1136,13 +1589,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.1,
         "attackspeed": 0.667
       }
     },
     "Ezreal": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ezreal",
       "key": "81",
       "name": "伊澤瑞爾",
@@ -1158,7 +1611,7 @@
         "full": "Ezreal.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 0,
+        "x": 96,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1175,7 +1628,7 @@
         "mpperlevel": 70,
         "movespeed": 325,
         "armor": 24,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4.2,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -1185,14 +1638,14 @@
         "mpregenperlevel": 1,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 62,
-        "attackdamageperlevel": 2.5,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.625
       }
     },
     "Fiddlesticks": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Fiddlesticks",
       "key": "9",
       "name": "費德提克",
@@ -1208,7 +1661,7 @@
         "full": "Fiddlesticks.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1236,13 +1689,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 2.65,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.625
       }
     },
     "Fiora": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Fiora",
       "key": "114",
       "name": "菲歐拉",
@@ -1258,7 +1711,7 @@
         "full": "Fiora.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1285,14 +1738,14 @@
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 68,
-        "attackdamageperlevel": 3.3,
+        "attackdamage": 66,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.2,
         "attackspeed": 0.69
       }
     },
     "Fizz": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Fizz",
       "key": "105",
       "name": "飛斯",
@@ -1308,7 +1761,7 @@
         "full": "Fizz.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1324,7 +1777,7 @@
         "mp": 317,
         "mpperlevel": 52,
         "movespeed": 335,
-        "armor": 22,
+        "armor": 26,
         "armorperlevel": 4.6,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -1336,13 +1789,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.1,
         "attackspeed": 0.658
       }
     },
     "Galio": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Galio",
       "key": "3",
       "name": "加里歐",
@@ -1358,7 +1811,7 @@
         "full": "Galio.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1369,11 +1822,11 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 632,
+        "hp": 600,
         "hpperlevel": 126,
-        "mp": 500,
+        "mp": 410,
         "mpperlevel": 40,
-        "movespeed": 335,
+        "movespeed": 340,
         "armor": 24,
         "armorperlevel": 4.7,
         "spellblock": 32,
@@ -1386,13 +1839,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.625
       }
     },
     "Gangplank": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Gangplank",
       "key": "41",
       "name": "剛普朗克",
@@ -1408,7 +1861,7 @@
         "full": "Gangplank.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1418,30 +1871,30 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 600,
+        "hp": 630,
         "hpperlevel": 114,
         "mp": 280,
         "mpperlevel": 60,
         "movespeed": 345,
         "armor": 31,
-        "armorperlevel": 4.2,
+        "armorperlevel": 4.7,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
         "hpregen": 6,
         "hpregenperlevel": 0.6,
-        "mpregen": 7.5,
+        "mpregen": 8,
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.2,
         "attackspeed": 0.658
       }
     },
     "Garen": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Garen",
       "key": "86",
       "name": "蓋倫",
@@ -1457,7 +1910,7 @@
         "full": "Garen.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1485,13 +1938,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 69,
-        "attackdamageperlevel": 4.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.65,
         "attackspeed": 0.625
       }
     },
     "Gnar": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Gnar",
       "key": "150",
       "name": "吶兒",
@@ -1507,7 +1960,7 @@
         "full": "Gnar.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 0,
         "w": 48,
         "h": 48
@@ -1534,19 +1987,19 @@
         "mpregenperlevel": 0,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 57,
-        "attackdamageperlevel": 3,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 6,
         "attackspeed": 0.625
       }
     },
     "Gragas": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Gragas",
       "key": "79",
       "name": "古拉格斯",
       "title": "酒桶之王",
-      "blurb": "古拉格斯是一名身形龐大，行為舉止豪邁粗魯的釀酒大師。他唯一的夢想就是釀造出一款完美的麥芽酒。沒有人知道古拉格斯來自哪裡，目前他人在弗雷爾卓德，積極地從沒有受到汙染的純淨之地找尋珍貴的原料，並嘗試他研發的每一個配方。古拉格斯的個性十分衝動，而且經常喝醉，他最為人所知的事蹟就是每次喝醉都會打架鬧事，最終以徹夜狂歡和他人的財產損失收場。基本上古拉格斯的行為模式一定是先喝醉，然後開始大搞破壞。",
+      "blurb": "歡樂時光與雄偉體態共存；古拉格斯是一位身材魁武、脾氣暴躁的釀酒大師，他總是在尋找新方法，要來振奮精神。沒有人知道古拉格斯來自何處，他在弗雷爾卓德未經污染的荒原上尋找原料，試圖找到最完美的配方。他衝動、韌性，喜歡挑釁鬥毆，他的一天常以徹夜狂歡以及大範圍財物損失畫下句點。古拉格斯的出現通常代表歡樂與毀滅，且絕對是先歡樂、後毀滅。",
       "info": {
         "attack": 4,
         "defense": 7,
@@ -1557,8 +2010,8 @@
         "full": "Gragas.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 384,
-        "y": 0,
+        "x": 0,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -1585,13 +2038,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.05,
         "attackspeed": 0.675
       }
     },
     "Graves": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Graves",
       "key": "104",
       "name": "葛雷夫",
@@ -1607,8 +2060,8 @@
         "full": "Graves.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 432,
-        "y": 0,
+        "x": 48,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -1624,8 +2077,8 @@
         "movespeed": 340,
         "armor": 33,
         "armorperlevel": 4.6,
-        "spellblock": 32,
-        "spellblockperlevel": 2.05,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
         "attackrange": 425,
         "hpregen": 8,
         "hpregenperlevel": 0.7,
@@ -1633,14 +2086,14 @@
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 68,
-        "attackdamageperlevel": 4,
-        "attackspeedperlevel": 2.6,
+        "attackdamage": 66,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 3,
         "attackspeed": 0.475
       }
     },
     "Gwen": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Gwen",
       "key": "887",
       "name": "關",
@@ -1656,14 +2109,13 @@
         "full": "Gwen.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 0,
+        "x": 96,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Fighter"
       ],
       "partype": "魔力",
       "stats": {
@@ -1673,7 +2125,7 @@
         "mpperlevel": 40,
         "movespeed": 340,
         "armor": 39,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.9,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 150,
@@ -1684,13 +2136,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.25,
         "attackspeed": 0.69
       }
     },
     "Hecarim": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Hecarim",
       "key": "120",
       "name": "赫克林",
@@ -1706,7 +2158,7 @@
         "full": "Hecarim.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 48,
         "w": 48,
         "h": 48
@@ -1718,7 +2170,7 @@
       "partype": "魔力",
       "stats": {
         "hp": 625,
-        "hpperlevel": 99,
+        "hpperlevel": 106,
         "mp": 280,
         "mpperlevel": 40,
         "movespeed": 345,
@@ -1734,18 +2186,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 66,
-        "attackdamageperlevel": 3.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.67
       }
     },
     "Heimerdinger": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Heimerdinger",
       "key": "74",
       "name": "漢默丁格",
       "title": "大發明家",
-      "blurb": "傑出但個性古怪的約德爾科學家賽爾．畢．漢默丁格是皮爾托福有史以來最創新，最令人敬重的發明家之一。他對於發明有著近乎神經質的迷戀，也特別喜歡探討宇宙間最難解的問題。雖然漢默丁格的理論經常過於艱澀難懂，但他的發明卻是皮爾托福所有科技產物之中最驚人──也最致命的。除此之外，他也經常對他的發明東改西改來進一步提升效率。",
+      "blurb": "個性古怪的賽爾．畢．漢默丁格教授，是世上有史以來最創新，最受到尊崇的發明家，也是皮爾托福議會最資深的議員，並見證過城市追求進步的無盡欲望所帶來的好處和壞處。儘管如此，這位傑出的科學家與老師依然致力運用自己發明的非傳統裝置改善人們的生活。",
       "info": {
         "attack": 2,
         "defense": 6,
@@ -1756,7 +2208,7 @@
         "full": "Heimerdinger.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 48,
         "w": 48,
         "h": 48
@@ -1768,7 +2220,7 @@
       "partype": "魔力",
       "stats": {
         "hp": 558,
-        "hpperlevel": 101,
+        "hpperlevel": 105,
         "mp": 385,
         "mpperlevel": 20,
         "movespeed": 340,
@@ -1784,13 +2236,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 56,
-        "attackdamageperlevel": 2.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.36,
         "attackspeed": 0.658
       }
     },
     "Hwei": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Hwei",
       "key": "910",
       "name": "赫威",
@@ -1806,13 +2258,14 @@
         "full": "Hwei.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage"
+        "Mage",
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
@@ -1833,13 +2286,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 54,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.69
       }
     },
     "Illaoi": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Illaoi",
       "key": "420",
       "name": "伊羅旖",
@@ -1855,7 +2308,7 @@
         "full": "Illaoi.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 48,
         "w": 48,
         "h": 48
@@ -1869,7 +2322,7 @@
         "hp": 656,
         "hpperlevel": 115,
         "mp": 350,
-        "mpperlevel": 60,
+        "mpperlevel": 50,
         "movespeed": 350,
         "armor": 35,
         "armorperlevel": 5,
@@ -1882,14 +2335,14 @@
         "mpregenperlevel": 0.75,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 68,
-        "attackdamageperlevel": 5,
+        "attackdamage": 65,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.625
       }
     },
     "Irelia": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Irelia",
       "key": "39",
       "name": "伊瑞莉雅",
@@ -1905,7 +2358,7 @@
         "full": "Irelia.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 48,
         "w": 48,
         "h": 48
@@ -1916,8 +2369,8 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 590,
-        "hpperlevel": 124,
+        "hp": 630,
+        "hpperlevel": 115,
         "mp": 350,
         "mpperlevel": 50,
         "movespeed": 335,
@@ -1926,20 +2379,20 @@
         "spellblock": 30,
         "spellblockperlevel": 2.05,
         "attackrange": 200,
-        "hpregen": 8.5,
+        "hpregen": 3.5,
         "hpregenperlevel": 0.85,
         "mpregen": 8,
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 65,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.656
       }
     },
     "Ivern": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ivern",
       "key": "427",
       "name": "埃爾文",
@@ -1955,7 +2408,7 @@
         "full": "Ivern.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 48,
         "w": 48,
         "h": 48
@@ -1983,13 +2436,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 50,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.4,
         "attackspeed": 0.644
       }
     },
     "Janna": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Janna",
       "key": "40",
       "name": "珍娜",
@@ -2005,7 +2458,7 @@
         "full": "Janna.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 48,
         "w": 48,
         "h": 48
@@ -2033,13 +2486,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 47,
-        "attackdamageperlevel": 2.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.625
       }
     },
     "JarvanIV": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "JarvanIV",
       "key": "59",
       "name": "嘉文四世",
@@ -2055,14 +2508,14 @@
         "full": "JarvanIV.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 384,
-        "y": 48,
+        "x": 0,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Tank",
-        "Fighter"
+        "Fighter",
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
@@ -2072,7 +2525,7 @@
         "mpperlevel": 55,
         "movespeed": 340,
         "armor": 36,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.6,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -2083,13 +2536,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.658
       }
     },
     "Jax": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Jax",
       "key": "24",
       "name": "賈克斯",
@@ -2105,19 +2558,18 @@
         "full": "Jax.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 432,
-        "y": 48,
+        "x": 48,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Fighter"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 665,
-        "hpperlevel": 100,
+        "hp": 650,
+        "hpperlevel": 103,
         "mp": 339,
         "mpperlevel": 52,
         "movespeed": 350,
@@ -2128,23 +2580,23 @@
         "attackrange": 125,
         "hpregen": 8.5,
         "hpregenperlevel": 0.55,
-        "mpregen": 7.6,
+        "mpregen": 8.2,
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 4.25,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.4,
         "attackspeed": 0.638
       }
     },
     "Jayce": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Jayce",
       "key": "126",
       "name": "杰西",
       "title": "明日守護者",
-      "blurb": "杰西是一名相當出色的發明家，他把一生都投入在守護皮爾托福以及這座進步之城永不停歇的腳步上。杰西用可以變換型態的海克斯科技戰錘，以及他的力量、勇氣和智慧來保護他的家鄉。雖然被全城人民尊為英雄，他卻對這樣的光環與名氣不屑一顧。不過他的心仍為著眾人著想，就連那些眼紅的人都不得不感謝他守護了進步之城。",
+      "blurb": "杰西．塔利斯是個出色的發明家，他與好友維克特是海克斯科技領域的先驅。杰西在皮爾托福備受盛譽，人稱他為「進步使者」。不過，他也得承擔眾人期望的重壓，這往往使他透不過氣。因此緣故，杰西開始明白自己的發明使皮爾托福和佐恩之間的分裂變得更大——現在他手握海克斯科技戰錘，化身明日守護者。",
       "info": {
         "attack": 8,
         "defense": 4,
@@ -2155,7 +2607,7 @@
         "full": "Jayce.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 0,
+        "x": 96,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2183,13 +2635,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 4.25,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.658
       }
     },
     "Jhin": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Jhin",
       "key": "202",
       "name": "燼",
@@ -2205,7 +2657,7 @@
         "full": "Jhin.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2232,19 +2684,19 @@
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 59,
-        "attackdamageperlevel": 4.7,
+        "attackdamage": 61,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 0,
         "attackspeed": 0.625
       }
     },
     "Jinx": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Jinx",
       "key": "222",
       "name": "吉茵珂絲",
       "title": "暴走重砲",
-      "blurb": "來自佐恩的吉茵珂絲是一名衝動的瘋狂罪犯，以肆意破壞為樂，絲毫不顧後果。她使用各式危險武器，來製造響徹雲霄、火光沖天的大爆炸，留下混亂的景象與恐慌的人群。吉茵珂絲最無法忍受無聊，所以不管去到哪裡，總是會歡欣鼓舞地帶來她招牌的人間煉獄。",
+      "blurb": "吉茵珂絲是個精神失常、衝動作案的底城罪犯。儘管過去所做的事導致的後果纏著她不放，她還是繼續在皮爾托福和佐恩製造混亂，用各種自製武器到處亂射，引起色彩繽紛的爆炸。不過，她大肆破壞後留下的痕跡，卻能啟發那些被剝奪公民權的人起來反抗。",
       "info": {
         "attack": 9,
         "defense": 2,
@@ -2255,7 +2707,7 @@
         "full": "Jinx.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2271,7 +2723,7 @@
         "mpperlevel": 50,
         "movespeed": 325,
         "armor": 26,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4.2,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 525,
@@ -2282,13 +2734,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 3.15,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1,
         "attackspeed": 0.625
       }
     },
     "Kaisa": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kaisa",
       "key": "145",
       "name": "凱莎",
@@ -2304,13 +2756,14 @@
         "full": "Kaisa.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman"
+        "Marksman",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -2324,20 +2777,20 @@
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 525,
-        "hpregen": 3.5,
+        "hpregen": 4,
         "hpregenperlevel": 0.55,
         "mpregen": 8.2,
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 2.6,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.8,
         "attackspeed": 0.644
       }
     },
     "Kalista": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kalista",
       "key": "429",
       "name": "克黎思妲",
@@ -2353,7 +2806,7 @@
         "full": "Kalista.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2363,7 +2816,7 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 600,
+        "hp": 560,
         "hpperlevel": 114,
         "mp": 300,
         "mpperlevel": 45,
@@ -2376,17 +2829,17 @@
         "hpregen": 4,
         "hpregenperlevel": 0.75,
         "mpregen": 6.3,
-        "mpregenperlevel": 0.4,
+        "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 61,
-        "attackdamageperlevel": 3.25,
+        "attackdamage": 57,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 4.5,
         "attackspeed": 0.694
       }
     },
     "Karma": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Karma",
       "key": "43",
       "name": "卡瑪",
@@ -2402,7 +2855,7 @@
         "full": "Karma.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2430,13 +2883,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 51,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.3,
         "attackspeed": 0.625
       }
     },
     "Karthus": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Karthus",
       "key": "30",
       "name": "卡爾瑟斯",
@@ -2452,7 +2905,7 @@
         "full": "Karthus.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2479,13 +2932,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 46,
-        "attackdamageperlevel": 3.25,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.625
       }
     },
     "Kassadin": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kassadin",
       "key": "38",
       "name": "卡薩丁",
@@ -2501,7 +2954,7 @@
         "full": "Kassadin.png",
         "sprite": "champion1.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 96,
         "w": 48,
         "h": 48
@@ -2513,11 +2966,11 @@
       "partype": "魔力",
       "stats": {
         "hp": 646,
-        "hpperlevel": 119,
+        "hpperlevel": 113,
         "mp": 400,
         "mpperlevel": 87,
         "movespeed": 335,
-        "armor": 19,
+        "armor": 21,
         "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
@@ -2529,13 +2982,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 3.9,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.7,
         "attackspeed": 0.64
       }
     },
     "Katarina": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Katarina",
       "key": "55",
       "name": "卡特蓮娜",
@@ -2549,10 +3002,10 @@
       },
       "image": {
         "full": "Katarina.png",
-        "sprite": "champion1.png",
+        "sprite": "champion2.png",
         "group": "champion",
-        "x": 384,
-        "y": 96,
+        "x": 0,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -2567,7 +3020,7 @@
         "mp": 0,
         "mpperlevel": 0,
         "movespeed": 335,
-        "armor": 28,
+        "armor": 32,
         "armorperlevel": 4.7,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -2579,13 +3032,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.74,
         "attackspeed": 0.658
       }
     },
     "Kayle": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kayle",
       "key": "10",
       "name": "凱爾",
@@ -2599,16 +3052,16 @@
       },
       "image": {
         "full": "Kayle.png",
-        "sprite": "champion1.png",
+        "sprite": "champion2.png",
         "group": "champion",
-        "x": 432,
-        "y": 96,
+        "x": 48,
+        "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter",
-        "Support"
+        "Mage",
+        "Marksman"
       ],
       "partype": "魔力",
       "stats": {
@@ -2629,13 +3082,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 50,
-        "attackdamageperlevel": 2.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.625
       }
     },
     "Kayn": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kayn",
       "key": "141",
       "name": "慨影",
@@ -2651,7 +3104,7 @@
         "full": "Kayn.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 0,
+        "x": 96,
         "y": 0,
         "w": 48,
         "h": 48
@@ -2663,7 +3116,7 @@
       "partype": "魔力",
       "stats": {
         "hp": 655,
-        "hpperlevel": 109,
+        "hpperlevel": 103,
         "mp": 410,
         "mpperlevel": 50,
         "movespeed": 340,
@@ -2679,13 +3132,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.7,
         "attackspeed": 0.669
       }
     },
     "Kennen": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kennen",
       "key": "85",
       "name": "凱能",
@@ -2701,18 +3154,17 @@
         "full": "Kennen.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Marksman"
+        "Mage"
       ],
       "partype": "能量",
       "stats": {
-        "hp": 611,
+        "hp": 580,
         "hpperlevel": 98,
         "mp": 200,
         "mpperlevel": 0,
@@ -2729,13 +3181,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 48,
-        "attackdamageperlevel": 3.75,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.4,
         "attackspeed": 0.625
       }
     },
     "Khazix": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Khazix",
       "key": "121",
       "name": "卡力斯",
@@ -2751,7 +3203,7 @@
         "full": "Khazix.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 0,
         "w": 48,
         "h": 48
@@ -2765,8 +3217,8 @@
         "hpperlevel": 99,
         "mp": 327,
         "mpperlevel": 40,
-        "movespeed": 350,
-        "armor": 36,
+        "movespeed": 345,
+        "armor": 32,
         "armorperlevel": 4.2,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -2778,13 +3230,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 3.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.7,
         "attackspeed": 0.668
       }
     },
     "Kindred": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kindred",
       "key": "203",
       "name": "鏡爪",
@@ -2800,7 +3252,7 @@
         "full": "Kindred.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 0,
         "w": 48,
         "h": 48
@@ -2810,7 +3262,7 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 610,
+        "hp": 595,
         "hpperlevel": 104,
         "mp": 300,
         "mpperlevel": 35,
@@ -2827,18 +3279,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 65,
-        "attackdamageperlevel": 3.25,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.625
       }
     },
     "Kled": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Kled",
       "key": "240",
       "name": "克雷德",
       "title": "暴躁騎士",
-      "blurb": "約德爾人克雷德狂野暴躁且無所畏懼，這樣的戰士恰恰象徵了諾克薩斯的勇猛果敢。他的形象深受帝國士兵的喜愛，但官員和貴族們卻對他感到懷疑且十分厭惡。據說在所有諾克薩斯的軍事行動中，都看得到克雷德的身影；聽說他「集滿了」所有軍事頭銜，而且在戰場上從不退縮。儘管傳說的真實性令人存疑，但有一點是無庸置疑的：克雷德會騎著他不可靠的坐騎小嘎衝進戰場，為了保護屬於他的東西而奮戰……並拿走能占有的一切。",
+      "blurb": "約德爾人克雷德狂野暴躁且無所畏懼，這樣的戰士恰恰象徵了諾克薩斯的勇猛果敢。他的形象深受帝國士兵的喜愛，但官員和貴族們卻對他感到懷疑且十分厭惡。據說在所有諾克薩斯的軍事行動中，都看得到克雷德的身影；聽說他「集滿了」所有軍事稱號，而且在戰場上從不退縮。儘管傳說的真實性令人存疑，但有一點是無庸置疑的：克雷德會騎著他不可靠的坐騎小嘎衝進戰場，為了保護屬於他的東西而奮戰……並拿走能占有的一切。",
       "info": {
         "attack": 8,
         "defense": 2,
@@ -2849,14 +3301,13 @@
         "full": "Kled.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter",
-        "Tank"
+        "Fighter"
       ],
       "partype": "勇氣",
       "stats": {
@@ -2877,13 +3328,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 65,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.625
       }
     },
     "KogMaw": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "KogMaw",
       "key": "96",
       "name": "寇格魔",
@@ -2899,7 +3350,7 @@
         "full": "KogMaw.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 0,
         "w": 48,
         "h": 48
@@ -2927,13 +3378,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 3.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.65,
         "attackspeed": 0.665
       }
     },
     "KSante": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "KSante",
       "key": "897",
       "name": "卡桑帝",
@@ -2949,7 +3400,7 @@
         "full": "KSante.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 0,
         "w": 48,
         "h": 48
@@ -2961,29 +3412,29 @@
       "partype": "魔力",
       "stats": {
         "hp": 625,
-        "hpperlevel": 115,
+        "hpperlevel": 120,
         "mp": 320,
         "mpperlevel": 60,
         "movespeed": 330,
-        "armor": 33,
+        "armor": 36,
         "armorperlevel": 5.2,
         "spellblock": 30,
         "spellblockperlevel": 2.1,
-        "attackrange": 175,
+        "attackrange": 150,
         "hpregen": 9.5,
-        "hpregenperlevel": 0.85,
+        "hpregenperlevel": 1,
         "mpregen": 7,
         "mpregenperlevel": 1,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
-        "attackspeed": 0.625
+        "attackspeed": 0.688
       }
     },
     "Leblanc": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Leblanc",
       "key": "7",
       "name": "勒布朗",
@@ -2999,7 +3450,7 @@
         "full": "Leblanc.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 0,
         "w": 48,
         "h": 48
@@ -3011,12 +3462,12 @@
       "partype": "魔力",
       "stats": {
         "hp": 598,
-        "hpperlevel": 111,
+        "hpperlevel": 108,
         "mp": 400,
         "mpperlevel": 25,
         "movespeed": 340,
         "armor": 22,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4.2,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 525,
@@ -3027,13 +3478,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 2.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.35,
         "attackspeed": 0.658
       }
     },
     "LeeSin": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "LeeSin",
       "key": "64",
       "name": "李星",
@@ -3049,8 +3500,8 @@
         "full": "LeeSin.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 384,
-        "y": 0,
+        "x": 0,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -3061,12 +3512,12 @@
       "partype": "能量",
       "stats": {
         "hp": 645,
-        "hpperlevel": 105,
+        "hpperlevel": 108,
         "mp": 200,
         "mpperlevel": 0,
         "movespeed": 345,
         "armor": 36,
-        "armorperlevel": 4.9,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -3077,13 +3528,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 66,
-        "attackdamageperlevel": 3.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.651
       }
     },
     "Leona": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Leona",
       "key": "89",
       "name": "雷歐娜",
@@ -3099,8 +3550,8 @@
         "full": "Leona.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 432,
-        "y": 0,
+        "x": 48,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -3115,7 +3566,7 @@
         "mp": 302,
         "mpperlevel": 40,
         "movespeed": 335,
-        "armor": 47,
+        "armor": 43,
         "armorperlevel": 4.8,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -3127,13 +3578,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.9,
         "attackspeed": 0.625
       }
     },
     "Lillia": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Lillia",
       "key": "876",
       "name": "莉莉亞",
@@ -3149,7 +3600,7 @@
         "full": "Lillia.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 0,
+        "x": 96,
         "y": 48,
         "w": 48,
         "h": 48
@@ -3166,7 +3617,7 @@
         "mpperlevel": 50,
         "movespeed": 330,
         "armor": 22,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 1.55,
         "attackrange": 325,
@@ -3177,13 +3628,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 3.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.7,
         "attackspeed": 0.625
       }
     },
     "Lissandra": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Lissandra",
       "key": "127",
       "name": "麗珊卓",
@@ -3199,7 +3650,7 @@
         "full": "Lissandra.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 48,
+        "x": 144,
         "y": 48,
         "w": 48,
         "h": 48
@@ -3215,7 +3666,7 @@
         "mpperlevel": 30,
         "movespeed": 325,
         "armor": 22,
-        "armorperlevel": 4.9,
+        "armorperlevel": 4.2,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -3226,18 +3677,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 2.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.656
       }
     },
     "Lucian": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Lucian",
       "key": "236",
       "name": "路西恩",
       "title": "驅魔聖槍",
-      "blurb": "身為光之哨兵的路西恩，是一個冷酷的靈魂狩獵者，他無情追捕那些不死怨魂，並以手中的一對聖石手槍消滅它們。妻子遭到鬼靈瑟雷西殺害之後，路西恩走上了復仇之路——但即使妻子死而復生，也無法澆熄他的怒火。心硬冷酷、專心致志的路西恩，誓要保護人類免受詭祕黯霧的幽怨亡靈所侵擾，在所不惜。",
+      "blurb": "身為光之哨兵的路西恩，是一名冷酷無情的獵手，他竭盡所能地追捕那些幽魂，並以手中的一對聖石手槍消滅它們。妻子遭到幽魂瑟雷西殺害之後，路西恩便踏上了復仇之路——但即使妻子死而復生，也無法澆熄他的怒火。冷酷無情、專心致志的路西恩，立誓要保護生者免受黯霧的幽怨亡靈所侵擾，付上一切、在所不惜。",
       "info": {
         "attack": 8,
         "defense": 5,
@@ -3248,13 +3699,14 @@
         "full": "Lucian.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 96,
+        "x": 192,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman"
+        "Marksman",
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
@@ -3275,13 +3727,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 2.9,
-        "attackspeedperlevel": 3.3,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.5,
         "attackspeed": 0.638
       }
     },
     "Lulu": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Lulu",
       "key": "117",
       "name": "露璐",
@@ -3297,7 +3749,7 @@
         "full": "Lulu.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 144,
+        "x": 240,
         "y": 48,
         "w": 48,
         "h": 48
@@ -3308,13 +3760,13 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 595,
+        "hp": 565,
         "hpperlevel": 92,
         "mp": 350,
         "mpperlevel": 55,
         "movespeed": 330,
         "armor": 26,
-        "armorperlevel": 4.9,
+        "armorperlevel": 4.6,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -3325,13 +3777,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 47,
-        "attackdamageperlevel": 2.6,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.25,
         "attackspeed": 0.625
       }
     },
     "Lux": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Lux",
       "key": "99",
       "name": "拉克絲",
@@ -3347,7 +3799,7 @@
         "full": "Lux.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 192,
+        "x": 288,
         "y": 48,
         "w": 48,
         "h": 48
@@ -3360,7 +3812,7 @@
       "stats": {
         "hp": 580,
         "hpperlevel": 99,
-        "mp": 480,
+        "mp": 440,
         "mpperlevel": 23.5,
         "movespeed": 330,
         "armor": 21,
@@ -3370,18 +3822,18 @@
         "attackrange": 550,
         "hpregen": 5.5,
         "hpregenperlevel": 0.55,
-        "mpregen": 7,
+        "mpregen": 9,
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 54,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.669
       }
     },
     "Malphite": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Malphite",
       "key": "54",
       "name": "墨菲特",
@@ -3397,23 +3849,23 @@
         "full": "Malphite.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 240,
+        "x": 336,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Tank",
-        "Fighter"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 644,
+        "hp": 665,
         "hpperlevel": 104,
         "mp": 280,
         "mpperlevel": 60,
         "movespeed": 335,
-        "armor": 37,
+        "armor": 40,
         "armorperlevel": 4.95,
         "spellblock": 28,
         "spellblockperlevel": 2.05,
@@ -3425,13 +3877,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.4,
         "attackspeed": 0.736
       }
     },
     "Malzahar": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Malzahar",
       "key": "90",
       "name": "馬爾札哈",
@@ -3447,14 +3899,13 @@
         "full": "Malzahar.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 288,
+        "x": 384,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Assassin"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -3475,13 +3926,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.625
       }
     },
     "Maokai": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Maokai",
       "key": "57",
       "name": "茂凱",
@@ -3497,22 +3948,22 @@
         "full": "Maokai.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 336,
+        "x": 432,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Tank",
-        "Mage"
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 635,
+        "hp": 665,
         "hpperlevel": 109,
         "mp": 375,
         "mpperlevel": 43,
-        "movespeed": 330,
+        "movespeed": 335,
         "armor": 35,
         "armorperlevel": 5.2,
         "spellblock": 32,
@@ -3525,13 +3976,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.125,
         "attackspeed": 0.8
       }
     },
     "MasterYi": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "MasterYi",
       "key": "11",
       "name": "易大師",
@@ -3547,24 +3998,24 @@
         "full": "MasterYi.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 384,
-        "y": 48,
+        "x": 0,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Fighter",
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 669,
-        "hpperlevel": 100,
+        "hp": 640,
+        "hpperlevel": 105,
         "mp": 251,
         "mpperlevel": 42,
         "movespeed": 355,
         "armor": 33,
-        "armorperlevel": 4.2,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -3575,13 +4026,63 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 65,
-        "attackdamageperlevel": 2.2,
-        "attackspeedperlevel": 2,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.5,
         "attackspeed": 0.679
       }
     },
+    "Mel": {
+      "version": "16.7.1",
+      "id": "Mel",
+      "key": "800",
+      "name": "梅爾",
+      "title": "映魂祕使",
+      "blurb": "梅爾．梅德拉達是梅德拉達家的推定繼承人，這個家族曾經是諾克薩斯最有權勢的家族之一。儘管梅爾外表是個優雅大方的貴族，但內心卻是一位鐵腕政客，不管遇上誰都會費盡心思摸清對方的底細。與神鬼莫測的黑玫瑰見面後，梅爾揭開了母親的謊言，並首次面對自己可能無法掌控的情況。魔力覺醒後，梅爾便返航歸鄉，尋找答案。儘管一定會有許多人嘗試撲滅她心中的光，但她的反叛精神是永遠無法熄滅的。",
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 9,
+        "difficulty": 5
+      },
+      "image": {
+        "full": "Mel.png",
+        "sprite": "champion2.png",
+        "group": "champion",
+        "x": 48,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 99,
+        "mp": 480,
+        "mpperlevel": 28,
+        "movespeed": 330,
+        "armor": 21,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6,
+        "hpregenperlevel": 0.55,
+        "mpregen": 9,
+        "mpregenperlevel": 0.9,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      }
+    },
     "Milio": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Milio",
       "key": "902",
       "name": "米里歐",
@@ -3597,13 +4098,14 @@
         "full": "Milio.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 432,
-        "y": 48,
+        "x": 96,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Support"
+        "Support",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -3624,13 +4126,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 48,
-        "attackdamageperlevel": 3.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.625
       }
     },
     "MissFortune": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "MissFortune",
       "key": "21",
       "name": "好運姐",
@@ -3646,23 +4148,24 @@
         "full": "MissFortune.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman"
+        "Marksman",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 640,
-        "hpperlevel": 103,
+        "hp": 625,
+        "hpperlevel": 100,
         "mp": 300,
         "mpperlevel": 40,
         "movespeed": 325,
-        "armor": 28,
-        "armorperlevel": 4.2,
+        "armor": 25,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -3672,14 +4175,14 @@
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 52,
-        "attackdamageperlevel": 2.4,
+        "attackdamage": 55,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.656
       }
     },
     "MonkeyKing": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "MonkeyKing",
       "key": "62",
       "name": "悟空",
@@ -3695,7 +4198,7 @@
         "full": "MonkeyKing.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 96,
         "w": 48,
         "h": 48
@@ -3708,7 +4211,7 @@
       "stats": {
         "hp": 610,
         "hpperlevel": 99,
-        "mp": 300,
+        "mp": 330,
         "mpperlevel": 65,
         "movespeed": 340,
         "armor": 31,
@@ -3723,13 +4226,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 66,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.69
       }
     },
     "Mordekaiser": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Mordekaiser",
       "key": "82",
       "name": "魔鬥凱薩",
@@ -3745,13 +4248,14 @@
         "full": "Mordekaiser.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter"
+        "Fighter",
+        "Mage"
       ],
       "partype": "護盾",
       "stats": {
@@ -3772,13 +4276,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1,
         "attackspeed": 0.625
       }
     },
     "Morgana": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Morgana",
       "key": "25",
       "name": "魔甘娜",
@@ -3794,14 +4298,14 @@
         "full": "Morgana.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Support"
+        "Support",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -3811,7 +4315,7 @@
         "mpperlevel": 60,
         "movespeed": 335,
         "armor": 25,
-        "armorperlevel": 5,
+        "armorperlevel": 4.2,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 450,
@@ -3822,13 +4326,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 56,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.53,
         "attackspeed": 0.625
       }
     },
     "Naafiri": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Naafiri",
       "key": "950",
       "name": "娜菲芮",
@@ -3844,40 +4348,41 @@
         "full": "Naafiri.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Assassin"
+        "Assassin",
+        "Fighter"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 635,
-        "hpperlevel": 120,
+        "hp": 610,
+        "hpperlevel": 105,
         "mp": 400,
         "mpperlevel": 55,
         "movespeed": 340,
-        "armor": 30,
-        "armorperlevel": 4.7,
+        "armor": 28,
+        "armorperlevel": 4.2,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
-        "hpregen": 9,
-        "hpregenperlevel": 0.9,
+        "hpregen": 6.25,
+        "hpregenperlevel": 0.6,
         "mpregen": 7.5,
         "mpregenperlevel": 1,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 2.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.1,
         "attackspeed": 0.663
       }
     },
     "Nami": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nami",
       "key": "267",
       "name": "娜米",
@@ -3893,7 +4398,7 @@
         "full": "Nami.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 96,
         "w": 48,
         "h": 48
@@ -3920,14 +4425,14 @@
         "mpregenperlevel": 0.4,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 51,
-        "attackdamageperlevel": 3.1,
+        "attackdamage": 54,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.61,
         "attackspeed": 0.644
       }
     },
     "Nasus": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nasus",
       "key": "75",
       "name": "納瑟斯",
@@ -3943,7 +4448,7 @@
         "full": "Nasus.png",
         "sprite": "champion2.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 96,
         "w": 48,
         "h": 48
@@ -3954,7 +4459,7 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 631,
+        "hp": 650,
         "hpperlevel": 104,
         "mp": 326,
         "mpperlevel": 62,
@@ -3971,13 +4476,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 67,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.48,
         "attackspeed": 0.638
       }
     },
     "Nautilus": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nautilus",
       "key": "111",
       "name": "納帝魯斯",
@@ -3991,10 +4496,10 @@
       },
       "image": {
         "full": "Nautilus.png",
-        "sprite": "champion2.png",
+        "sprite": "champion3.png",
         "group": "champion",
-        "x": 336,
-        "y": 96,
+        "x": 0,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -4021,13 +4526,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1,
         "attackspeed": 0.706
       }
     },
     "Neeko": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Neeko",
       "key": "518",
       "name": "妮可",
@@ -4041,10 +4546,10 @@
       },
       "image": {
         "full": "Neeko.png",
-        "sprite": "champion2.png",
+        "sprite": "champion3.png",
         "group": "champion",
-        "x": 384,
-        "y": 96,
+        "x": 48,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -4071,13 +4576,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 48,
-        "attackdamageperlevel": 2.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.625
       }
     },
     "Nidalee": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nidalee",
       "key": "76",
       "name": "奈德麗",
@@ -4091,10 +4596,10 @@
       },
       "image": {
         "full": "Nidalee.png",
-        "sprite": "champion2.png",
+        "sprite": "champion3.png",
         "group": "champion",
-        "x": 432,
-        "y": 96,
+        "x": 96,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -4121,13 +4626,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.22,
         "attackspeed": 0.638
       }
     },
     "Nilah": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nilah",
       "key": "895",
       "name": "淣菈",
@@ -4143,7 +4648,7 @@
         "full": "Nilah.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 0,
         "w": 48,
         "h": 48
@@ -4164,20 +4669,20 @@
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 225,
-        "hpregen": 4,
+        "hpregen": 6,
         "hpregenperlevel": 0.9,
         "mpregen": 8.2,
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 2,
-        "attackspeedperlevel": 3,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 1.25,
         "attackspeed": 0.697
       }
     },
     "Nocturne": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nocturne",
       "key": "56",
       "name": "夜曲",
@@ -4193,14 +4698,14 @@
         "full": "Nocturne.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Fighter",
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
@@ -4210,7 +4715,7 @@
         "mpperlevel": 35,
         "movespeed": 345,
         "armor": 38,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4.2,
         "spellblock": 32,
         "spellblockperlevel": 1.55,
         "attackrange": 125,
@@ -4221,13 +4726,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 2.6,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.7,
         "attackspeed": 0.721
       }
     },
     "Nunu": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Nunu",
       "key": "20",
       "name": "努努和威朗普",
@@ -4243,14 +4748,14 @@
         "full": "Nunu.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Tank",
-        "Fighter"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -4271,13 +4776,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.25,
         "attackspeed": 0.625
       }
     },
     "Olaf": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Olaf",
       "key": "2",
       "name": "歐拉夫",
@@ -4293,7 +4798,7 @@
         "full": "Olaf.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 0,
         "w": 48,
         "h": 48
@@ -4321,13 +4826,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 4.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.7,
-        "attackspeed": 0.694
+        "attackspeed": 0.72
       }
     },
     "Orianna": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Orianna",
       "key": "61",
       "name": "奧莉安娜",
@@ -4343,7 +4848,7 @@
         "full": "Orianna.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 0,
         "w": 48,
         "h": 48
@@ -4370,14 +4875,14 @@
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 40,
-        "attackdamageperlevel": 2.6,
+        "attackdamage": 44,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.658
       }
     },
     "Ornn": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ornn",
       "key": "516",
       "name": "鄂爾",
@@ -4393,14 +4898,13 @@
         "full": "Ornn.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Tank",
-        "Fighter"
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
@@ -4421,13 +4925,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 69,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
     "Pantheon": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Pantheon",
       "key": "80",
       "name": "潘森",
@@ -4443,7 +4947,7 @@
         "full": "Pantheon.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 0,
         "w": 48,
         "h": 48
@@ -4471,17 +4975,17 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.95,
         "attackspeed": 0.658
       }
     },
     "Poppy": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Poppy",
       "key": "78",
       "name": "波比",
-      "title": "聖槌守護者",
+      "title": "聖鎚守護者",
       "blurb": "符文大地從來不缺英勇的英雄，但只有少數像波比一樣頑強。身後揹著一把有著她身體兩倍大，從奧倫手中繼承而來的傳說戰錘，這名意志堅定的約德爾人花了無數年暗中尋找傳說中「蒂瑪西亞的英雄」，也就是她手上這把武器的正主。在此之前，她將盡責地投入戰鬥，揮舞戰錘，使出令人頭暈目眩的招式，擊退王國的敵人。",
       "info": {
         "attack": 6,
@@ -4493,8 +4997,8 @@
         "full": "Poppy.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 336,
-        "y": 0,
+        "x": 0,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -4505,12 +5009,12 @@
       "partype": "魔力",
       "stats": {
         "hp": 610,
-        "hpperlevel": 104,
+        "hpperlevel": 110,
         "mp": 280,
         "mpperlevel": 40,
         "movespeed": 345,
-        "armor": 38,
-        "armorperlevel": 4.7,
+        "armor": 35,
+        "armorperlevel": 5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -4520,14 +5024,14 @@
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 64,
-        "attackdamageperlevel": 4,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
-        "attackspeed": 0.625
+        "attackspeed": 0.658
       }
     },
     "Pyke": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Pyke",
       "key": "555",
       "name": "派克",
@@ -4543,8 +5047,8 @@
         "full": "Pyke.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 384,
-        "y": 0,
+        "x": 48,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -4559,7 +5063,7 @@
         "mp": 415,
         "mpperlevel": 50,
         "movespeed": 330,
-        "armor": 47,
+        "armor": 37,
         "armorperlevel": 4.7,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -4571,13 +5075,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.667
       }
     },
     "Qiyana": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Qiyana",
       "key": "246",
       "name": "姬亞娜",
@@ -4593,41 +5097,40 @@
         "full": "Qiyana.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 432,
-        "y": 0,
+        "x": 96,
+        "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
         "hp": 590,
-        "hpperlevel": 124,
+        "hpperlevel": 115,
         "mp": 375,
         "mpperlevel": 60,
         "movespeed": 335,
-        "armor": 28,
-        "armorperlevel": 4.7,
+        "armor": 31,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 150,
-        "hpregen": 6,
+        "hpregen": 8,
         "hpregenperlevel": 0.9,
         "mpregen": 8,
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 66,
-        "attackdamageperlevel": 3.1,
+        "attackdamage": 64,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.1,
         "attackspeed": 0.688
       }
     },
     "Quinn": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Quinn",
       "key": "133",
       "name": "葵恩",
@@ -4643,7 +5146,7 @@
         "full": "Quinn.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 48,
         "w": 48,
         "h": 48
@@ -4671,13 +5174,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 2.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.1,
         "attackspeed": 0.668
       }
     },
     "Rakan": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Rakan",
       "key": "497",
       "name": "銳空",
@@ -4693,7 +5196,7 @@
         "full": "Rakan.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 48,
         "w": 48,
         "h": 48
@@ -4720,13 +5223,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.635
       }
     },
     "Rammus": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Rammus",
       "key": "33",
       "name": "拉姆斯",
@@ -4742,24 +5245,23 @@
         "full": "Rammus.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Tank",
-        "Fighter"
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 675,
-        "hpperlevel": 94,
+        "hp": 645,
+        "hpperlevel": 100,
         "mp": 310,
         "mpperlevel": 33,
         "movespeed": 335,
-        "armor": 40,
-        "armorperlevel": 5.5,
+        "armor": 35,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -4769,14 +5271,14 @@
         "mpregenperlevel": 0.5,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 55,
-        "attackdamageperlevel": 2.75,
+        "attackdamage": 65,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.215,
-        "attackspeed": 0.656
+        "attackspeed": 0.7
       }
     },
     "RekSai": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "RekSai",
       "key": "421",
       "name": "雷珂煞",
@@ -4792,13 +5294,14 @@
         "full": "RekSai.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter"
+        "Fighter",
+        "Tank"
       ],
       "partype": "狂怒",
       "stats": {
@@ -4807,8 +5310,8 @@
         "mp": 100,
         "mpperlevel": 0,
         "movespeed": 340,
-        "armor": 36,
-        "armorperlevel": 4.95,
+        "armor": 35,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -4818,14 +5321,14 @@
         "mpregenperlevel": 0,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 58,
-        "attackdamageperlevel": 3,
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.667
       }
     },
     "Rell": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Rell",
       "key": "526",
       "name": "銳兒",
@@ -4841,7 +5344,7 @@
         "full": "Rell.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 48,
         "w": 48,
         "h": 48
@@ -4852,35 +5355,35 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 610,
+        "hp": 620,
         "hpperlevel": 104,
-        "mp": 350,
-        "mpperlevel": 45,
-        "movespeed": 330,
-        "armor": 36,
-        "armorperlevel": 4.2,
-        "spellblock": 30,
-        "spellblockperlevel": 1.85,
+        "mp": 320,
+        "mpperlevel": 40,
+        "movespeed": 315,
+        "armor": 30,
+        "armorperlevel": 4,
+        "spellblock": 28,
+        "spellblockperlevel": 1.8,
         "attackrange": 175,
         "hpregen": 7.5,
         "hpregenperlevel": 0.85,
-        "mpregen": 6,
-        "mpregenperlevel": 0.35,
+        "mpregen": 7,
+        "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3,
-        "attackspeedperlevel": 1.5,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
     "Renata": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Renata",
       "key": "888",
-      "name": "睿娜妲．格萊斯克",
+      "name": "睿娜妲‧格萊斯克",
       "title": "化學女爵",
-      "blurb": "睿娜妲．格萊斯克從她被燒毀的家園餘燼中重啟新生活，當時除了姓名和父母在煉金方面的研究之外，她一無所有。幾十年之後，她成了佐恩最富有的化學女爵，這位商業巨擘將所有人的利益都和自己繫在一起，藉此建立自己的勢力。與她合作，就能獲得無法估量的回饋；與她作對，就等著後悔自己的決定。但到頭來，所有人終將為她效力。",
+      "blurb": "睿娜妲‧格萊斯克從她被燒毀的家園餘燼中重啟新生活，當時除了姓名和父母在煉金方面的研究之外，她一無所有。幾十年之後，她成了佐恩最富有的化學女爵，這位商業巨擘將所有人的利益都和自己繫在一起，藉此建立自己的勢力。與她合作，就能獲得無法估量的回饋；與她作對，就等著後悔自己的決定。但到頭來，所有人終將為她效力。",
       "info": {
         "attack": 2,
         "defense": 6,
@@ -4891,7 +5394,7 @@
         "full": "Renata.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 48,
         "w": 48,
         "h": 48
@@ -4919,13 +5422,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 49,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.625
       }
     },
     "Renekton": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Renekton",
       "key": "58",
       "name": "雷尼克頓",
@@ -4941,7 +5444,7 @@
         "full": "Renekton.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 48,
         "w": 48,
         "h": 48
@@ -4969,13 +5472,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 69,
-        "attackdamageperlevel": 4.15,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.75,
         "attackspeed": 0.665
       }
     },
     "Rengar": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Rengar",
       "key": "107",
       "name": "雷葛爾",
@@ -4991,8 +5494,8 @@
         "full": "Rengar.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 336,
-        "y": 48,
+        "x": 0,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -5019,13 +5522,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.667
       }
     },
     "Riven": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Riven",
       "key": "92",
       "name": "雷玟",
@@ -5041,8 +5544,8 @@
         "full": "Riven.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 384,
-        "y": 48,
+        "x": 48,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -5069,13 +5572,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.625
       }
     },
     "Rumble": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Rumble",
       "key": "68",
       "name": "藍寶",
@@ -5091,8 +5594,8 @@
         "full": "Rumble.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 432,
-        "y": 48,
+        "x": 96,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -5102,7 +5605,7 @@
       ],
       "partype": "熱能",
       "stats": {
-        "hp": 625,
+        "hp": 640,
         "hpperlevel": 105,
         "mp": 150,
         "mpperlevel": 0,
@@ -5119,13 +5622,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.85,
         "attackspeed": 0.644
       }
     },
     "Ryze": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ryze",
       "key": "13",
       "name": "雷茲",
@@ -5141,14 +5644,13 @@
         "full": "Ryze.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Fighter"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -5169,13 +5671,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.658
       }
     },
     "Samira": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Samira",
       "key": "360",
       "name": "煞蜜拉",
@@ -5191,13 +5693,14 @@
         "full": "Samira.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman"
+        "Marksman",
+        "Assassin"
       ],
       "partype": "魔力",
       "stats": {
@@ -5218,13 +5721,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 57,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.3,
         "attackspeed": 0.658
       }
     },
     "Sejuani": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Sejuani",
       "key": "113",
       "name": "史瓦妮",
@@ -5240,14 +5743,13 @@
         "full": "Sejuani.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Tank",
-        "Fighter"
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
@@ -5268,18 +5770,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 66,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.688
       }
     },
     "Senna": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Senna",
       "key": "235",
       "name": "姍娜",
       "title": "贖魂聖槍",
-      "blurb": "姍娜從小就遭受超自然的詭祕黯霧詛咒，後來加入了神聖的光之哨兵，對黯霧發起猛烈反擊，最終卻也因此而死，靈魂更被殘酷的鬼靈瑟雷西囚禁於燈籠之中。但困在燈籠中的姍娜從未絕望，她學會了利用黯霧的力量，並重獲新生、永遠蛻變。如今的姍娜揮舞著匯聚黑暗與光明力量的武器，利用詭祕黯霧的力量對付詭祕黯霧本身；她那聖遺武器的每一發射擊，都能救贖黯霧中迷失的靈魂。",
+      "blurb": "姍娜從小就遭受超自然的黯霧詛咒，後來加入了名為光之哨兵的神聖兵團，對黯霧發起猛烈反擊，最終卻也因此喪命，靈魂更被殘酷的幽魂瑟雷西囚禁於燈籠之中。但困在燈籠中的姍娜拒絕放棄希望。她學會了利用黯霧的力量，並藉此重獲新生，雖然失去自己原本的容貌。如今的姍娜，揮舞著匯聚黑暗與光明力量的武器，嘗試利用詭秘黯霧的力量對付詭秘黯霧本身。她那聖遺武器的每一發射擊，都能救贖燈籠中迷失的靈魂。",
       "info": {
         "attack": 7,
         "defense": 2,
@@ -5290,14 +5792,14 @@
         "full": "Senna.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman",
-        "Support"
+        "Support",
+        "Marksman"
       ],
       "partype": "魔力",
       "stats": {
@@ -5306,8 +5808,8 @@
         "mp": 350,
         "mpperlevel": 45,
         "movespeed": 330,
-        "armor": 28,
-        "armorperlevel": 4.7,
+        "armor": 25,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 600,
@@ -5319,12 +5821,12 @@
         "critperlevel": 0,
         "attackdamage": 50,
         "attackdamageperlevel": 0,
-        "attackspeedperlevel": 4,
+        "attackspeedperlevel": 2.6,
         "attackspeed": 0.625
       }
     },
     "Seraphine": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Seraphine",
       "key": "147",
       "name": "瑟菈紛",
@@ -5340,21 +5842,21 @@
         "full": "Seraphine.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Support"
+        "Support",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
         "hp": 570,
-        "hpperlevel": 90,
+        "hpperlevel": 95,
         "mp": 360,
-        "mpperlevel": 25,
+        "mpperlevel": 40,
         "movespeed": 330,
         "armor": 26,
         "armorperlevel": 4.2,
@@ -5368,13 +5870,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 50,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.669
       }
     },
     "Sett": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Sett",
       "key": "875",
       "name": "賽特",
@@ -5390,7 +5892,7 @@
         "full": "Sett.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 96,
         "w": 48,
         "h": 48
@@ -5407,7 +5909,7 @@
         "mpperlevel": 0,
         "movespeed": 340,
         "armor": 33,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.7,
         "spellblock": 28,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -5418,13 +5920,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.75,
         "attackspeed": 0.625
       }
     },
     "Shaco": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Shaco",
       "key": "35",
       "name": "薩科",
@@ -5440,7 +5942,7 @@
         "full": "Shaco.png",
         "sprite": "champion3.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 96,
         "w": 48,
         "h": 48
@@ -5467,13 +5969,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.694
       }
     },
     "Shen": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Shen",
       "key": "98",
       "name": "慎",
@@ -5487,10 +5989,10 @@
       },
       "image": {
         "full": "Shen.png",
-        "sprite": "champion3.png",
+        "sprite": "champion4.png",
         "group": "champion",
-        "x": 336,
-        "y": 96,
+        "x": 0,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -5516,18 +6018,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 64,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.751
       }
     },
     "Shyvana": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Shyvana",
       "key": "102",
       "name": "希瓦娜",
       "title": "半龍少女",
-      "blurb": "希瓦娜是一個身懷符文碎片魔法的半龍。雖然她經常以人類的形態出現，但她可以將自己真正的面貌展露出來——一條可怖的飛龍，並噴出灼熱的火焰焚燒敵人。拯救了嘉文四世王儲的性命之後，希瓦娜是他的皇家護衛，並力圖在多疑的蒂瑪西亞人之中得到接納。",
+      "blurb": "希瓦娜是令人畏懼的半龍戰士。雖然她經常以人形現身，但她同時也是稱霸天空的巨龍，以炙熱龍息焚燒敵軍。拯救了嘉文四世王儲的性命之後，希瓦娜成為他的皇家護衛，並力圖在多疑的蒂瑪西亞人之中得到接納。",
       "info": {
         "attack": 8,
         "defense": 6,
@@ -5536,10 +6038,10 @@
       },
       "image": {
         "full": "Shyvana.png",
-        "sprite": "champion3.png",
+        "sprite": "champion4.png",
         "group": "champion",
-        "x": 384,
-        "y": 96,
+        "x": 48,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -5549,35 +6051,35 @@
       ],
       "partype": "怒氣",
       "stats": {
-        "hp": 665,
-        "hpperlevel": 104,
+        "hp": 625,
+        "hpperlevel": 100,
         "mp": 100,
         "mpperlevel": 0,
         "movespeed": 350,
-        "armor": 38,
-        "armorperlevel": 4.55,
+        "armor": 35,
+        "armorperlevel": 4,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
-        "attackrange": 125,
-        "hpregen": 8.5,
-        "hpregenperlevel": 0.8,
+        "attackrange": 150,
+        "hpregen": 7,
+        "hpregenperlevel": 0.65,
         "mpregen": 0,
         "mpregenperlevel": 0,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 66,
-        "attackdamageperlevel": 3,
-        "attackspeedperlevel": 2.5,
-        "attackspeed": 0.658
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
       }
     },
     "Singed": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Singed",
       "key": "27",
       "name": "辛吉德",
       "title": "瘋狂煉金師",
-      "blurb": "辛吉德是一位佐恩的煉金術士，有著無人能匹敵的智慧，一生致力於超越一切知識的界限——不惜任何代價，甚至是自己原本正常的心智。他的瘋狂有任何邏輯可言嗎？他調製的藥品很少失敗，但是在許多人的眼裡，辛吉德早已泯滅了人性，他所過之處只留下了混雜著痛苦和恐懼的有毒足跡。",
+      "blurb": "辛吉德是位優秀的煉金術士，但不受道德觀念約束，看到他做實驗時，就連最殘忍的罪犯也會噁心作嘔。誰出錢最多，他就為誰製作劇毒調和物，後果如何他都不管，甚至將之視為實驗的一環。他最惡名昭彰的作品是「微光」，多虧這物質，化學巨頭才能將佐恩變為自己的樂園——不過，在狂氣驅使之下，辛吉德依然不停地研究新的實驗品，而且每作都比上一作更扭曲……",
       "info": {
         "attack": 4,
         "defense": 8,
@@ -5586,26 +6088,26 @@
       },
       "image": {
         "full": "Singed.png",
-        "sprite": "champion3.png",
+        "sprite": "champion4.png",
         "group": "champion",
-        "x": 432,
-        "y": 96,
+        "x": 96,
+        "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Tank",
-        "Fighter"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
         "hp": 650,
-        "hpperlevel": 99,
+        "hpperlevel": 96,
         "mp": 330,
         "mpperlevel": 45,
         "movespeed": 345,
         "armor": 34,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4.2,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
@@ -5616,13 +6118,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 3.4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.9,
-        "attackspeed": 0.625
+        "attackspeed": 0.7
       }
     },
     "Sion": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Sion",
       "key": "14",
       "name": "賽恩",
@@ -5638,7 +6140,7 @@
         "full": "Sion.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 0,
         "w": 48,
         "h": 48
@@ -5654,25 +6156,25 @@
         "mp": 400,
         "mpperlevel": 52,
         "movespeed": 345,
-        "armor": 32,
+        "armor": 36,
         "armorperlevel": 4.2,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
-        "hpregen": 7.5,
+        "hpregen": 9,
         "hpregenperlevel": 0.8,
         "mpregen": 8,
         "mpregenperlevel": 0.6,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.3,
         "attackspeed": 0.679
       }
     },
     "Sivir": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Sivir",
       "key": "15",
       "name": "希維爾",
@@ -5688,7 +6190,7 @@
         "full": "Sivir.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 0,
         "w": 48,
         "h": 48
@@ -5704,7 +6206,7 @@
         "mpperlevel": 45,
         "movespeed": 335,
         "armor": 30,
-        "armorperlevel": 4.45,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 500,
@@ -5714,22 +6216,22 @@
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 58,
-        "attackdamageperlevel": 2.5,
-        "attackspeedperlevel": 2,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 1.6,
         "attackspeed": 0.625
       }
     },
     "Skarner": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Skarner",
       "key": "72",
       "name": "史加納",
-      "title": "水晶戰蠍",
-      "blurb": "史加納是一隻來自蘇瑞瑪隱密山谷的巨大水晶蠍子。身為古老巴爾克族的血脈，因為靈魂連結著蘊含祖先的思想及記憶的生命水晶，史加納和他的種族因過人智慧與跟大地的深刻連結而為人所知。許久以前，為了避免不明的魔法力量造成他們滅族，巴爾克族進入長期的冬眠狀態。但最近的危險事件喚醒了史加納。身為巴爾克族唯一的清醒者，對於那些試圖要傷害他們的人，史加納竭力保護自己的族類不受其害。",
+      "title": "遠古強者",
+      "blurb": "身軀龐大、來自遠古巴爾克族的「史加納」是統治階級「雲陶」的創始成員之一，在伊克斯塔爾備受崇敬，他致力於讓伊克斯塔爾保持與世隔絕的狀態，為的是守護他的國家不受外界侵犯。史加納居住在伊克薩奧肯底下的密室，在那裡，他可以聽見地表的震動，偵測潛在的威脅。隨著越來越多雲陶的成員開始質疑伊克斯塔爾與世隔絕的必要性，史加納越發偏執，為了保護伊克斯塔爾與其人民的安全，他不在乎任何代價。",
       "info": {
         "attack": 7,
-        "defense": 6,
+        "defense": 8,
         "magic": 5,
         "difficulty": 5
       },
@@ -5737,41 +6239,41 @@
         "full": "Skarner.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Fighter",
-        "Tank"
+        "Tank",
+        "Fighter"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 650,
-        "hpperlevel": 99,
+        "hp": 630,
+        "hpperlevel": 110,
         "mp": 320,
-        "mpperlevel": 60,
+        "mpperlevel": 40,
         "movespeed": 335,
-        "armor": 38,
-        "armorperlevel": 5,
+        "armor": 33,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
-        "attackrange": 125,
-        "hpregen": 9,
-        "hpregenperlevel": 0.85,
+        "attackrange": 150,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.75,
         "mpregen": 7.2,
-        "mpregenperlevel": 0.45,
+        "mpregenperlevel": 0.75,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 65,
-        "attackdamageperlevel": 4.5,
-        "attackspeedperlevel": 2.1,
+        "attackdamage": 63,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
     "Smolder": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Smolder",
       "key": "901",
       "name": "史矛德",
@@ -5787,13 +6289,14 @@
         "full": "Smolder.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Marksman"
+        "Marksman",
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -5803,24 +6306,24 @@
         "mpperlevel": 40,
         "movespeed": 330,
         "armor": 24,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
-        "hpregen": 3,
+        "hpregen": 3.75,
         "hpregenperlevel": 0.6,
         "mpregen": 8.5,
         "mpregenperlevel": 0.7,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 55,
-        "attackdamageperlevel": 2.3,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 4,
         "attackspeed": 0.638
       }
     },
     "Sona": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Sona",
       "key": "37",
       "name": "索娜",
@@ -5836,7 +6339,7 @@
         "full": "Sona.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 0,
         "w": 48,
         "h": 48
@@ -5864,18 +6367,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 49,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.3,
         "attackspeed": 0.644
       }
     },
     "Soraka": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Soraka",
       "key": "16",
       "name": "索拉卡",
       "title": "眾星之子",
-      "blurb": "索拉卡是一名來自巨石峰頂神聖次元的漫遊者，為了凡人而捨棄不朽的生命，只為求保護他們免受自身的暴力天性威脅。她致力將憐憫與慈悲的美德散播給所遇見的任何對象，甚至也願意治癒那些有意傷害她的人。即使眼見這世界的苦難掙扎，索拉卡仍然相信符文大地的人們尚未發揮其最大的潛力。",
+      "blurb": "索拉卡是一名來自巨石峰頂神聖次元的漫遊者，為了凡人而捨棄不朽的生命，只為求保護他們免受自身的暴力天性威脅。她致力將憐憫與慈悲的美德散播給所遇見的任何對象，甚至也願意治療那些有意傷害她的人。即使眼見這世界的苦難掙扎，索拉卡仍然相信符文大地的人們尚未發揮其最大的潛力。",
       "info": {
         "attack": 2,
         "defense": 5,
@@ -5886,7 +6389,7 @@
         "full": "Soraka.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 0,
         "w": 48,
         "h": 48
@@ -5914,13 +6417,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 50,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.14,
         "attackspeed": 0.625
       }
     },
     "Swain": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Swain",
       "key": "50",
       "name": "斯溫",
@@ -5936,41 +6439,41 @@
         "full": "Swain.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Mage",
-        "Fighter"
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
         "hp": 595,
         "hpperlevel": 99,
-        "mp": 468,
+        "mp": 400,
         "mpperlevel": 29,
         "movespeed": 330,
-        "armor": 26,
-        "armorperlevel": 5.2,
-        "spellblock": 30,
-        "spellblockperlevel": 1.3,
+        "armor": 25,
+        "armorperlevel": 4.7,
+        "spellblock": 31,
+        "spellblockperlevel": 1.55,
         "attackrange": 525,
-        "hpregen": 7,
-        "hpregenperlevel": 0.65,
-        "mpregen": 8,
+        "hpregen": 3,
+        "hpregenperlevel": 0.5,
+        "mpregen": 10,
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 2.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.625
       }
     },
     "Sylas": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Sylas",
       "key": "517",
       "name": "賽勒斯",
@@ -5986,8 +6489,8 @@
         "full": "Sylas.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 336,
-        "y": 0,
+        "x": 0,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -5997,12 +6500,12 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 575,
-        "hpperlevel": 129,
+        "hp": 600,
+        "hpperlevel": 122,
         "mp": 400,
         "mpperlevel": 70,
         "movespeed": 340,
-        "armor": 27,
+        "armor": 29,
         "armorperlevel": 5.2,
         "spellblock": 32,
         "spellblockperlevel": 2.55,
@@ -6014,13 +6517,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 61,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.645
       }
     },
     "Syndra": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Syndra",
       "key": "134",
       "name": "星朵拉",
@@ -6036,8 +6539,8 @@
         "full": "Syndra.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 384,
-        "y": 0,
+        "x": 48,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -6047,12 +6550,12 @@
       "partype": "魔力",
       "stats": {
         "hp": 563,
-        "hpperlevel": 104,
+        "hpperlevel": 100,
         "mp": 480,
         "mpperlevel": 40,
         "movespeed": 330,
         "armor": 25,
-        "armorperlevel": 4.6,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -6063,13 +6566,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 54,
-        "attackdamageperlevel": 2.9,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.658
       }
     },
     "TahmKench": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "TahmKench",
       "key": "223",
       "name": "貪啃奇",
@@ -6085,14 +6588,14 @@
         "full": "TahmKench.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 432,
-        "y": 0,
+        "x": 96,
+        "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Support",
-        "Tank"
+        "Tank",
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
@@ -6101,7 +6604,7 @@
         "mp": 325,
         "mpperlevel": 50,
         "movespeed": 335,
-        "armor": 42,
+        "armor": 39,
         "armorperlevel": 4.7,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -6113,13 +6616,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 56,
-        "attackdamageperlevel": 3.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.658
       }
     },
     "Taliyah": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Taliyah",
       "key": "163",
       "name": "塔莉雅",
@@ -6135,7 +6638,7 @@
         "full": "Taliyah.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 48,
         "w": 48,
         "h": 48
@@ -6153,7 +6656,7 @@
         "movespeed": 330,
         "armor": 18,
         "armorperlevel": 4.7,
-        "spellblock": 30,
+        "spellblock": 28,
         "spellblockperlevel": 1.3,
         "attackrange": 525,
         "hpregen": 6.5,
@@ -6163,13 +6666,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.36,
         "attackspeed": 0.658
       }
     },
     "Talon": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Talon",
       "key": "91",
       "name": "塔隆",
@@ -6185,7 +6688,7 @@
         "full": "Talon.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 48,
         "w": 48,
         "h": 48
@@ -6202,7 +6705,7 @@
         "movespeed": 335,
         "armor": 30,
         "armorperlevel": 4.7,
-        "spellblock": 39,
+        "spellblock": 36,
         "spellblockperlevel": 2.05,
         "attackrange": 125,
         "hpregen": 8.5,
@@ -6212,13 +6715,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 3.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.9,
         "attackspeed": 0.625
       }
     },
     "Taric": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Taric",
       "key": "44",
       "name": "塔里克",
@@ -6234,14 +6737,14 @@
         "full": "Taric.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Support",
-        "Fighter"
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
@@ -6262,13 +6765,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
     "Teemo": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Teemo",
       "key": "17",
       "name": "提摩",
@@ -6284,18 +6787,18 @@
         "full": "Teemo.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Marksman",
-        "Assassin"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 598,
+        "hp": 615,
         "hpperlevel": 104,
         "mp": 334,
         "mpperlevel": 25,
@@ -6312,18 +6815,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 54,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.38,
         "attackspeed": 0.69
       }
     },
     "Thresh": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Thresh",
       "key": "412",
       "name": "瑟雷西",
       "title": "鍊魂獄長",
-      "blurb": "狡詐又殘暴的瑟雷西，是闇影島上雄心勃勃又永不安寧的靈魂。曾經是無數神祕魔法祕密的守護者，卻被一種超越生死的力量所殺害。瑟雷西喜歡以各種緩慢而痛苦的方式折磨獵物，粉碎他們的心智，藉以維持自身力量。受害者得面對比生老病死更可怕的苦難，被永世囚禁在邪惡燈籠中，任瑟雷西折磨靈魂。",
+      "blurb": "狡詐又殘暴的瑟雷西，是闇影島上雄心勃勃、永不安息的幽魂。他曾是無數奧術祕密的看守人，卻被一股超越生死的強大力量摧毀成魔。現在的他會發明各式各樣慘無人道的手法，靠著緩慢的折磨粉碎其他人的心智，從中汲取力量。受害者得承受遠比短短凡世中的生老病死更可怕的苦難，因為他們的靈魂會被瑟雷西殘酷虐待，囚禁在邪惡的燈籠中永世不得超生。",
       "info": {
         "attack": 5,
         "defense": 6,
@@ -6334,26 +6837,26 @@
         "full": "Thresh.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Support",
-        "Fighter"
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 600,
+        "hp": 620,
         "hpperlevel": 120,
         "mp": 274,
         "mpperlevel": 44,
         "movespeed": 330,
-        "armor": 31,
+        "armor": 33,
         "armorperlevel": 0,
         "spellblock": 30,
-        "spellblockperlevel": 1.3,
+        "spellblockperlevel": 1.55,
         "attackrange": 450,
         "hpregen": 7,
         "hpregenperlevel": 0.55,
@@ -6362,13 +6865,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 56,
-        "attackdamageperlevel": 2.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.625
       }
     },
     "Tristana": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Tristana",
       "key": "18",
       "name": "崔絲塔娜",
@@ -6384,7 +6887,7 @@
         "full": "Tristana.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 48,
         "w": 48,
         "h": 48
@@ -6397,28 +6900,28 @@
       "stats": {
         "hp": 640,
         "hpperlevel": 102,
-        "mp": 250,
+        "mp": 300,
         "mpperlevel": 32,
         "movespeed": 325,
         "armor": 30,
-        "armorperlevel": 4.5,
+        "armorperlevel": 4,
         "spellblock": 28,
         "spellblockperlevel": 1.3,
-        "attackrange": 525,
+        "attackrange": 550,
         "hpregen": 4,
-        "hpregenperlevel": 0.65,
+        "hpregenperlevel": 0.5,
         "mpregen": 7.2,
         "mpregenperlevel": 0.45,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 59,
-        "attackdamageperlevel": 3.7,
+        "attackdamage": 60,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.5,
         "attackspeed": 0.656
       }
     },
     "Trundle": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Trundle",
       "key": "48",
       "name": "特朗德",
@@ -6434,7 +6937,7 @@
         "full": "Trundle.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 48,
         "w": 48,
         "h": 48
@@ -6451,7 +6954,7 @@
         "mpperlevel": 45,
         "movespeed": 350,
         "armor": 37,
-        "armorperlevel": 3.9,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -6462,13 +6965,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 68,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.9,
         "attackspeed": 0.67
       }
     },
     "Tryndamere": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Tryndamere",
       "key": "23",
       "name": "泰達米爾",
@@ -6484,8 +6987,8 @@
         "full": "Tryndamere.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 336,
-        "y": 48,
+        "x": 0,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -6501,7 +7004,7 @@
         "mpperlevel": 0,
         "movespeed": 345,
         "armor": 33,
-        "armorperlevel": 4.3,
+        "armorperlevel": 4.8,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -6512,13 +7015,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 66,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.4,
         "attackspeed": 0.67
       }
     },
     "TwistedFate": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "TwistedFate",
       "key": "4",
       "name": "逆命",
@@ -6534,13 +7037,14 @@
         "full": "TwistedFate.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 384,
-        "y": 48,
+        "x": 48,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage"
+        "Mage",
+        "Marksman"
       ],
       "partype": "魔力",
       "stats": {
@@ -6549,7 +7053,7 @@
         "mp": 333,
         "mpperlevel": 39,
         "movespeed": 330,
-        "armor": 21,
+        "armor": 24,
         "armorperlevel": 4.35,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
@@ -6561,13 +7065,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 52,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.625
       }
     },
     "Twitch": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Twitch",
       "key": "29",
       "name": "圖奇",
@@ -6583,8 +7087,8 @@
         "full": "Twitch.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 432,
-        "y": 48,
+        "x": 96,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -6594,13 +7098,13 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 682,
-        "hpperlevel": 100,
+        "hp": 630,
+        "hpperlevel": 98,
         "mp": 300,
         "mpperlevel": 40,
         "movespeed": 330,
         "armor": 27,
-        "armorperlevel": 4.2,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 550,
@@ -6611,13 +7115,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 59,
-        "attackdamageperlevel": 3.1,
-        "attackspeedperlevel": 3.38,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 3,
         "attackspeed": 0.679
       }
     },
     "Udyr": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Udyr",
       "key": "77",
       "name": "烏迪爾",
@@ -6633,7 +7137,7 @@
         "full": "Udyr.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 96,
         "w": 48,
         "h": 48
@@ -6661,13 +7165,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3,
         "attackspeed": 0.65
       }
     },
     "Urgot": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Urgot",
       "key": "6",
       "name": "烏爾加特",
@@ -6683,7 +7187,7 @@
         "full": "Urgot.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 96,
         "w": 48,
         "h": 48
@@ -6700,7 +7204,7 @@
         "mpperlevel": 45,
         "movespeed": 330,
         "armor": 36,
-        "armorperlevel": 5.45,
+        "armorperlevel": 5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 350,
@@ -6711,13 +7215,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.75,
         "attackspeed": 0.625
       }
     },
     "Varus": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Varus",
       "key": "110",
       "name": "法洛士",
@@ -6733,7 +7237,7 @@
         "full": "Varus.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 96,
         "w": 48,
         "h": 48
@@ -6746,11 +7250,11 @@
       "stats": {
         "hp": 600,
         "hpperlevel": 105,
-        "mp": 360,
+        "mp": 320,
         "mpperlevel": 40,
         "movespeed": 330,
-        "armor": 27,
-        "armorperlevel": 4.6,
+        "armor": 24,
+        "armorperlevel": 4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 575,
@@ -6760,14 +7264,14 @@
         "mpregenperlevel": 0.8,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 60,
-        "attackdamageperlevel": 3.4,
-        "attackspeedperlevel": 4,
+        "attackdamage": 59,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 3.5,
         "attackspeed": 0.658
       }
     },
     "Vayne": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Vayne",
       "key": "67",
       "name": "汎",
@@ -6783,7 +7287,7 @@
         "full": "Vayne.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 96,
         "w": 48,
         "h": 48
@@ -6811,13 +7315,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 2.35,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.3,
         "attackspeed": 0.658
       }
     },
     "Veigar": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Veigar",
       "key": "45",
       "name": "維迦",
@@ -6833,7 +7337,7 @@
         "full": "Veigar.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 96,
         "w": 48,
         "h": 48
@@ -6860,13 +7364,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 52,
-        "attackdamageperlevel": 2.7,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.24,
         "attackspeed": 0.625
       }
     },
     "Velkoz": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Velkoz",
       "key": "161",
       "name": "威寇茲",
@@ -6882,13 +7386,14 @@
         "full": "Velkoz.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage"
+        "Mage",
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
@@ -6909,13 +7414,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3.1416,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.59,
         "attackspeed": 0.643
       }
     },
     "Vex": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Vex",
       "key": "711",
       "name": "薇可絲",
@@ -6931,7 +7436,7 @@
         "full": "Vex.png",
         "sprite": "champion4.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 96,
         "w": 48,
         "h": 48
@@ -6958,18 +7463,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 54,
-        "attackdamageperlevel": 2.75,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1,
         "attackspeed": 0.669
       }
     },
     "Vi": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Vi",
       "key": "254",
       "name": "菲艾",
       "title": "鐵腕特警",
-      "blurb": "菲艾曾經是流落佐恩街頭的罪犯，她個性暴躁、衝動，行為也十分粗暴，對掌權者絲毫沒有尊重。孤獨成長的菲艾除了擁有絕佳的生存本能，還培養出有些惡趣味的幽默感。現在她效力於皮爾托福的警備隊，負責維護城內的治安。她手上的海克斯拳套可以不費吹灰之力粉碎建築物以及那些膽敢造次的罪犯。",
+      "blurb": "菲艾於佐恩街頭長大，她個性暴躁、衝動、令人心生畏懼，對於有權有勢的人不屑一顧。她會有這樣的個性，是因為她年輕時在上城搗亂，並被不正當地長期監禁在靜水監獄。現在她成為了皮爾托福執法者的一員，負責維護城內的治安而不是擾亂它。她手上的海克斯拳套可以輕易粉碎建築物以及那些想要造次的罪犯。",
       "info": {
         "attack": 8,
         "defense": 5,
@@ -6978,10 +7483,10 @@
       },
       "image": {
         "full": "Vi.png",
-        "sprite": "champion4.png",
+        "sprite": "champion5.png",
         "group": "champion",
-        "x": 336,
-        "y": 96,
+        "x": 0,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -6992,7 +7497,7 @@
       "partype": "魔力",
       "stats": {
         "hp": 655,
-        "hpperlevel": 99,
+        "hpperlevel": 105,
         "mp": 295,
         "mpperlevel": 65,
         "movespeed": 340,
@@ -7008,18 +7513,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.644
       }
     },
     "Viego": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Viego",
       "key": "234",
       "name": "維爾戈",
       "title": "殞落王者",
-      "blurb": "維爾戈曾是一個失落已久的王國的國王，在千年之前，他為了使亡妻死而復生，引發了一場被後世稱為「殞落詛咒」的魔法災難，自己也不幸殞命。如今的維爾戈已經變成了一個強大的亡魂怨靈，依然執著於尋找幾百年前死去的王后。如今人稱殞落王者的他控制著致命的哈洛威，在符文大地上不懈地搜尋著，希望有朝一日能將她追回。與此同時，無窮無盡的黯霧從他早已支離破碎的冷酷心臟中洶湧而出，掃蕩他面前的一切阻礙。",
+      "blurb": "維爾戈曾是一名君王，統治著興盛一時的國度。在一千年前，他在試圖復活妻子時喪命，並觸發了一場魔法災難，史稱「殞落王者的詛咒」。維爾戈對於過世已久的皇后抱持異常的執念，折磨使他成為強大的不死幽魂，人稱「殞落王者」。他操控致命的哈洛威，在符文大地搜索任何可能復活她的方法，從他殘酷、破碎的心臟湧現的詭祕黯霧將毀滅所有阻擋他的人。",
       "info": {
         "attack": 6,
         "defense": 4,
@@ -7028,16 +7533,16 @@
       },
       "image": {
         "full": "Viego.png",
-        "sprite": "champion4.png",
+        "sprite": "champion5.png",
         "group": "champion",
-        "x": 384,
-        "y": 96,
+        "x": 48,
+        "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Fighter",
+        "Assassin"
       ],
       "partype": "無",
       "stats": {
@@ -7047,7 +7552,7 @@
         "mpperlevel": 0,
         "movespeed": 345,
         "armor": 34,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.6,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 200,
@@ -7058,18 +7563,18 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 57,
-        "attackdamageperlevel": 3.5,
-        "attackspeedperlevel": 2.5,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.75,
         "attackspeed": 0.658
       }
     },
     "Viktor": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Viktor",
       "key": "112",
       "name": "維克特",
-      "title": "機械使徒",
-      "blurb": "維克特是創新科技時代的先驅，他將畢生心力投入能夠使人類進步的科技上。他是不折不扣的理想主義者，不斷試圖把佐恩人民提升至超出人類極限和理解的境界。他相信唯有接納「榮光進化」，才能讓人類隱藏的潛能徹底被激發。維克特用他經過鋼鐵和科學強化的身體，熱切地追求他心目中那光明的未來。",
+      "title": "奧術預示者",
+      "blurb": "維克特擁抱了自己布教的榮光進化，對自己進行了機械改造，抛下過去的肉體軀殼，成為了信徒眼中的救世主。根據他的邏輯，一旦排除情感，就能排除痛苦，而這也是為什麼他願意犧牲自己的人性。現在，他致力將海克斯科技的福音傳達給世上的每個人，儘管他們無法理解它的奇妙好處。畢竟對這位奧術大師來說，暴力只是平衡終極方程式所需的變數之一。",
       "info": {
         "attack": 2,
         "defense": 4,
@@ -7078,10 +7583,10 @@
       },
       "image": {
         "full": "Viktor.png",
-        "sprite": "champion4.png",
+        "sprite": "champion5.png",
         "group": "champion",
-        "x": 432,
-        "y": 96,
+        "x": 96,
+        "y": 0,
         "w": 48,
         "h": 48
       },
@@ -7091,12 +7596,12 @@
       "partype": "魔力",
       "stats": {
         "hp": 600,
-        "hpperlevel": 104,
+        "hpperlevel": 100,
         "mp": 405,
         "mpperlevel": 45,
         "movespeed": 335,
         "armor": 23,
-        "armorperlevel": 5.2,
+        "armorperlevel": 4.4,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
         "attackrange": 525,
@@ -7107,13 +7612,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 53,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.658
       }
     },
     "Vladimir": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Vladimir",
       "key": "8",
       "name": "弗拉迪米爾",
@@ -7129,22 +7634,23 @@
         "full": "Vladimir.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 0,
+        "x": 144,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage"
+        "Mage",
+        "Fighter"
       ],
       "partype": "腥紅脈搏",
       "stats": {
-        "hp": 607,
+        "hp": 600,
         "hpperlevel": 110,
         "mp": 2,
         "mpperlevel": 0,
         "movespeed": 330,
-        "armor": 27,
+        "armor": 24,
         "armorperlevel": 4.5,
         "spellblock": 30,
         "spellblockperlevel": 1.3,
@@ -7156,13 +7662,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.658
       }
     },
     "Volibear": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Volibear",
       "key": "106",
       "name": "弗力貝爾",
@@ -7178,7 +7684,7 @@
         "full": "Volibear.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 48,
+        "x": 192,
         "y": 0,
         "w": 48,
         "h": 48
@@ -7194,7 +7700,7 @@
         "mp": 350,
         "mpperlevel": 70,
         "movespeed": 340,
-        "armor": 31,
+        "armor": 35,
         "armorperlevel": 5.2,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -7205,19 +7711,19 @@
         "mpregenperlevel": 0.5,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 60,
-        "attackdamageperlevel": 3.5,
+        "attackdamage": 65,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
     "Warwick": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Warwick",
       "key": "19",
       "name": "沃維克",
       "title": "嗜血狂怒",
-      "blurb": "沃維克是一隻在佐恩陰暗街道狩獵的怪獸。痛苦的實驗改變了他，使他的身體與複雜的化學管道系統融合，血液被鍊金術製造的液體所取代。他從陰影中現身，捕捉那些在城市深淵中為所欲為的罪犯。沃維克被鮮血所吸引，並會因血腥味而陷入瘋狂。只要流下一滴血，便會成為他的獵物。",
+      "blurb": "沃維克是在佐恩陰暗街道狩獵的怪獸。痛苦的實驗改變了他，使他的身體與複雜的化學管道系統融合，血液被鍊金術製造的液體所取代。他會從陰影中猛然出擊，獵殺那些在城市深處為所欲為的罪犯。沃維克被鮮血所吸引，並會因血腥味而陷入瘋狂……凡流人血的，都逃不過他的追殺。",
       "info": {
         "attack": 9,
         "defense": 5,
@@ -7228,7 +7734,7 @@
         "full": "Warwick.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 96,
+        "x": 240,
         "y": 0,
         "w": 48,
         "h": 48
@@ -7256,13 +7762,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 65,
-        "attackdamageperlevel": 3,
-        "attackspeedperlevel": 2.3,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2,
         "attackspeed": 0.638
       }
     },
     "Xayah": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Xayah",
       "key": "498",
       "name": "剎雅",
@@ -7278,7 +7784,7 @@
         "full": "Xayah.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 144,
+        "x": 288,
         "y": 0,
         "w": 48,
         "h": 48
@@ -7305,13 +7811,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 3.5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.9,
         "attackspeed": 0.658
       }
     },
     "Xerath": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Xerath",
       "key": "101",
       "name": "齊勒斯",
@@ -7327,13 +7833,14 @@
         "full": "Xerath.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 192,
+        "x": 336,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage"
+        "Mage",
+        "Support"
       ],
       "partype": "魔力",
       "stats": {
@@ -7354,13 +7861,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.36,
         "attackspeed": 0.658
       }
     },
     "XinZhao": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "XinZhao",
       "key": "5",
       "name": "趙信",
@@ -7376,24 +7883,24 @@
         "full": "XinZhao.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 240,
+        "x": 384,
         "y": 0,
         "w": 48,
         "h": 48
       },
       "tags": [
         "Fighter",
-        "Assassin"
+        "Tank"
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 640,
+        "hp": 620,
         "hpperlevel": 106,
         "mp": 274,
         "mpperlevel": 55,
         "movespeed": 345,
         "armor": 35,
-        "armorperlevel": 4.7,
+        "armorperlevel": 4.4,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -7404,13 +7911,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.645
       }
     },
     "Yasuo": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Yasuo",
       "key": "157",
       "name": "犽宿",
@@ -7426,7 +7933,7 @@
         "full": "Yasuo.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 288,
+        "x": 432,
         "y": 0,
         "w": 48,
         "h": 48
@@ -7442,7 +7949,7 @@
         "mp": 100,
         "mpperlevel": 0,
         "movespeed": 345,
-        "armor": 30,
+        "armor": 32,
         "armorperlevel": 4.6,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -7454,13 +7961,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.697
       }
     },
     "Yone": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Yone",
       "key": "777",
       "name": "犽凝",
@@ -7476,14 +7983,14 @@
         "full": "Yone.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 336,
-        "y": 0,
+        "x": 0,
+        "y": 48,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Fighter",
+        "Assassin"
       ],
       "partype": "風湧",
       "stats": {
@@ -7492,7 +7999,7 @@
         "mp": 500,
         "mpperlevel": 0,
         "movespeed": 345,
-        "armor": 30,
+        "armor": 33,
         "armorperlevel": 4.6,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
@@ -7503,19 +8010,19 @@
         "mpregenperlevel": 0,
         "crit": 0,
         "critperlevel": 0,
-        "attackdamage": 60,
-        "attackdamageperlevel": 2,
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.5,
         "attackspeed": 0.625
       }
     },
     "Yorick": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Yorick",
       "key": "83",
       "name": "約瑞科",
       "title": "亡魂牧人",
-      "blurb": "作為被遺忘已久的教團的最後一個信徒，約瑞科主宰死者的力量不但庇佑著他，也同時是一個詛咒。受困在闇影島上，他唯一的陪伴就是他收集來的腐爛屍體以及尖叫亡魂。約瑞科令人咋舌的行為背後隱藏著高尚的意圖：將自己的家鄉從殞落詛咒中解放出來。",
+      "blurb": "作為被遺忘已久的教團的最後一個信徒，約瑞科主宰死者的力量不但庇佑著他，也同時是一個詛咒。受困在闇影島上，他唯一的陪伴就是他收集來的腐爛屍體以及尖叫幽魂。約瑞科令人咋舌的行為背後隱藏著高尚的意圖：將自己的家鄉從殞落詛咒中解放出來。",
       "info": {
         "attack": 6,
         "defense": 6,
@@ -7526,8 +8033,8 @@
         "full": "Yorick.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 384,
-        "y": 0,
+        "x": 48,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -7542,8 +8049,8 @@
         "mp": 300,
         "mpperlevel": 60,
         "movespeed": 340,
-        "armor": 39,
-        "armorperlevel": 5.2,
+        "armor": 36,
+        "armorperlevel": 4.5,
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
@@ -7554,13 +8061,62 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 62,
-        "attackdamageperlevel": 5,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.625
       }
     },
+    "Yunara": {
+      "version": "16.7.1",
+      "id": "Yunara",
+      "key": "804",
+      "name": "尤娜拉",
+      "title": "千年巫女",
+      "blurb": "尤娜拉對愛歐尼亞的信念從未動搖，她帶著均衡教團的傳奇聖物「艾恩厄納」，在靈界隱居修行了數個世紀。儘管尤娜拉已為此付出巨大犧牲，她要導正這片土地失衡與紛爭的誓言，至今依然堅定不移——心中的信念亦是如此。然而，她即將面對的現代世界，以及那再度崛起的遠古威脅之影——將徹底考驗她的決心。",
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 0,
+        "difficulty": 4
+      },
+      "image": {
+        "full": "Yunara.png",
+        "sprite": "champion5.png",
+        "group": "champion",
+        "x": 96,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Marksman"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 110,
+        "mp": 275,
+        "mpperlevel": 45,
+        "movespeed": 325,
+        "armor": 25,
+        "armorperlevel": 4.4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 575,
+        "hpregen": 4,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.65
+      }
+    },
     "Yuumi": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Yuumi",
       "key": "350",
       "name": "悠咪",
@@ -7576,8 +8132,8 @@
         "full": "Yuumi.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 432,
-        "y": 0,
+        "x": 144,
+        "y": 48,
         "w": 48,
         "h": 48
       },
@@ -7604,13 +8160,63 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 49,
-        "attackdamageperlevel": 3.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1,
         "attackspeed": 0.625
       }
     },
+    "Zaahen": {
+      "version": "16.7.1",
+      "id": "Zaahen",
+      "key": "904",
+      "name": "薩亨",
+      "title": "不滅冥聖",
+      "blurb": "薩亨是同時操弄神聖與褻瀆之力的墮落神祇，一邊獵殺其他冥血族，一邊抵抗隨時準備吞噬他的腐化。他曾自願把自己封印在大刀之中以抵抗瘋狂。如今他已重獲自由，內心高貴，目的卻無比殘忍。薩亨的內心上演著一場永恆的戰爭。但只要他繼續壓抑忍耐，他就絕不會與那些企圖摧毀符文大地的人同流合污。",
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 1,
+        "difficulty": 2
+      },
+      "image": {
+        "full": "Zaahen.png",
+        "sprite": "champion5.png",
+        "group": "champion",
+        "x": 192,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      },
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "partype": "魔力",
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 114,
+        "mp": 350,
+        "mpperlevel": 55,
+        "movespeed": 345,
+        "armor": 36,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.8,
+        "mpregen": 8.15,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      }
+    },
     "Zac": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Zac",
       "key": "154",
       "name": "札克",
@@ -7626,7 +8232,7 @@
         "full": "Zac.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 0,
+        "x": 240,
         "y": 48,
         "w": 48,
         "h": 48
@@ -7647,20 +8253,20 @@
         "spellblock": 32,
         "spellblockperlevel": 2.05,
         "attackrange": 175,
-        "hpregen": 8,
+        "hpregen": 5,
         "hpregenperlevel": 0.5,
         "mpregen": 0,
         "mpregenperlevel": 0,
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 60,
-        "attackdamageperlevel": 3.4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 1.6,
         "attackspeed": 0.736
       }
     },
     "Zed": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Zed",
       "key": "238",
       "name": "劫",
@@ -7676,7 +8282,7 @@
         "full": "Zed.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 48,
+        "x": 288,
         "y": 48,
         "w": 48,
         "h": 48
@@ -7703,13 +8309,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 63,
-        "attackdamageperlevel": 3.4,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 3.3,
         "attackspeed": 0.651
       }
     },
     "Zeri": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Zeri",
       "key": "221",
       "name": "婕莉",
@@ -7725,7 +8331,7 @@
         "full": "Zeri.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 96,
+        "x": 336,
         "y": 48,
         "w": 48,
         "h": 48
@@ -7735,7 +8341,7 @@
       ],
       "partype": "魔力",
       "stats": {
-        "hp": 630,
+        "hp": 600,
         "hpperlevel": 110,
         "mp": 250,
         "mpperlevel": 45,
@@ -7752,13 +8358,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 56,
-        "attackdamageperlevel": 2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.658
       }
     },
     "Ziggs": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Ziggs",
       "key": "115",
       "name": "希格斯",
@@ -7774,7 +8380,7 @@
         "full": "Ziggs.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 144,
+        "x": 384,
         "y": 48,
         "w": 48,
         "h": 48
@@ -7801,13 +8407,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 55,
-        "attackdamageperlevel": 3.1,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2,
         "attackspeed": 0.656
       }
     },
     "Zilean": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Zilean",
       "key": "26",
       "name": "極靈",
@@ -7823,7 +8429,7 @@
         "full": "Zilean.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 192,
+        "x": 432,
         "y": 48,
         "w": 48,
         "h": 48
@@ -7851,13 +8457,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 52,
-        "attackdamageperlevel": 3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.13,
         "attackspeed": 0.658
       }
     },
     "Zoe": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Zoe",
       "key": "142",
       "name": "柔依",
@@ -7873,14 +8479,13 @@
         "full": "Zoe.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 240,
-        "y": 48,
+        "x": 0,
+        "y": 96,
         "w": 48,
         "h": 48
       },
       "tags": [
-        "Mage",
-        "Support"
+        "Mage"
       ],
       "partype": "魔力",
       "stats": {
@@ -7901,13 +8506,13 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 58,
-        "attackdamageperlevel": 3.3,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.5,
         "attackspeed": 0.658
       }
     },
     "Zyra": {
-      "version": "14.6.1",
+      "version": "16.7.1",
       "id": "Zyra",
       "key": "143",
       "name": "枷蘿",
@@ -7923,8 +8528,8 @@
         "full": "Zyra.png",
         "sprite": "champion5.png",
         "group": "champion",
-        "x": 288,
-        "y": 48,
+        "x": 48,
+        "y": 96,
         "w": 48,
         "h": 48
       },
@@ -7951,7 +8556,7 @@
         "crit": 0,
         "critperlevel": 0,
         "attackdamage": 53,
-        "attackdamageperlevel": 3.2,
+        "attackdamageperlevel": 0,
         "attackspeedperlevel": 2.11,
         "attackspeed": 0.681
       }

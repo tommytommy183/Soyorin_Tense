@@ -24,6 +24,7 @@ namespace MusicBot2.Models
         public List<string> allytips { get; set; }
         public List<string> enemytips { get; set; }
         public List<spells> spells { get; set; }
+        public passive passive { get; set; }
     }
 
     public class spells

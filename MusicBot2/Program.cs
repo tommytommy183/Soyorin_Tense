@@ -6,6 +6,7 @@ using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using MusicBot2.IGHelper;
+using MusicBot2.RIOTService;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using System;
@@ -39,6 +40,7 @@ public class Program
     private bool _isSkipRequest = false;
     private string _LoopingSongUrl = "";
     private List<string> _SongBeenPlayedList = new List<string>();
+    GetChampService champService;
     private bool _isRelatedOn = false;
     private SocketGuildUser? _uuser;
     private bool _RelateSwitch = true;
@@ -125,6 +127,7 @@ public class Program
         var channel = message.Channel as IMessageChannel;
         var user = message.Author as SocketGuildUser;
         _uuser = user;
+        champService = new GetChampService(message);
 
         if (user == null)
             return;
@@ -134,6 +137,11 @@ public class Program
         {
             var query = cmd.Substring(4).Trim();
             await PlayMusicAsync(channel, user, query);
+        }
+        else if (cmd.ToLower().StartsWith("skill"))
+        {
+            var champName = cmd.Substring(5).Trim();
+            await champService.GetChampSkillsAsync(champName);
         }
         else if (cmd.ToLower().StartsWith("p"))
         {
