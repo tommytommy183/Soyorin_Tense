@@ -17,13 +17,11 @@ namespace MusicBot2.RIOTService
         public ChampVM? allChampionData;
         private const string versionFilePath = "league_version.txt";
         private const string champDataFilePath = "AllChamp.json";
-        private readonly SocketMessage _message;
         private readonly IMessageChannel _channel;
 
-        public GetChampService(SocketMessage message)
+        public GetChampService(IMessageChannel channel)
         {
-            _message = message;
-            _channel = message.Channel as IMessageChannel;
+            _channel = channel as IMessageChannel;
             // 檢查並更新版本資訊
             CheckAndUpdateVersion();
 
@@ -524,14 +522,18 @@ namespace MusicBot2.RIOTService
             {
                 "他媽的",
                 "羅傑的",
-                "芒果醬的",
+                "機掰的",
                 "fucking",
                 "偷腳踏車的",
-                "外星人的",
+                "外星人",
                 "雙刀流的",
                 "你媽的",
                 "桃子腳的",
-                "少一顆腎的"
+                "少一顆腎",
+                "扶他",
+                "男娘",
+                "偽娘",
+                "唐氏症"
             };
 
             var random = new Random();

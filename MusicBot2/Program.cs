@@ -5,10 +5,12 @@ using Discord.Commands;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MusicBot2.IGHelper;
 using MusicBot2.RIOTService;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
+using RiotSharp.Endpoints.StatusEndpoint;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +47,8 @@ public class Program
     private SocketGuildUser? _uuser;
     private bool _RelateSwitch = true;
     private bool _isEarRapeOn = false;
+    private InteractionService? _interactionService;
+    private IServiceProvider? _services;
     #endregion
 
     #region 基礎設定
@@ -62,38 +66,67 @@ public class Program
                              GatewayIntents.GuildMessageReactions |
                              GatewayIntents.GuildMembers
         };
+
         var builder = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
         IConfiguration configer = builder.Build();
-
         string token = configer["Discord:Token"];
 
         _client = new DiscordSocketClient(config);
         _commands = new CommandService();
+        _interactionService = new InteractionService(_client);
+
+        // 設置依賴注入
+        _services = new ServiceCollection()
+            .AddSingleton(_client)
+            .AddSingleton(_interactionService)
+            .AddSingleton(this)
+            .BuildServiceProvider();
+
         _client.MessageReceived += MessageReceivedHandler;
         _client.Log += Log;
-        //IGHelper iGHelper = new IGHelper();
-        //_ = Task.Run(() => iGHelper.StartAsync(_client));
+        _client.Ready += ClientReady;
+        _client.InteractionCreated += InteractionCreated;
+
         _ = SetBotStatusAsync(_client);
+
         await _client.LoginAsync(TokenType.Bot, token);
         await _client.StartAsync();
         await Task.Delay(-1);
-
     }
 
 
     #endregion
 
     #region 額外的handler
-    private Task Log(LogMessage log)
+    private async Task InteractionCreated(SocketInteraction interaction)
+    {
+        var context = new SocketInteractionContext(_client, interaction);
+        await _interactionService.ExecuteCommandAsync(context, _services);
+    }
+
+    private async Task ClientReady()
+    {
+        // 註冊 Slash Commands
+        await _interactionService.AddModuleAsync<MusicBot2.SlahCommands.SlashCommandHandler>(_services);
+
+        // 可選：僅在特定伺服器註冊（開發用）
+        // await _interactionService.RegisterCommandsToGuildAsync(YOUR_GUILD_ID);
+
+        // 全域註冊（可能需要最多 1 小時生效）
+        await _interactionService.RegisterCommandsGloballyAsync();
+
+        Console.WriteLine("Slash Commands 已註冊！");
+    }
+    public Task Log(LogMessage log)
     {
         Console.WriteLine(log);
         return Task.CompletedTask;
     }
 
-    private static async Task SetBotStatusAsync(DiscordSocketClient _client)
+    public static async Task SetBotStatusAsync(DiscordSocketClient _client)
     {
         while (true)
         {
@@ -120,14 +153,14 @@ public class Program
     #endregion
 
     #region MSreceive
-    private async Task MessageReceivedHandler(SocketMessage message)
+    public async Task MessageReceivedHandler(SocketMessage message)
     {
         if (message is not SocketUserMessage userMessage || message.Author.IsBot || !message.Content.StartsWith("$$")) return;
         string cmd = message.Content.Substring(2);
         var channel = message.Channel as IMessageChannel;
         var user = message.Author as SocketGuildUser;
         _uuser = user;
-        champService = new GetChampService(message);
+        champService = new GetChampService(channel);
 
         if (user == null)
             return;
@@ -241,7 +274,7 @@ public class Program
     #endregion
 
     #region 撥放音樂事件
-    private async Task PlayMusicAsync(IMessageChannel channel, SocketGuildUser user, string query)
+    public async Task PlayMusicAsync(IMessageChannel channel, SocketGuildUser user, string query)
     {
         if (user?.VoiceChannel == null)
         {
@@ -281,7 +314,7 @@ public class Program
 
         }
     }
-    private async Task PlayBiblibiliMusicAsync(IMessageChannel channel, SocketGuildUser user, string url)
+    public async Task PlayBiblibiliMusicAsync(IMessageChannel channel, SocketGuildUser user, string url)
     {
         try
         {
@@ -319,7 +352,7 @@ public class Program
             await channel.SendMessageAsync(ex.ToString());
         }
     }
-    private async Task SkipMusic(IMessageChannel channel, SocketGuildUser user)
+    public async Task SkipMusic(IMessageChannel channel, SocketGuildUser user)
     {
         if (user?.VoiceChannel == null)
         {
@@ -339,7 +372,7 @@ public class Program
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=62208&episode=1-3");
         }
     }
-    private async Task LoopMusic(IMessageChannel channel, SocketGuildUser user)
+    public async Task LoopMusic(IMessageChannel channel, SocketGuildUser user)
     {
         if (user?.VoiceChannel == null)
         {
@@ -357,7 +390,7 @@ public class Program
             await channel.SendMessageAsync("沒歌了是要循環甚麼 戀愛嗎");
         }
     }
-    private async Task UnLoopMusic(IMessageChannel channel, SocketGuildUser user)
+    public async Task UnLoopMusic(IMessageChannel channel, SocketGuildUser user)
     {
         if (user?.VoiceChannel == null)
         {
@@ -376,7 +409,7 @@ public class Program
             await channel.SendMessageAsync("沒歌了 已經維持不下去了..");
         }
     }
-    private async Task CalledPlayListAsync(IMessageChannel channel, SocketGuildUser user)
+    public async Task CalledPlayListAsync(IMessageChannel channel, SocketGuildUser user)
     {
 
         if (_songQueue.Count == 0)
@@ -425,7 +458,7 @@ public class Program
         await channel.SendMessageAsync(embed: embedBuilder.Build());
 
     }
-    private async Task CalledPlayListForBBAsync(IMessageChannel channel, SocketGuildUser user)
+    public async Task CalledPlayListForBBAsync(IMessageChannel channel, SocketGuildUser user)
     {
 
         if (_songQueue.Count == 0)
@@ -474,7 +507,7 @@ public class Program
         await channel.SendMessageAsync(embed: embedBuilder.Build());
 
     }
-    private async Task RelatedMusicAsync(IMessageChannel channel, SocketGuildUser user)
+    public async Task RelatedMusicAsync(IMessageChannel channel, SocketGuildUser user)
     {
         if (user?.VoiceChannel == null)
         {
@@ -508,7 +541,25 @@ public class Program
 
         await PlayMusicAsync(channel, user, url);
     }
-    private async Task EarRapeAsync(IMessageChannel channel, SocketGuildUser user)
+
+    // 新增公開方法供 SlashCommandHandler 使用
+    public async Task HandleRelatedMusicAsync(IMessageChannel channel, SocketGuildUser user)
+    {
+        if (_RelateSwitch)
+        {
+            _RelateSwitch = false;
+            await RelatedMusicAsync(channel, user);
+        }
+        else
+        {
+            _RelateSwitch = true;
+            _isRelatedOn = false;
+            _SongBeenPlayedList.Clear();
+            await channel.SendMessageAsync("取消推薦");
+            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=1400&episode=13");
+        }
+    }
+    public async Task EarRapeAsync(IMessageChannel channel, SocketGuildUser user)
     {
         if (user?.VoiceChannel == null)
         {
@@ -524,7 +575,7 @@ public class Program
 
     #region 撥放音樂
     //1可2可3不可   why??  =====> delay時間不夠長 貌似取決於電腦效能&網路
-    private async Task PlayNextSongAsync(IMessageChannel channel, SocketVoiceChannel voiceChannel)
+    public async Task PlayNextSongAsync(IMessageChannel channel, SocketVoiceChannel voiceChannel)
     {
         //songqueue為空 ／loop沒啟動／沒有開推薦
         if (_songQueue.Count == 0 && _LoopingSongUrl == "" && _isRelatedOn == false)
@@ -613,7 +664,7 @@ public class Program
     #endregion
 
     #region yt相關
-    private async Task<string> GetVideoIDAsync(string url)
+    public async Task<string> GetVideoIDAsync(string url)
     {
         var youtube = new YoutubeClient();
         var videoId = YoutubeExplode.Videos.VideoId.TryParse(url);
@@ -628,7 +679,7 @@ public class Program
             return videoTitle;
         }
     }
-    private async Task<string> DownloadAudioAsync(string url)
+    public async Task<string> DownloadAudioAsync(string url)
     {
 
         var youtube = new YoutubeClient();
@@ -651,7 +702,7 @@ public class Program
 
         return filePath;
     }
-    private async Task<string> GetYoutubeUrlByNameAsync(IMessageChannel channel, string query)
+    public async Task<string> GetYoutubeUrlByNameAsync(IMessageChannel channel, string query)
     {
         try
         {
@@ -680,7 +731,7 @@ public class Program
             return "";
         }
     }
-    private async Task<string> SearchRelateVideoAsync(IMessageChannel channel, string name)
+    public async Task<string> SearchRelateVideoAsync(IMessageChannel channel, string name)
     {
         string url = "";
         try
@@ -742,7 +793,7 @@ public class Program
     #endregion
 
     #region
-    private async Task<string> DownloadBilibiliAudioAsync(string url)
+    public async Task<string> DownloadBilibiliAudioAsync(string url)
     {
         var tempDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
         Directory.CreateDirectory(tempDirectory);
@@ -779,7 +830,7 @@ public class Program
 
     }
 
-    private async Task<string> GetBilibiliTitleAsync(string url)
+    public async Task<string> GetBilibiliTitleAsync(string url)
     {
         var psi = new ProcessStartInfo
         {
@@ -811,7 +862,7 @@ public class Program
     #endregion
     #region 自訂func
 
-    private Process CreatePcmStreamProcess(string path)
+    public Process CreatePcmStreamProcess(string path)
     {
         string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
         string ffmpegPath = Path.Combine(projectRoot, "ffmpeg-master-latest-win64-gpl-shared", "bin", "ffmpeg.exe");
@@ -825,7 +876,7 @@ public class Program
             RedirectStandardError = true,
         });
     }
-    private string GetRandomizedTitle(string title, IMessageChannel channel)
+    public string GetRandomizedTitle(string title, IMessageChannel channel)
     {
         var _ignoreKeywords = new List<string>
     {
@@ -864,7 +915,7 @@ public class Program
         channel.SendMessageAsync(sb.ToString());
         return (parts[index]);
     }
-    private async Task<bool> CheckYoutubeUrlAliveAsync(string url)
+    public async Task<bool> CheckYoutubeUrlAliveAsync(string url)
     {
         try
         {
@@ -886,7 +937,7 @@ public class Program
             return false; // 发生异常，视为无效
         }
     }
-    private Color RandomColor()
+    public Color RandomColor()
     {
         var colors = new List<Color>
 {
@@ -905,7 +956,7 @@ public class Program
         var randomColor = colors[random.Next(colors.Count)];
         return randomColor;
     }
-    private string RandomAI()
+    public string RandomAI()
     {
         var random = new Random();
         List<string> singer = new List<string>();
