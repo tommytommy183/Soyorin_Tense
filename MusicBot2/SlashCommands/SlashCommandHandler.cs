@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using InstagramApiSharp.Classes;
 using MusicBot2.RIOTService;
 
 namespace MusicBot2.SlahCommands
@@ -124,6 +125,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var champService = new GetChampService(Context.Channel as IMessageChannel);
             await champService.GetChampSkillsAsync(champName);
+            await FollowupAsync(" ", ephemeral: true);
         }
 
         [SlashCommand("guess", "猜測英雄技能")]
@@ -135,6 +137,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var champService = new GetChampService(Context.Channel as IMessageChannel);
             await champService.GuessChampSkillAsync(champName.ToLower(), skillPos.ToLower(), userGuess.ToLower());
+            await FollowupAsync(" ", ephemeral: true);
         }
     }
 }

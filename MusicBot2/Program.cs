@@ -117,8 +117,6 @@ public class Program
 
         // 全域註冊（可能需要最多 1 小時生效）
         await _interactionService.RegisterCommandsGloballyAsync();
-
-        Console.WriteLine("Slash Commands 已註冊！");
     }
     public Task Log(LogMessage log)
     {
