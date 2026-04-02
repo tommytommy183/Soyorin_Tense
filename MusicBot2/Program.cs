@@ -143,6 +143,14 @@ public class Program
             var champName = cmd.Substring(5).Trim();
             await champService.GetChampSkillsAsync(champName);
         }
+        else if(cmd.ToLower().StartsWith("guess"))
+        {
+            //$$guess {英雄名} {技能位置 P,Q,W,E,R} {使用者猜測的名字}
+            var champName = cmd.Substring(5).ToLower().Trim().Split(' ')[0];
+            var skillPos = cmd.Substring(5).ToLower().Trim().Split(' ')[1];
+            var userGuess = cmd.Substring(5).ToLower().Trim().Split(' ')[2];
+            await champService.GuessChampSkillAsync(champName, skillPos, userGuess);
+        }
         else if (cmd.ToLower().StartsWith("p"))
         {
             var query = cmd.Substring(1).Trim();

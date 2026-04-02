@@ -20,7 +20,7 @@ namespace MusicBot2.RIOTService
         private readonly SocketMessage _message;
         private readonly IMessageChannel _channel;
 
-        public GetChampService(SocketMessage message) 
+        public GetChampService(SocketMessage message)
         {
             _message = message;
             _channel = message.Channel as IMessageChannel;
@@ -37,7 +37,7 @@ namespace MusicBot2.RIOTService
         private void CheckAndUpdateVersion()
         {
             bool shouldUpdateVersion = false;
-            
+
             try
             {
                 if (File.Exists(versionFilePath))
@@ -47,8 +47,8 @@ namespace MusicBot2.RIOTService
                     {
                         string savedVersion = lines[0];
                         string savedDateStr = lines[1];
-                        
-                        if (string.IsNullOrWhiteSpace(savedDateStr) || 
+
+                        if (string.IsNullOrWhiteSpace(savedDateStr) ||
                             !DateTime.TryParse(savedDateStr, out DateTime savedDate))
                         {
                             shouldUpdateVersion = true;
@@ -71,7 +71,7 @@ namespace MusicBot2.RIOTService
                 {
                     shouldUpdateVersion = true;
                 }
-                
+
                 if (shouldUpdateVersion)
                 {
                     UpdateVersionFromApi();
@@ -97,12 +97,12 @@ namespace MusicBot2.RIOTService
                     var content = response.Content.ReadAsStringAsync().Result;
                     var versions = JsonConvert.DeserializeObject<List<string>>(content);
                     version = versions[0];
-                    
+
                     // 儲存版本和日期到檔案
-                    File.WriteAllLines(versionFilePath, new[] 
-                    { 
-                        version, 
-                        DateTime.Now.ToString("yyyy-MM-dd") 
+                    File.WriteAllLines(versionFilePath, new[]
+                    {
+                        version,
+                        DateTime.Now.ToString("yyyy-MM-dd")
                     });
                 }
             }
@@ -114,7 +114,7 @@ namespace MusicBot2.RIOTService
         private void LoadAllChampions()
         {
             bool shouldUpdateChampData = false;
-            
+
             // 檢查本地檔案是否存在
             if (File.Exists(champDataFilePath))
             {
@@ -123,7 +123,7 @@ namespace MusicBot2.RIOTService
                     // 讀取本地檔案
                     string jsonContent = File.ReadAllText(champDataFilePath);
                     var localData = JsonConvert.DeserializeObject<ChampVM>(jsonContent);
-                    
+
                     // 比較版本是否一致
                     if (localData?.version != version)
                     {
@@ -147,7 +147,7 @@ namespace MusicBot2.RIOTService
                 // 檔案不存在,需要從 API 取得
                 shouldUpdateChampData = true;
             }
-            
+
             // 需要更新時才呼叫 API
             if (shouldUpdateChampData)
             {
@@ -161,7 +161,7 @@ namespace MusicBot2.RIOTService
         private void UpdateChampDataFromApi()
         {
             string champListUrl = $"https://ddragon.leagueoflegends.com/cdn/{version}/data/zh_TW/champion.json";
-            
+
             using (var client = new HttpClient())
             {
                 var response = client.GetAsync(champListUrl).Result;
@@ -169,7 +169,7 @@ namespace MusicBot2.RIOTService
                 {
                     var content = response.Content.ReadAsStringAsync().Result;
                     allChampionData = JsonConvert.DeserializeObject<ChampVM>(content);
-                    
+
                     // 儲存到本地檔案
                     File.WriteAllText(champDataFilePath, content);
                 }
@@ -197,7 +197,7 @@ namespace MusicBot2.RIOTService
             // 2. 不區分大小寫的 ID 匹配
             var championByIdIgnoreCase = allChampionData.data
                 .FirstOrDefault(kvp => kvp.Key.Equals(searchTerm, StringComparison.OrdinalIgnoreCase));
-            
+
             if (!string.IsNullOrEmpty(championByIdIgnoreCase.Key))
             {
                 return championByIdIgnoreCase.Value.id;
@@ -205,10 +205,10 @@ namespace MusicBot2.RIOTService
 
             // 3. 用中文名稱或稱號搜尋
             var champion = allChampionData.data.Values
-                .FirstOrDefault(c => 
-                    c.name.Equals(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+                .FirstOrDefault(c =>
+                    c.name.Equals(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     c.title.Equals(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    c.name.Contains(searchTerm) || 
+                    c.name.Contains(searchTerm) ||
                     c.title.Contains(searchTerm));
 
             return champion?.id;
@@ -225,41 +225,66 @@ namespace MusicBot2.RIOTService
             {
                 // 先透過智能搜尋找到正確的英雄 ID
                 var championId = FindChampionId(searchTerm);
-                
+
                 if (string.IsNullOrEmpty(championId))
                 {
-                    await _channel.SendMessageAsync($"找不到英雄: {searchTerm}");
+                    await _channel.SendMessageAsync($"找不到，這她媽是誰: {searchTerm}");
+                    return;
                 }
 
                 // 建立詳細資料的 URL
                 string champDetailUrl = $"https://ddragon.leagueoflegends.com/cdn/{version}/data/zh_TW/champion/{championId}.json";
-                
+
                 using (var client = new HttpClient())
                 {
                     var response = await client.GetAsync(champDetailUrl);
-                    
+
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
                         var champDetail = JsonConvert.DeserializeObject<OnlyChampVM>(content);
-                        
+
                         // 取得該英雄的資料(data 字典只會有一個英雄)
                         var champion = champDetail?.data?.Values.FirstOrDefault();
-                        
+
                         if (champion != null)
                         {
-                            StringBuilder result = new StringBuilder();
-                            result.AppendLine($"英雄: {champion.name} - {champion.title}");
-                            result.AppendLine($"簡介: {champion.blurb}");
-                            result.AppendLine("\n技能列表:");
-                            
+                            var random = RandomChampColor();
+
+                            // 英雄頭像圖片 URL
+                            string championImageUrl = $"https://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{championId}.png";
+
+                            // 创建一个新的 EmbedBuilder
+                            var embedBuilder = new EmbedBuilder()
+                            {
+                                Title = $"⚔️ {AddSomeFuckingWords(champion.name)}",
+                                Description = $"*{AddSomeFuckingWords(champion.title)}*",
+                                Color = random,
+                                ThumbnailUrl = championImageUrl,
+                                Footer = new EmbedFooterBuilder()
+                                {
+                                    Text = $"裡狗李 - 遊戲版本 {version}"
+                                },
+                                Timestamp = DateTimeOffset.Now
+                            };
+
+                            // 英雄簡介
+                            embedBuilder.AddField("📖 英雄簡介", AddSomeFuckingWords(champion.blurb), false);
+
+                            embedBuilder.AddField("━━━━━━━━━━━━━━━━━━━━━━", "** **", false);
+
                             // 被動技能
                             if (champion.passive != null)
                             {
-                                result.AppendLine($"\n【被動 - {champion.passive.name}】");
-                                result.AppendLine($"描述: {champion.passive.description}");
+                                string passiveIconUrl = $"https://ddragon.leagueoflegends.com/cdn/{version}/img/passive/{champion.passive.image.full}";
+
+                                embedBuilder.AddField(
+                                    $"🔮 被動 - {champion.passive.name}",
+                                    $"{CleanHtmlTags(AddSomeFuckingWords(champion.passive.description))}\n** **",
+                                    false
+                                );
                             }
-                            
+
                             // 列出所有技能
                             if (champion.spells != null)
                             {
@@ -268,34 +293,140 @@ namespace MusicBot2.RIOTService
                                     var spell = champion.spells[i];
                                     string skillKey = i switch
                                     {
-                                        0 => "Q",
-                                        1 => "W",
-                                        2 => "E",
-                                        3 => "R",
+                                        0 => "🇶 Q",
+                                        1 => "🇼 W",
+                                        2 => "🇪 E",
+                                        3 => "🇷 R",
                                         _ => $"{i + 1}"
                                     };
-                                    
-                                    result.AppendLine($"\n【{skillKey} - {spell.name}】");
-                                    result.AppendLine($"描述: {spell.description}");
+
+                                    //// 技能冷卻時間
+                                    //string cooldown = spell.cooldown != null && spell.cooldown.Count > 0
+                                    //    ? $"⏱️ 冷卻: {string.Join("/", spell.cooldown)} 秒"
+                                    //    : "";
+
+                                    //// 技能消耗
+                                    //string cost = spell.cost != null && spell.cost.Count > 0
+                                    //    ? $"💧 消耗: {string.Join("/", spell.cost)} {spell.costType}"
+                                    //    : "";
+
+                                    //string additionalInfo = !string.IsNullOrEmpty(cooldown) || !string.IsNullOrEmpty(cost)
+                                    //    ? $"\n{cooldown} {cost}"
+                                    //    : "";
+
+                                    embedBuilder.AddField(
+                                        $"{skillKey} - {spell.name}",
+                                        $"{CleanHtmlTags(AddSomeFuckingWords(spell.description))}\n** **",
+                                        false
+                                    );
                                 }
                             }
-                            await _channel.SendMessageAsync(result.ToString());
+
+                            await _channel.SendMessageAsync(embed: embedBuilder.Build());
                         }
                         else
                         {
-                            await _channel.SendMessageAsync($"找不到英雄詳細資料: {searchTerm}");
+                            await _channel.SendMessageAsync($"白癡riot不給資料怪我瞜: {searchTerm}");
                         }
                     }
                     else
                     {
-                        await _channel.SendMessageAsync($"API 請求失敗: {response.StatusCode}");
+                        await _channel.SendMessageAsync($"白癡riot不給資料怪我瞜: {response.StatusCode}");
                     }
                 }
             }
             catch (Exception ex)
             {
-                await _channel.SendMessageAsync(ex.Message); 
+                await _channel.SendMessageAsync($"白癡riot不給資料怪我瞜: {ex.Message}");
             }
+        }
+
+        public async Task GuessChampSkillAsync(string champName, string skillPos, string userGuess)
+        {
+            string correctSkillName = string.Empty;
+
+            // 先透過智能搜尋找到正確的英雄 ID
+            var championId = FindChampionId(champName);
+
+            if (string.IsNullOrEmpty(championId))
+            {
+                await _channel.SendMessageAsync($"找不到，這她媽是誰: {champName}");
+                return;
+            }
+
+            // 建立詳細資料的 URL
+            string champDetailUrl = $"https://ddragon.leagueoflegends.com/cdn/{version}/data/zh_TW/champion/{championId}.json";
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(champDetailUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var champDetail = JsonConvert.DeserializeObject<OnlyChampVM>(content);
+
+                    // 取得該英雄的資料(data 字典只會有一個英雄)
+                    var champion = champDetail?.data?.Values.FirstOrDefault();
+
+                    if (champion != null)
+                    {
+                        if (skillPos.ToLower() == "p")
+                        {
+                            correctSkillName = champion.passive.name;
+                        }
+                        else
+                        {
+                            int index = skillPos.ToLower() switch
+                            {
+                                "q" => 0,
+                                "w" => 1,
+                                "e" => 2,
+                                "r" => 3,
+                                _ => -1
+                            };
+
+                            if (index >= 0 && index < champion.spells.Count)
+                            {
+                                correctSkillName = champion.spells[index].name;
+                            }
+                        }
+
+                        if (correctSkillName.ToLower().Trim() == userGuess.ToLower().Trim())
+                        {
+                            await _channel.SendMessageAsync($"被你賽到瞜，獎勵你{GetRandomRewards()}");
+                        }
+                        else
+                        {
+                            await _channel.SendMessageAsync($"傻逼，亂猜一通，你不知道弒君知道: {correctSkillName}");
+                        }
+                    }
+                    else
+                    {
+                        await _channel.SendMessageAsync($"白癡riot不給資料怪我瞜: {champName}");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清除 HTML 標籤並格式化技能描述
+        /// </summary>
+        private string CleanHtmlTags(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            // 移除 HTML 標籤
+            text = System.Text.RegularExpressions.Regex.Replace(text, "<br>", "\n");
+            text = System.Text.RegularExpressions.Regex.Replace(text, "<.*?>", "");
+
+            // 替換遊戲內特殊標記
+            text = text.Replace("@Effect1Amount@", "X")
+                        .Replace("@Effect2Amount@", "Y")
+                        .Replace("@Effect3Amount@", "Z");
+
+            return text;
         }
 
         /// <summary>
@@ -326,6 +457,108 @@ namespace MusicBot2.RIOTService
                 .FirstOrDefault(c => c.name.Contains(chineseName) || c.title.Contains(chineseName));
 
             return champion?.id;
+        }
+
+        private Color RandomChampColor()
+        {
+            var colors = new List<Color>
+            {
+                new Color(0, 149, 255),      // 藍色
+                new Color(255, 77, 77),      // 紅色
+                new Color(255, 184, 77),     // 橘色
+                new Color(153, 0, 204),      // 紫色
+                new Color(0, 204, 102),      // 綠色
+                new Color(255, 204, 0),      // 金色
+                new Color(230, 0, 126),      // 粉紅色
+                new Color(0, 204, 204),      // 青色
+            };
+
+            var random = new Random();
+            return colors[random.Next(colors.Count)];
+        }
+
+        private string GetRandomRewards()
+        {
+            var rewards = new List<string>
+            {
+                "一首戰神阿基里斯",
+                "和聽葳葳夢夢一起去日本",
+                "去偷一台停在地下室還沒鎖的腳踏車",
+                "去花蓮找綠開心",
+                "被小魚告上法庭",
+                "一把雙刀流柔伊",
+                "和初華睡一晚",
+                "被傻屌愛音摳",
+                "一首夏夜晚風 芒果醬ver.",
+                "玩一小時 furry shades of gay"
+            };
+
+            var random = new Random();
+            return rewards[random.Next(rewards.Count)];
+        }
+
+        private string AddSomeFuckingWords(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            var fuckingWords = new List<string>
+            {
+                "他媽的",
+                "羅傑的",
+                "芒果醬的",
+                "fucking",
+                "偷腳踏車的",
+                "外星人的",
+                "雙刀流的",
+                "你媽的",
+                "桃子腳的",
+                "少一顆腎的"
+            };
+
+            var random = new Random();
+            int ranCount = 0;
+
+            if (input.Length < 10)
+            {
+                ranCount = random.Next(1, 1);
+            }
+            else if (input.Length < 30)
+            {
+                ranCount = random.Next(1, 2);
+            }
+            else if (input.Length >= 30)
+            {
+                ranCount = random.Next(1, 6);
+            }
+
+            // 取得原始字串長度，確保只在原始字元間插入
+            int originalLength = input.Length;
+
+            // 儲存要插入的位置和文字
+            var insertions = new Dictionary<int, string>();
+
+            for (int i = 0; i < ranCount; i++)
+            {
+                int position = random.Next(originalLength + 1);
+
+                // 如果該位置已有插入，跳過
+                while (insertions.ContainsKey(position))
+                {
+                    position = random.Next(originalLength + 1);
+                }
+
+                insertions[position] = fuckingWords[random.Next(fuckingWords.Count)];
+            }
+
+            // 按位置排序後從後往前插入，避免位置偏移
+            var result = new StringBuilder(input);
+            foreach (var kvp in insertions.OrderByDescending(x => x.Key))
+            {
+                result.Insert(kvp.Key, kvp.Value);
+            }
+
+            return result.ToString();
         }
     }
 }
