@@ -2,17 +2,20 @@
 using Discord.Interactions;
 using Discord.WebSocket;
 using InstagramApiSharp.Classes;
+using MusicBot2.Models;
 using MusicBot2.RIOTService;
+using MusicBot2.WordGuessService;
 
 namespace MusicBot2.SlahCommands
 {
     public class SlashCommandHandler : InteractionModuleBase<SocketInteractionContext>
     {
         private readonly Program _program;
-
-        public SlashCommandHandler(Program program)
+        WordGuessingService wordService;
+        public SlashCommandHandler(Program program, WordGuessingService wordService)
         {
             _program = program;
+            this.wordService = wordService;
         }
 
         [SlashCommand("play", "播放音樂")]
@@ -138,6 +141,30 @@ namespace MusicBot2.SlahCommands
             var champService = new GetChampService(Context.Channel as IMessageChannel);
             await champService.GuessChampSkillAsync(champName.ToLower(), skillPos.ToLower(), userGuess.ToLower());
             await FollowupAsync(" ", ephemeral: true);
+        }
+
+        [SlashCommand("words", "猜單字")]
+        public async Task Guess(string word)
+        {
+            try
+            {
+                var user = Context.User as SocketGuildUser;
+                string res = await wordService.Guess(word,user);
+                if (!string.IsNullOrEmpty(res))
+                {
+                    await RespondAsync(res);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+           
+        }
+
+        [SlashCommand("hint", "提示")]
+        public async Task Guess()
+        {
         }
     }
 }

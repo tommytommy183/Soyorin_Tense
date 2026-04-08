@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MusicBot2.IGHelper;
 using MusicBot2.RIOTService;
+using MusicBot2.WordGuessService;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using RiotSharp.Endpoints.StatusEndpoint;
@@ -83,6 +84,7 @@ public class Program
             .AddSingleton(_client)
             .AddSingleton(_interactionService)
             .AddSingleton(this)
+            .AddSingleton<WordGuessingService>()  // ✅ 這行
             .BuildServiceProvider();
 
         _client.MessageReceived += MessageReceivedHandler;
@@ -174,7 +176,7 @@ public class Program
             var champName = cmd.Substring(5).Trim();
             await champService.GetChampSkillsAsync(champName);
         }
-        else if(cmd.ToLower().StartsWith("guess"))
+        else if (cmd.ToLower().StartsWith("guess"))
         {
             //$$guess {英雄名} {技能位置 P,Q,W,E,R} {使用者猜測的名字}
             var champName = cmd.Substring(5).ToLower().Trim().Split(' ')[0];

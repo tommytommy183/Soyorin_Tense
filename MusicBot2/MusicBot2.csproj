@@ -7,6 +7,12 @@
 		<Nullable>enable</Nullable>
 		<Platforms>AnyCPU;x64</Platforms>	
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="NewFolder\**" />
+	  <EmbeddedResource Remove="NewFolder\**" />
+	  <None Remove="NewFolder\**" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Discord.Net" Version="3.19.1" />
 		<PackageReference Include="Discord.Net.Dave" Version="3.19.1" />
@@ -26,6 +32,6 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
-	<ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://www.schemastore.org/architectfx.json" /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
