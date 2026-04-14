@@ -76,14 +76,20 @@ public class Program
         _client = new DiscordSocketClient(config);
         _commands = new CommandService();
         _interactionService = new InteractionService(_client);
+        string elevenLabsApiKey = configer["ElevenLabs:ApiKey"];  // ✅ 從設定檔讀取
 
         // 設置依賴注入
         _services = new ServiceCollection()
             .AddSingleton(_client)
             .AddSingleton(_interactionService)
             .AddSingleton(this)
-            .AddSingleton<WordGuessingService>()  // ✅ 這行
-            .AddSingleton<MineGameService>()  // ✅ 加入這行
+            .AddSingleton<WordGuessingService>()
+            .AddSingleton<MineGameService>()
+            .AddSingleton<ElevenLabsService>(sp =>
+                new ElevenLabsService(
+                    sp.GetRequiredService<DiscordSocketClient>(),
+                    elevenLabsApiKey
+                ))  // ✅ 使用 Factory 傳入參數
             .BuildServiceProvider();
 
         _client.MessageReceived += MessageReceivedHandler;

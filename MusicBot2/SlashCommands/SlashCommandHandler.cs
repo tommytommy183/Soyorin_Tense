@@ -12,11 +12,13 @@ namespace MusicBot2.SlahCommands
         private readonly Program _program;
         WordGuessingService wordService;
         MineGameService _mineGameService;
+        ElevenLabsService _elevenLabsService;
 
-        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService)
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService)
         {
             _program = program;
             this.wordService = wordService;
+            _elevenLabsService = elevenLabsService;
             _mineGameService = mineGameService;
         }
 
@@ -177,8 +179,7 @@ namespace MusicBot2.SlahCommands
         [SlashCommand("minebig", "超大踩地雷遊戲")]
         public async Task CustomizedMineCommand(
             [Summary("寬度", "地圖寬度")] int width,
-            [Summary("高度", "地圖高度")] int height
-            )
+            [Summary("高度", "地圖高度")] int height)
         {
             await DeferAsync();
 
@@ -189,14 +190,26 @@ namespace MusicBot2.SlahCommands
 
         [SlashCommand("mineopen", "超大踩地雷遊戲")]
         public async Task OpenBox(
-    [Summary("x座標", "x座標")] int x,
-    [Summary("y座標", "y座標")] int y
-    )
+            [Summary("x座標", "x座標")] int x,
+            [Summary("y座標", "y座標")] int y)
         {
             await DeferAsync();
 
             var embed = await _mineGameService.HandleTextCoordinate(Context.User.Id, x, y);
             await FollowupAsync(embed: embed);
+        }
+
+        [SlashCommand("speak", "透過ElevenLabs說話")]
+        public async Task ElevenLabsTalk(
+            [Summary("text", "要讓他說的話")] string text,
+            [Summary("model", "選擇需要使用的模型")][Choice("品質最好", "eleven_v3"), Choice("最穩定", "eleven_multilingual_v2"), Choice("最低延遲", "eleven_flash_v2_5"), Choice("平衡", "eleven_turbo_v2_5")] string model, 
+            [Summary("voiceID", "請輸入要使用的voiceID，不填入則預設")] string voiceID = "pNInz6obpgDQGcFmaJgB")
+        {
+            await DeferAsync();
+            var user = Context.User as SocketGuildUser;
+            var voiceChannel = user.VoiceChannel;
+            await _elevenLabsService.SpeakAsync(voiceChannel, text, model, voiceID);
+            await FollowupAsync(" ", ephemeral: true);
         }
     }
 }
