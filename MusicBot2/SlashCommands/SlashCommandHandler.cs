@@ -2,6 +2,7 @@
 using Discord.Interactions;
 using Discord.WebSocket;
 using InstagramApiSharp.Classes;
+using MusicBot2.MineGameService;
 using MusicBot2.Models;
 using MusicBot2.RIOTService;
 using MusicBot2.WordGuessService;
@@ -12,10 +13,13 @@ namespace MusicBot2.SlahCommands
     {
         private readonly Program _program;
         WordGuessingService wordService;
-        public SlashCommandHandler(Program program, WordGuessingService wordService)
+        MineGameService.MineGameService _mineGameService;
+
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService.MineGameService mineGameService)
         {
             _program = program;
             this.wordService = wordService;
+            _mineGameService = mineGameService;
         }
 
         [SlashCommand("play", "播放音樂")]
@@ -149,22 +153,52 @@ namespace MusicBot2.SlahCommands
             try
             {
                 var user = Context.User as SocketGuildUser;
-                string res = await wordService.Guess(word,user);
+                string res = await wordService.Guess(word, user);
                 if (!string.IsNullOrEmpty(res))
                 {
                     await RespondAsync(res);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
-           
+
         }
 
-        [SlashCommand("hint", "提示")]
-        public async Task Guess()
+        [SlashCommand("mine", "開始踩地雷遊戲")]
+        public async Task MineCommand()
         {
+            await DeferAsync();
+
+            var (component, embed) = await _mineGameService.StartGameAsync(Context.User.Id, 5, 5);
+
+            await FollowupAsync(embed: embed, components: component.Build());
+        }
+
+        [SlashCommand("minebig", "超大踩地雷遊戲")]
+        public async Task CustomizedMineCommand(
+            [Summary("寬度", "地圖寬度")] int width,
+            [Summary("高度", "地圖高度")] int height
+            )
+        {
+            await DeferAsync();
+
+            var (component, embed) = await _mineGameService.StartBiggerGameAsync(Context.User.Id, width, height);
+
+            await FollowupAsync(embed: embed, components: component.Build());
+        }
+
+        [SlashCommand("mineopen", "超大踩地雷遊戲")]
+        public async Task OpenBox(
+    [Summary("x座標", "x座標")] int x,
+    [Summary("y座標", "y座標")] int y
+    )
+        {
+            await DeferAsync();
+
+            var embed = await _mineGameService.HandleTextCoordinate(Context.User.Id, x, y);
+            await FollowupAsync(embed: embed);
         }
     }
 }

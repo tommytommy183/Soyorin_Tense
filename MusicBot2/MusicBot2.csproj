@@ -7,12 +7,6 @@
 		<Nullable>enable</Nullable>
 		<Platforms>AnyCPU;x64</Platforms>	
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <Compile Remove="NewFolder\**" />
-	  <EmbeddedResource Remove="NewFolder\**" />
-	  <None Remove="NewFolder\**" />
-	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Discord.Net" Version="3.19.1" />
 		<PackageReference Include="Discord.Net.Dave" Version="3.19.1" />

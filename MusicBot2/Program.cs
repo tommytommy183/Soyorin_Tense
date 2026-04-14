@@ -7,6 +7,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MusicBot2.IGHelper;
+using MusicBot2.MineGameService;
 using MusicBot2.RIOTService;
 using MusicBot2.WordGuessService;
 using NAudio.CoreAudioApi;
@@ -85,6 +86,7 @@ public class Program
             .AddSingleton(_interactionService)
             .AddSingleton(this)
             .AddSingleton<WordGuessingService>()  // ✅ 這行
+            .AddSingleton<MineGameService>()  // ✅ 加入這行
             .BuildServiceProvider();
 
         _client.MessageReceived += MessageReceivedHandler;
@@ -105,8 +107,34 @@ public class Program
     #region 額外的handler
     private async Task InteractionCreated(SocketInteraction interaction)
     {
-        var context = new SocketInteractionContext(_client, interaction);
-        await _interactionService.ExecuteCommandAsync(context, _services);
+        if (interaction is SocketMessageComponent component)
+        {
+            // 處理踩地雷按鈕
+            if (component.Data.CustomId.StartsWith("mine_"))
+            {
+                var parts = component.Data.CustomId.Split('_');
+                if (parts.Length == 4)
+                {
+                    ulong userId = ulong.Parse(parts[1]);
+                    int x = int.Parse(parts[2]);
+                    int y = int.Parse(parts[3]);
+
+                    var mineService = _services.GetService<MineGameService>();
+                    var (newComponent, embed, gameOver) = await mineService.HandleButtonClick(component, x, y);
+
+                    await component.UpdateAsync(msg =>
+                    {
+                        msg.Embed = embed;
+                        msg.Components = newComponent?.Build();
+                    });
+                }
+            }
+        }
+        else
+        {
+            var context = new SocketInteractionContext(_client, interaction);
+            await _interactionService.ExecuteCommandAsync(context, _services);
+        }
     }
 
     private async Task ClientReady()
@@ -175,6 +203,14 @@ public class Program
         {
             var champName = cmd.Substring(5).Trim();
             await champService.GetChampSkillsAsync(champName);
+        }
+        else if (cmd.ToLower().StartsWith("mine"))
+        {
+            var height = int.Parse(cmd.Substring(5).ToLower().Trim().Split(' ')[0]);
+            var width = int.Parse(cmd.Substring(5).ToLower().Trim().Split(' ')[1]);
+            var mineService = _services.GetService<MineGameService>();
+            var (component, embed) = await mineService.StartGameAsync(user.Id, height, width);
+            await channel.SendMessageAsync(embed: embed, components: component.Build());
         }
         else if (cmd.ToLower().StartsWith("guess"))
         {
