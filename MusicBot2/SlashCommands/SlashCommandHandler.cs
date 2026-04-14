@@ -2,10 +2,8 @@
 using Discord.Interactions;
 using Discord.WebSocket;
 using InstagramApiSharp.Classes;
-using MusicBot2.MineGameService;
 using MusicBot2.Models;
-using MusicBot2.RIOTService;
-using MusicBot2.WordGuessService;
+using MusicBot2.Service;
 
 namespace MusicBot2.SlahCommands
 {
@@ -13,9 +11,9 @@ namespace MusicBot2.SlahCommands
     {
         private readonly Program _program;
         WordGuessingService wordService;
-        MineGameService.MineGameService _mineGameService;
+        MineGameService _mineGameService;
 
-        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService.MineGameService mineGameService)
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService)
         {
             _program = program;
             this.wordService = wordService;

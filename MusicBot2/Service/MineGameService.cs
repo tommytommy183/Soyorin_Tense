@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicBot2.MineGameService
+namespace MusicBot2.Service
 {
     public class MineGameService
     {

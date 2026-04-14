@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicBot2.RIOTService
+namespace MusicBot2.Service
 {
     public class GetChampService
     {

@@ -1,13 +1,12 @@
 ﻿using Discord.WebSocket;
 using MusicBot2.Models;
-using MusicBot2.RIOTService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicBot2.WordGuessService
+namespace MusicBot2.Service
 {
     public class WordGuessingService
     {
