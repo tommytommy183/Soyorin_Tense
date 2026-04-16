@@ -85,6 +85,7 @@ public class Program
             .AddSingleton(this)
             .AddSingleton<WordGuessingService>()
             .AddSingleton<MineGameService>()
+            .AddSingleton<RubiksCubeService>()
             .AddSingleton<ElevenLabsService>(sp =>
                 new ElevenLabsService(
                     sp.GetRequiredService<DiscordSocketClient>(),
@@ -130,6 +131,47 @@ public class Program
                         msg.Embed = embed;
                         msg.Components = newComponent?.Build();
                     });
+                }
+            }
+            // ✅ 新增魔術方塊按鈕處理
+            else if (component.Data.CustomId.StartsWith("cube_"))
+            {
+                var parts = component.Data.CustomId.Split('_');
+                if (parts.Length == 3)  // ✅ 改為3個部分
+                {
+                    // ❌ 移除這行: ulong userId = ulong.Parse(parts[1]);
+                    string action = parts[1];      // ✅ action 在第二位
+                    bool clockwise = parts[2] == "1"; // ✅ clockwise 在第三位
+
+                    var cubeService = _services.GetService<RubiksCubeService>();
+
+                    if (action == "RESET")
+                    {
+                        var (comp, emb) = cubeService.ResetGame(component.Channel.Id);
+                        await component.UpdateAsync(msg =>
+                        {
+                            msg.Embed = emb;
+                            msg.Components = comp.Build();
+                        });
+                    }
+                    else if (action == "END")
+                    {
+                        var emb = cubeService.EndGame(component.Channel.Id);
+                        await component.UpdateAsync(msg =>
+                        {
+                            msg.Embed = emb;
+                            msg.Components = null;
+                        });
+                    }
+                    else
+                    {
+                        var (comp, emb) = await cubeService.HandleRotation(component, action, clockwise);
+                        await component.UpdateAsync(msg =>
+                        {
+                            msg.Embed = emb;
+                            msg.Components = comp?.Build();
+                        });
+                    }
                 }
             }
         }

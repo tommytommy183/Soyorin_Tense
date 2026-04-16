@@ -13,13 +13,15 @@ namespace MusicBot2.SlahCommands
         WordGuessingService wordService;
         MineGameService _mineGameService;
         ElevenLabsService _elevenLabsService;
+        private readonly RubiksCubeService _rubiksCubeService;
 
-        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService)
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, RubiksCubeService rubiksCubeService)
         {
             _program = program;
             this.wordService = wordService;
             _elevenLabsService = elevenLabsService;
             _mineGameService = mineGameService;
+            _rubiksCubeService = rubiksCubeService;
         }
 
         [SlashCommand("play", "播放音樂")]
@@ -210,6 +212,30 @@ namespace MusicBot2.SlahCommands
             var voiceChannel = user.VoiceChannel;
             await _elevenLabsService.SpeakAsync(voiceChannel, text, model, voiceID);
             await FollowupAsync(" ", ephemeral: true);
+        }
+
+        [SlashCommand("rubikscube", "開始魔術方塊遊戲")]
+        public async Task RubiksCubeCommand(
+            [Summary("難度", "打亂步數 (預設20步)")] int scrambleMoves = 20)
+        {
+            await DeferAsync();
+
+            if (scrambleMoves < 5 || scrambleMoves > 100)
+            {
+                await FollowupAsync("❌ 難度必須在 5-100 步之間！", ephemeral: true);
+                return;
+            }
+
+            var (component, embed) = _rubiksCubeService.StartGame(Context.Channel.Id, scrambleMoves);
+            await FollowupAsync(embed: embed, components: component.Build());
+        }
+
+        [SlashCommand("cube", "開始魔術方塊遊戲 (簡短版)")]
+        public async Task CubeCommand()
+        {
+            await DeferAsync();
+            var (component, embed) = _rubiksCubeService.StartGame(Context.Channel.Id, 20);
+            await FollowupAsync(embed: embed, components: component.Build());
         }
     }
 }
