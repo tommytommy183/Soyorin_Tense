@@ -1,20 +1,13 @@
-﻿using AngleSharp.Dom;
-using Discord;
-using Discord.Audio;
-using Discord.Commands;
-using Discord.Interactions;
-using Discord.WebSocket;
+﻿using DSharpPlus;
+using DSharpPlus.Entities;
+using DSharpPlus.EventArgs;
+using DSharpPlus.VoiceNext;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MusicBot2.Service;
-using NAudio.CoreAudioApi;
 using NAudio.Wave;
-using RiotSharp.Endpoints.StatusEndpoint;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -22,17 +15,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using YoutubeExplode;
-using YoutubeExplode.Common;
-using YoutubeExplode.Exceptions;
 using YoutubeExplode.Search;
 using YoutubeExplode.Videos.Streams;
 
 public class Program
 {
     #region 變數
-    private DiscordSocketClient? _client;
-    private CommandService? _commands;
-    private IAudioClient? _audioClient = null;
+    private DiscordClient? _client;
+    private VoiceNextExtension? _voiceNext;
+    private VoiceNextConnection? _voiceConnection = null;
     private Queue<string> _songQueue = new Queue<string>();
     private bool _isPlaying = false;
     private String _NowPlayingSongUrl = "";
@@ -43,67 +34,50 @@ public class Program
     private List<string> _SongBeenPlayedList = new List<string>();
     GetChampService champService;
     private bool _isRelatedOn = false;
-    private SocketGuildUser? _uuser;
+    private DiscordMember? _umember;
     private bool _RelateSwitch = true;
     private bool _isEarRapeOn = false;
-    private InteractionService? _interactionService;
     private IServiceProvider? _services;
+    private DiscordGuild? _currentGuild;
     #endregion
 
     #region 基礎設定
     public static Task Main(string[] args) => new Program().RunBotAsync();
     public async Task RunBotAsync()
     {
-        var config = new DiscordSocketConfig
-        {
-            LogLevel = LogSeverity.Debug,
-            EnableVoiceDaveEncryption = true,
-            GatewayIntents = GatewayIntents.GuildMessages |
-                             GatewayIntents.MessageContent |
-                             GatewayIntents.Guilds |
-                             GatewayIntents.GuildVoiceStates |
-                             GatewayIntents.GuildMessageReactions |
-                             GatewayIntents.GuildMembers
-        };
-
         var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
         IConfiguration configer = builder.Build();
         string token = configer["Discord:Token"];
+        string elevenLabsApiKey = configer["ElevenLabs:ApiKey"];
 
-        _client = new DiscordSocketClient(config);
-        _commands = new CommandService();
-        _interactionService = new InteractionService(_client);
-        string elevenLabsApiKey = configer["ElevenLabs:ApiKey"];  // ✅ 從設定檔讀取
+        var config = new DiscordConfiguration
+        {
+            Token = token,
+            TokenType = TokenType.Bot,
+            Intents = DiscordIntents.AllUnprivileged | DiscordIntents.MessageContents | DiscordIntents.GuildMembers,
+            AutoReconnect = true,
+            MinimumLogLevel = Microsoft.Extensions.Logging.LogLevel.Debug
+        };
 
-        // 設置依賴注入
+        _client = new DiscordClient(config);
+        _voiceNext = _client.UseVoiceNext();
+
+        // 設置依賴注入 (暫時移除遊戲功能和 Slash Commands，只保留音樂)
         _services = new ServiceCollection()
             .AddSingleton(_client)
-            .AddSingleton(_interactionService)
             .AddSingleton(this)
-            .AddSingleton<WordGuessingService>()
-            .AddSingleton<MineGameService>()
-            .AddSingleton<RubiksCubeService>()
             .AddSingleton<GetChampService>()
-            .AddSingleton<OldMaidService>()
-            .AddSingleton<ElevenLabsService>(sp =>
-                new ElevenLabsService(
-                    sp.GetRequiredService<DiscordSocketClient>(),
-                    elevenLabsApiKey
-                ))
             .BuildServiceProvider();
 
-        _client.MessageReceived += MessageReceivedHandler;
-        _client.Log += Log;
+        _client.MessageCreated += MessageReceivedHandler;
         _client.Ready += ClientReady;
-        _client.InteractionCreated += InteractionCreated;
 
         _ = SetBotStatusAsync(_client);
 
-        await _client.LoginAsync(TokenType.Bot, token);
-        await _client.StartAsync();
+        await _client.ConnectAsync();
         await Task.Delay(-1);
     }
 
@@ -111,221 +85,82 @@ public class Program
     #endregion
 
     #region 額外的handler
-    private async Task InteractionCreated(SocketInteraction interaction)
+    private async Task ClientReady(DiscordClient sender, ReadyEventArgs e)
     {
-        if (interaction is SocketMessageComponent component)
-        {
-            // 處理踩地雷按鈕
-            if (component.Data.CustomId.StartsWith("mine_"))
-            {
-                var parts = component.Data.CustomId.Split('_');
-                if (parts.Length == 4)
-                {
-                    ulong userId = ulong.Parse(parts[1]);
-                    int x = int.Parse(parts[2]);
-                    int y = int.Parse(parts[3]);
-
-                    var mineService = _services.GetService<MineGameService>();
-                    var (newComponent, embed, gameOver) = await mineService.HandleButtonClick(component, x, y);
-
-                    await component.UpdateAsync(msg =>
-                    {
-                        msg.Embed = embed;
-                        msg.Components = newComponent?.Build();
-                    });
-                }
-            }
-            // ✅ 新增魔術方塊按鈕處理
-            else if (component.Data.CustomId.StartsWith("cube_"))
-            {
-                var parts = component.Data.CustomId.Split('_');
-                if (parts.Length == 3)  // ✅ 改為3個部分
-                {
-                    // ❌ 移除這行: ulong userId = ulong.Parse(parts[1]);
-                    string action = parts[1];      // ✅ action 在第二位
-                    bool clockwise = parts[2] == "1"; // ✅ clockwise 在第三位
-
-                    var cubeService = _services.GetService<RubiksCubeService>();
-
-                    if (action == "RESET")
-                    {
-                        var (comp, emb) = cubeService.ResetGame(component.Channel.Id);
-                        await component.UpdateAsync(msg =>
-                        {
-                            msg.Embed = emb;
-                            msg.Components = comp.Build();
-                        });
-                    }
-                    else if (action == "END")
-                    {
-                        var emb = cubeService.EndGame(component.Channel.Id);
-                        await component.UpdateAsync(msg =>
-                        {
-                            msg.Embed = emb;
-                            msg.Components = null;
-                        });
-                    }
-                    else
-                    {
-                        var (comp, emb) = await cubeService.HandleRotation(component, action, clockwise);
-                        await component.UpdateAsync(msg =>
-                        {
-                            msg.Embed = emb;
-                            msg.Components = comp?.Build();
-                        });
-                    }
-                }
-            }
-            else if (component.Data.CustomId.StartsWith("oldmaid_draw_"))
-            {
-                // 立即延遲回應
-                await component.DeferAsync();
-                
-                var position = int.Parse(component.Data.CustomId.Split('_')[2]);
-                var oldMaidService = _services.GetService<OldMaidService>();
-                var (message, newComponent, needFollowup, followupMessage) = await oldMaidService.DrawCard(
-                    component.Channel, 
-                    component.User as SocketGuildUser, 
-                    position
-                );
-                
-                // 使用 ModifyOriginalResponseAsync 更新原訊息，而不是發新訊息
-                await component.ModifyOriginalResponseAsync(msg =>
-                {
-                    msg.Content = message;
-                    msg.Components = newComponent?.Build();
-                });
-
-                // 如果需要後續訊息（電腦玩家的回合）
-                if (needFollowup && !string.IsNullOrEmpty(followupMessage))
-                {
-                    await Task.Delay(500); // 稍微延遲讓玩家看到上一個動作
-                    
-                    var finalComponent = oldMaidService.GetDrawButtons(component.Channel);
-                    
-                    // 再次更新同一個訊息
-                    await component.ModifyOriginalResponseAsync(msg =>
-                    {
-                        msg.Content = message + "\n\n" + followupMessage;
-                        msg.Components = finalComponent?.Build();
-                    });
-                }
-            }
-        }
-        else
-        {
-            var context = new SocketInteractionContext(_client, interaction);
-            await _interactionService.ExecuteCommandAsync(context, _services);
-        }
+        await Task.CompletedTask;
     }
 
-    private async Task ClientReady()
-    {
-        // 註冊 Slash Commands
-        await _interactionService.AddModuleAsync<MusicBot2.SlahCommands.SlashCommandHandler>(_services);
-
-        // 可選：僅在特定伺服器註冊（開發用）
-        // await _interactionService.RegisterCommandsToGuildAsync(YOUR_GUILD_ID);
-
-        // 全域註冊（可能需要最多 1 小時生效）
-        await _interactionService.RegisterCommandsGloballyAsync();
-    }
-    public Task Log(LogMessage log)
-    {
-        Console.WriteLine(log);
-        return Task.CompletedTask;
-    }
-
-    public static async Task SetBotStatusAsync(DiscordSocketClient _client)
+    public static async Task SetBotStatusAsync(DiscordClient _client)
     {
         while (true)
         {
-            await _client.SetGameAsync("搜幽林轉生☆大★爆☆誕★", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("搜幽林轉生☆大★爆☆誕★", ActivityType.Custom));
             await Task.Delay(20000);
-            await _client.SetGameAsync("傻逼DISCORD加密 不如我苦來溪苦一根", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("傻逼DISCORD加密 不如我苦來溪苦一根", ActivityType.Custom));
             await Task.Delay(20000);
-            await _client.SetGameAsync("小祥辛酸打工畫面流出", "https://www.youtube.com/watch?v=_1xcBdtwEE4&ab_channel=supanasu", ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("小祥辛酸打工畫面流出", ActivityType.Watching));
             await Task.Delay(10000);
-            await _client.SetGameAsync("正在重組CRYCHIC", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("正在重組CRYCHIC", ActivityType.Custom));
             await Task.Delay(10000);
-            await _client.SetGameAsync("CRYCHIC新成員演唱", "https://www.youtube.com/watch?v=f9p0HWDQHxs&ab_channel=nlnl", ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("CRYCHIC新成員演唱", ActivityType.Custom));
             await Task.Delay(10000);
-            await _client.SetGameAsync("有考慮當貝斯手嗎 我當然有考慮當貝斯手啊，那是我的夢想耶。我跟你說：當貝斯手比當工程師……我當……我當貝斯手，是……最想當的", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("有考慮當貝斯手嗎 我當然有考慮當貝斯手啊，那是我的夢想耶。我跟你說：當貝斯手比當工程師……我當……我當貝斯手，是……最想當的", ActivityType.Custom));
             await Task.Delay(10000);
-            await _client.SetGameAsync("寫程式真的很莫名其妙", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("寫程式真的很莫名其妙", ActivityType.Custom));
             await Task.Delay(10000);
-            await _client.SetGameAsync("那大家得多注意健康才行了", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("那大家得多注意健康才行了", ActivityType.Custom));
             await Task.Delay(10000);
-            await _client.SetGameAsync("知ってたら止めたし😭セトリはもう終わってたのに急に演奏しだして😭みんなを止められなくてごめんね😭祥ちゃん、怒ってるよね😭怒るのも当然だと思う😭でも信じて欲しいの。春日影、本当に演奏する予定じゃなかったの😭本当にごめんね😭もう勝手に演奏したりしないって約束するよ😭ほかの子たちにも絶対にしないって約束させるから😭少しだけ話せないかな😭私、CRYCHICのこと本当に大切に思ってる😭だから、勝手に春日影演奏されたの祥ちゃんと同じくらい辛くて😭私の気持ちわかってほしいの😭お願い。どこても行くから😭バンドやらなきゃいけなかった理由もちゃんと話すから😭会って話せたら、きっとわかってもらえると思う😭私は祥ちゃんの味方だから😭会いたいの😭", null, ActivityType.CustomStatus);
+            await _client.UpdateStatusAsync(new DiscordActivity("知ってたら止めたし😭セトリはもう終わってたのに急に演奏しだして😭みんなを止められなくてごめんね😭祥ちゃん、怒ってるよね😭怒るのも当然だと思う😭でも信じて欲しいの。春日影、本当に演奏する予定じゃなかったの😭本当にごめんね😭もう勝手に演奏したりしないって約束するよ😭ほかの子たちにも絶対にしないって約束させるから😭少しだけ話せないかな😭私、CRYCHICのこと本当に大切に思ってる😭だから、勝手に春日影演奏されたの祥ちゃんと同じくらい辛くて😭私の気持ちわかってほしいの😭お願い。どこても行くから😭バンドやらなきゃいけなかった理由もちゃんと話すから😭会って話せたら、きっとわかってもらえると思う😭私は祥ちゃんの味方だから😭会いたいの😭", ActivityType.Custom));
             await Task.Delay(10000);
         }
     }
     #endregion
 
     #region MSreceive
-    public async Task MessageReceivedHandler(SocketMessage message)
+    public async Task MessageReceivedHandler(DiscordClient sender, MessageCreateEventArgs e)
     {
-        if (message is not SocketUserMessage userMessage || message.Author.IsBot || !message.Content.StartsWith("$$")) return;
-        string cmd = message.Content.Substring(2);
-        var channel = message.Channel as IMessageChannel;
-        var user = message.Author as SocketGuildUser;
-        _uuser = user;
+        if (e.Author.IsBot || !e.Message.Content.StartsWith("$$")) return;
+        
+        string cmd = e.Message.Content.Substring(2);
+        var channel = e.Channel;
+        
+        if (e.Guild == null) return;
+        
+        var member = await e.Guild.GetMemberAsync(e.Author.Id);
+        _umember = member;
+        _currentGuild = e.Guild;
         champService = new GetChampService();
-
-        if (user == null)
-            return;
 
         //撥放
         if (cmd.StartsWith("play"))
         {
             var query = cmd.Substring(4).Trim();
-            await PlayMusicAsync(channel, user, query);
-        }
-        else if (cmd.ToLower().StartsWith("skill"))
-        {
-            var champName = cmd.Substring(5).Trim();
-            await champService.GetChampSkillsAsync(channel, champName);
-        }
-        else if (cmd.ToLower().StartsWith("mine"))
-        {
-            var height = int.Parse(cmd.Substring(5).ToLower().Trim().Split(' ')[0]);
-            var width = int.Parse(cmd.Substring(5).ToLower().Trim().Split(' ')[1]);
-            var mineService = _services.GetService<MineGameService>();
-            var (component, embed) = await mineService.StartGameAsync(user.Id, height, width);
-            await channel.SendMessageAsync(embed: embed, components: component.Build());
-        }
-        else if (cmd.ToLower().StartsWith("guess"))
-        {
-            //$$guess {英雄名} {技能位置 P,Q,W,E,R} {使用者猜測的名字}
-            var champName = cmd.Substring(5).ToLower().Trim().Split(' ')[0];
-            var skillPos = cmd.Substring(5).ToLower().Trim().Split(' ')[1];
-            var userGuess = cmd.Substring(5).ToLower().Trim().Split(' ')[2];
-            await champService.GuessChampSkillAsync(channel, champName, skillPos, userGuess);
+            await PlayMusicAsync(channel, member, query);
         }
         else if (cmd.ToLower().StartsWith("p"))
         {
             var query = cmd.Substring(1).Trim();
-            await PlayMusicAsync(channel, user, query);
+            await PlayMusicAsync(channel, member, query);
         }
         //bilibili
         else if (cmd.StartsWith("b"))
         {
             var url = cmd.Substring(1).Trim();
-            await PlayBiblibiliMusicAsync(channel, user, url);
+            await PlayBiblibiliMusicAsync(channel, member, url);
         }
         //跳過
         else if (cmd.ToLower().StartsWith("s") || cmd.StartsWith("skip"))
         {
-            await SkipMusic(channel, user);
+            await SkipMusic(channel, member);
         }
         //循環和解除
         else if (cmd.ToLower().StartsWith("loop") || cmd.ToLower().StartsWith("lo"))
         {
-            await LoopMusic(channel, user);
+            await LoopMusic(channel, member);
         }
         else if (cmd.ToLower().StartsWith("unloop") || cmd.ToLower().StartsWith("u"))
         {
-            await UnLoopMusic(channel, user);
+            await UnLoopMusic(channel, member);
         }
         //推薦
         else if (cmd.ToLower().StartsWith("r"))
@@ -333,7 +168,7 @@ public class Program
             if (_RelateSwitch)
             {
                 _RelateSwitch = false;
-                await RelatedMusicAsync(channel, user);
+                await RelatedMusicAsync(channel, member);
             }
             else
             {
@@ -356,7 +191,7 @@ public class Program
             }
             else
             {
-                await PlayMusicAsync(channel, user, url);
+                await PlayMusicAsync(channel, member, url);
             }
         }
         else if (cmd.ToLower().StartsWith("f"))
@@ -370,18 +205,18 @@ public class Program
             }
             else
             {
-                await PlayMusicAsync(channel, user, url);
+                await PlayMusicAsync(channel, member, url);
             }
         }
         //列出清單
         else if (cmd.ToLower().StartsWith("li"))
         {
-            await CalledPlayListAsync(channel, user);
+            await CalledPlayListAsync(channel, member);
         }
         //爆
         else if (cmd.ToLower().StartsWith("e") || cmd.StartsWith("爆"))
         {
-            await EarRapeAsync(channel, user);
+            await EarRapeAsync(channel, member);
         }
         else
         {
@@ -392,9 +227,9 @@ public class Program
     #endregion
 
     #region 撥放音樂事件
-    public async Task PlayMusicAsync(IMessageChannel channel, SocketGuildUser user, string query)
+    public async Task PlayMusicAsync(DiscordChannel channel, DiscordMember user, string query)
     {
-        if (user?.VoiceChannel == null)
+        if (user?.VoiceState?.Channel == null)
         {
             await channel.SendMessageAsync("不進語音房是要撥個ㄐ8? 我去妳房間撥你衣服比較快 ");
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=19672&episode=9");
@@ -408,11 +243,8 @@ public class Program
             return;
         }
 
-
-        var voiceChannel = user.VoiceChannel;
+        var voiceChannel = user.VoiceState.Channel;
         _songQueue.Enqueue(query);
-
-
 
         if (!_isPlaying)
         {
@@ -429,21 +261,21 @@ public class Program
             {
                 await CalledPlayListAsync(channel, user);
             }
-
         }
     }
-    public async Task PlayBiblibiliMusicAsync(IMessageChannel channel, SocketGuildUser user, string url)
+    
+    public async Task PlayBiblibiliMusicAsync(DiscordChannel channel, DiscordMember user, string url)
     {
         try
         {
-            if (user?.VoiceChannel == null)
+            if (user?.VoiceState?.Channel == null)
             {
                 await channel.SendMessageAsync("不進語音房是要撥個ㄐ8? 我去妳房間撥你衣服比較快 ");
                 await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=19672&episode=9");
                 return;
             }
 
-            var voiceChannel = user.VoiceChannel;
+            var voiceChannel = user.VoiceState.Channel;
             _songQueue.Enqueue(url);
 
             if (!_isPlaying)
@@ -461,7 +293,6 @@ public class Program
                 {
                     await CalledPlayListAsync(channel, user);
                 }
-
             }
         }
         catch (Exception ex)
@@ -470,9 +301,10 @@ public class Program
             await channel.SendMessageAsync(ex.ToString());
         }
     }
-    public async Task SkipMusic(IMessageChannel channel, SocketGuildUser user)
+    
+    public async Task SkipMusic(DiscordChannel channel, DiscordMember user)
     {
-        if (user?.VoiceChannel == null)
+        if (user?.VoiceState?.Channel == null)
         {
             await channel.SendMessageAsync("不進語音房是要跳ㄐㄐ");
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=23200&episode=10");
@@ -490,9 +322,10 @@ public class Program
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=62208&episode=1-3");
         }
     }
-    public async Task LoopMusic(IMessageChannel channel, SocketGuildUser user)
+    
+    public async Task LoopMusic(DiscordChannel channel, DiscordMember user)
     {
-        if (user?.VoiceChannel == null)
+        if (user?.VoiceState?.Channel == null)
         {
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=15088&episode=9");
             return;
@@ -508,9 +341,10 @@ public class Program
             await channel.SendMessageAsync("沒歌了是要循環甚麼 戀愛嗎");
         }
     }
-    public async Task UnLoopMusic(IMessageChannel channel, SocketGuildUser user)
+    
+    public async Task UnLoopMusic(DiscordChannel channel, DiscordMember user)
     {
-        if (user?.VoiceChannel == null)
+        if (user?.VoiceState?.Channel == null)
         {
             await channel.SendMessageAsync("你不進語音是結束不掉的");
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=28840&episode=4");
@@ -527,9 +361,8 @@ public class Program
             await channel.SendMessageAsync("沒歌了 已經維持不下去了..");
         }
     }
-    public async Task CalledPlayListAsync(IMessageChannel channel, SocketGuildUser user)
+    public async Task CalledPlayListAsync(DiscordChannel channel, DiscordMember user)
     {
-
         if (_songQueue.Count == 0)
         {
             await channel.SendMessageAsync("沒歌你還想要清單?");
@@ -539,18 +372,14 @@ public class Program
 
         var random = RandomColor();
 
-        // 创建一个新的 EmbedBuilder
-        var embedBuilder = new EmbedBuilder()
-        {
-            Title = "目前歌單資訊",
-            Color = random
-        };
+        var embedBuilder = new DiscordEmbedBuilder()
+            .WithTitle("目前歌單資訊")
+            .WithColor(random);
 
         if (_songQueue.Count != 0)
         {
             embedBuilder.AddField("目前歌單數量", $"{_songQueue.Count.ToString()}", true);
         }
-
 
         if (!string.IsNullOrEmpty(_NowPlayingSongUrl))
         {
@@ -562,23 +391,19 @@ public class Program
             embedBuilder.AddField($"目前待撥清單", "=======================================================================", true);
         }
         int count = 0;
-        // 添加待播放的歌曲列表
         foreach (var song in _songQueue)
         {
             count++;
             string a = song;
             string b = await GetVideoIDAsync(a);
             embedBuilder.AddField($"第 {count} 首", b, false);
-
         }
 
-        // 发送 Embed 消息
-        await channel.SendMessageAsync(embed: embedBuilder.Build());
-
+        await channel.SendMessageAsync(new DiscordMessageBuilder().AddEmbed(embedBuilder.Build()));
     }
-    public async Task CalledPlayListForBBAsync(IMessageChannel channel, SocketGuildUser user)
+    
+    public async Task CalledPlayListForBBAsync(DiscordChannel channel, DiscordMember user)
     {
-
         if (_songQueue.Count == 0)
         {
             await channel.SendMessageAsync("沒歌你還想要清單?");
@@ -588,18 +413,14 @@ public class Program
 
         var random = RandomColor();
 
-        // 创建一个新的 EmbedBuilder
-        var embedBuilder = new EmbedBuilder()
-        {
-            Title = "目前歌單資訊",
-            Color = random
-        };
+        var embedBuilder = new DiscordEmbedBuilder()
+            .WithTitle("目前歌單資訊")
+            .WithColor(random);
 
         if (_songQueue.Count != 0)
         {
             embedBuilder.AddField("目前歌單數量", $"{_songQueue.Count.ToString()}", true);
         }
-
 
         if (!string.IsNullOrEmpty(_NowPlayingSongUrl))
         {
@@ -611,23 +432,20 @@ public class Program
             embedBuilder.AddField($"目前待撥清單", "=======================================================================", true);
         }
         int count = 0;
-        // 添加待播放的歌曲列表
         foreach (var song in _songQueue)
         {
             count++;
             string a = song;
             string b = await GetBilibiliTitleAsync(a);
             embedBuilder.AddField($"第 {count} 首", b, false);
-
         }
 
-        // 发送 Embed 消息
-        await channel.SendMessageAsync(embed: embedBuilder.Build());
-
+        await channel.SendMessageAsync(new DiscordMessageBuilder().AddEmbed(embedBuilder.Build()));
     }
-    public async Task RelatedMusicAsync(IMessageChannel channel, SocketGuildUser user)
+    
+    public async Task RelatedMusicAsync(DiscordChannel channel, DiscordMember user)
     {
-        if (user?.VoiceChannel == null)
+        if (user?.VoiceState?.Channel == null)
         {
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=15088&episode=9");
             return;
@@ -660,8 +478,7 @@ public class Program
         await PlayMusicAsync(channel, user, url);
     }
 
-    // 新增公開方法供 SlashCommandHandler 使用
-    public async Task HandleRelatedMusicAsync(IMessageChannel channel, SocketGuildUser user)
+    public async Task HandleRelatedMusicAsync(DiscordChannel channel, DiscordMember user)
     {
         if (_RelateSwitch)
         {
@@ -677,9 +494,10 @@ public class Program
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=1400&episode=13");
         }
     }
-    public async Task EarRapeAsync(IMessageChannel channel, SocketGuildUser user)
+    
+    public async Task EarRapeAsync(DiscordChannel channel, DiscordMember user)
     {
-        if (user?.VoiceChannel == null)
+        if (user?.VoiceState?.Channel == null)
         {
             await channel.SendMessageAsync("要進語音诶 還是你想不進語音偷偷ear rape別人？ 想要的話跟我講 我改");
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=16696&episode=1-3");
@@ -693,7 +511,7 @@ public class Program
 
     #region 撥放音樂
     //1可2可3不可   why??  =====> delay時間不夠長 貌似取決於電腦效能&網路
-    public async Task PlayNextSongAsync(IMessageChannel channel, SocketVoiceChannel voiceChannel)
+    public async Task PlayNextSongAsync(DiscordChannel channel, DiscordChannel voiceChannel)
     {
         //songqueue為空 ／loop沒啟動／沒有開推薦
         if (_songQueue.Count == 0 && _LoopingSongUrl == "" && _isRelatedOn == false)
@@ -707,7 +525,7 @@ public class Program
         //推薦開啟／且歌單只剩一首歌時
         if (_isRelatedOn && _songQueue.Count == 1)
         {
-            await RelatedMusicAsync(channel, _uuser);
+            await RelatedMusicAsync(channel, _umember);
         }
         _isPlaying = true;
         string songUrl;
@@ -725,7 +543,7 @@ public class Program
         string filepath = "";
         if (_isRelatedOn)
         {
-            await CalledPlayListAsync(channel, _uuser);
+            await CalledPlayListAsync(channel, _umember);
         }
 
         try
@@ -737,20 +555,20 @@ public class Program
 
             await Task.Delay(2000);
 
-            if (_audioClient == null || _audioClient.ConnectionState != Discord.ConnectionState.Connected)
-                _audioClient = await voiceChannel.ConnectAsync(selfDeaf: false, selfMute: false);
+            if (_voiceConnection == null || !_voiceConnection.IsPlaying)
+                _voiceConnection = await _voiceNext.ConnectAsync(voiceChannel);
 
-            var output = _audioClient.CreatePCMStream(AudioApplication.Mixed);
+            var transmitSink = _voiceConnection.GetTransmitSink();
+            
             using (var audioFile = new AudioFileReader(filepath))
             {
                 var sampleRate = audioFile.WaveFormat.SampleRate;
                 var channels = audioFile.WaveFormat.Channels;
-                //新增爆
-                var modifiedSampleRate = _isEarRapeOn ? sampleRate / 10 : sampleRate;
-                using (var resampler = new MediaFoundationResampler(audioFile, new WaveFormat(sampleRate, channels)))
+                
+                using (var resampler = new MediaFoundationResampler(audioFile, new WaveFormat(48000, 2)))
                 {
-                    resampler.ResamplerQuality = _isEarRapeOn ? 1 : 60; // 設置重取樣品質
-                    byte[] buffer = new byte[4096];
+                    resampler.ResamplerQuality = _isEarRapeOn ? 1 : 60;
+                    byte[] buffer = new byte[3840]; // 20ms of 48kHz 16-bit stereo PCM
                     int bytesRead;
 
                     // 播放音樂
@@ -759,18 +577,15 @@ public class Program
                         audioFile.Volume = _isEarRapeOn ? 10.0f : 1.0f;
                         if (_isSkipRequest)
                         {
-                            await output.FlushAsync();
                             _isSkipRequest = false;
                             break;
                         }
-                        await output.WriteAsync(buffer, 0, bytesRead);
+                        await transmitSink.WriteAsync(buffer, 0, bytesRead);
                     }
-                    await output.FlushAsync(); // 確保所有數據已發送
                 }
             }
 
             File.Delete(filepath);
-            output.Dispose();
             await PlayNextSongAsync(channel, voiceChannel);
         }
         catch (Exception ex)
@@ -820,22 +635,27 @@ public class Program
 
         return filePath;
     }
-    public async Task<string> GetYoutubeUrlByNameAsync(IMessageChannel channel, string query)
+    public async Task<string> GetYoutubeUrlByNameAsync(DiscordChannel channel, string query)
     {
         try
         {
-            // 使用 YoutubeExplode 搜索视频
             var youtube = new YoutubeClient();
-            var searchResults = await youtube.Search.GetResultsAsync(query);
+            var videos = new List<VideoSearchResult>();
+            
+            await foreach (var result in youtube.Search.GetVideosAsync(query))
+            {
+                videos.Add(result);
+                if (videos.Count >= 1) break;
+            }
 
-            if (!searchResults.Any())
+            if (!videos.Any())
             {
                 await channel.SendMessageAsync("找不到歌曲");
                 await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=5280&episode=13");
                 return "";
             }
-            // 获取第一个搜索结果
-            var video = searchResults.First();
+            
+            var video = videos.First();
             var videoUrl = video.Url;
 
             await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=89608&episode=1-3");
@@ -849,24 +669,42 @@ public class Program
             return "";
         }
     }
-    public async Task<string> SearchRelateVideoAsync(IMessageChannel channel, string name)
+    public async Task<string> SearchRelateVideoAsync(DiscordChannel channel, string name)
     {
         string url = "";
         try
         {
             var modifiedTitle = GetRandomizedTitle(name, channel);
             var youtube = new YoutubeClient();
-            var searchResults = await youtube.Search.GetResultsAsync(modifiedTitle);
-            var top10Results = searchResults.Take(10);
-            //打亂
+            var videos = new List<VideoSearchResult>();
+            
+            await foreach (var result in youtube.Search.GetVideosAsync(modifiedTitle))
+            {
+                videos.Add(result);
+                if (videos.Count >= 20) break;
+            }
+            
+            var top10Results = videos.Take(10);
             var random = new Random();
             var shuffledResults = top10Results.OrderBy(x => random.Next()).ToList();
 
-            // 输出结果
-            foreach (var result in shuffledResults)
+            foreach (var videoResult in shuffledResults)
             {
-                // 检查结果类型是否为视频
-                if (result is VideoSearchResult videoResult)
+                if (videoResult.Duration < TimeSpan.FromMinutes(10))
+                {
+                    if (!_SongBeenPlayedList.Contains(videoResult.Id))
+                    {
+                        url = videoResult.Url;
+                        _SongBeenPlayedList.Add(videoResult.Id);
+                        break;
+                    }
+                }
+            }
+            
+            if (string.IsNullOrEmpty(url))
+            {
+                var top20Results = videos.Take(20);
+                foreach (var videoResult in top20Results)
                 {
                     if (videoResult.Duration < TimeSpan.FromMinutes(10))
                     {
@@ -875,26 +713,6 @@ public class Program
                             url = videoResult.Url;
                             _SongBeenPlayedList.Add(videoResult.Id);
                             break;
-                        }
-                    }
-
-                }
-            }//真查不到就變20筆 再查不到就return空值回去判斷
-            if (string.IsNullOrEmpty(url))
-            {
-                var top20Results = searchResults.Take(20);
-                foreach (var result in top20Results)
-                {
-                    if (result is VideoSearchResult videoResult)
-                    {
-                        if (videoResult.Duration < TimeSpan.FromMinutes(10))
-                        {
-                            if (!_SongBeenPlayedList.Contains(videoResult.Id))
-                            {
-                                url = videoResult.Url;
-                                _SongBeenPlayedList.Add(videoResult.Id);
-                                break;
-                            }
                         }
                     }
                 }
@@ -994,7 +812,7 @@ public class Program
             RedirectStandardError = true,
         });
     }
-    public string GetRandomizedTitle(string title, IMessageChannel channel)
+    public string GetRandomizedTitle(string title, DiscordChannel channel)
     {
         var _ignoreKeywords = new List<string>
     {
@@ -1055,22 +873,19 @@ public class Program
             return false; // 发生异常，视为无效
         }
     }
-    public Color RandomColor()
+    public DiscordColor RandomColor()
     {
-        var colors = new List<Color>
-{
-    Color.Blue,
-    Color.Purple,
-    Color.DarkBlue,
-    Color.DarkerGrey,
-    Color.DarkPurple,
-    Color.DarkMagenta
-};
+        var colors = new List<DiscordColor>
+        {
+            new DiscordColor(0, 0, 255),      // Blue
+            new DiscordColor(128, 0, 128),    // Purple
+            new DiscordColor(0, 0, 139),      // DarkBlue
+            new DiscordColor(47, 49, 54),     // DarkerGrey
+            new DiscordColor(114, 137, 218),  // DarkPurple (Blurple)
+            new DiscordColor(139, 0, 139)     // DarkMagenta
+        };
 
-        // 创建一个随机数生成器
         var random = new Random();
-
-        // 随机选择一个颜色
         var randomColor = colors[random.Next(colors.Count)];
         return randomColor;
     }
