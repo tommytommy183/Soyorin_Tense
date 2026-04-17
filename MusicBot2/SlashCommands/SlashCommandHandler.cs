@@ -4,6 +4,8 @@ using Discord.WebSocket;
 using InstagramApiSharp.Classes;
 using MusicBot2.Models;
 using MusicBot2.Service;
+using RiotSharp.Misc;
+using System.ComponentModel;
 
 namespace MusicBot2.SlahCommands
 {
@@ -13,14 +15,16 @@ namespace MusicBot2.SlahCommands
         WordGuessingService wordService;
         MineGameService _mineGameService;
         ElevenLabsService _elevenLabsService;
+        OldMaidService _oldMaidService;
         private readonly RubiksCubeService _rubiksCubeService;
 
-        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, RubiksCubeService rubiksCubeService)
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, OldMaidService oldMaidService, RubiksCubeService rubiksCubeService)
         {
             _program = program;
             this.wordService = wordService;
             _elevenLabsService = elevenLabsService;
             _mineGameService = mineGameService;
+            _oldMaidService = oldMaidService;
             _rubiksCubeService = rubiksCubeService;
         }
 
@@ -132,8 +136,8 @@ namespace MusicBot2.SlahCommands
         public async Task SkillCommand([Summary("英雄名", "英雄名稱")] string champName)
         {
             await DeferAsync();
-            var champService = new GetChampService(Context.Channel as IMessageChannel);
-            await champService.GetChampSkillsAsync(champName);
+            var champService = new GetChampService();
+            await champService.GetChampSkillsAsync(Context.Channel as IMessageChannel, champName);
             await FollowupAsync(" ", ephemeral: true);
         }
 
@@ -144,8 +148,8 @@ namespace MusicBot2.SlahCommands
             [Summary("猜測名稱", "你猜測的技能名稱")] string userGuess)
         {
             await DeferAsync();
-            var champService = new GetChampService(Context.Channel as IMessageChannel);
-            await champService.GuessChampSkillAsync(champName.ToLower(), skillPos.ToLower(), userGuess.ToLower());
+            var champService = new GetChampService();
+            await champService.GuessChampSkillAsync(Context.Channel as IMessageChannel, champName.ToLower(), skillPos.ToLower(), userGuess.ToLower());
             await FollowupAsync(" ", ephemeral: true);
         }
 
@@ -236,6 +240,75 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var (component, embed) = _rubiksCubeService.StartGame(Context.Channel.Id, 20);
             await FollowupAsync(embed: embed, components: component.Build());
+        }
+
+        [SlashCommand("ghoststart", "開始抽鬼牌遊戲(測試模式)")]
+        public async Task GhostStartCommand()
+        {
+            await DeferAsync();
+
+            var user = Context.User as SocketGuildUser;
+            var result = await _oldMaidService.StartTestGame(Context.Channel, user);
+
+            // 同時發送按鈕
+            var component = _oldMaidService.GetDrawButtons(Context.Channel);
+            
+            await FollowupAsync(result, components: component?.Build());
+        }
+
+        [SlashCommand("ghostplay", "開始多人抽鬼牌遊戲")]
+        public async Task GhostPlayCommand(
+            [Summary("玩家2", "第二位玩家")] SocketGuildUser player2,
+            [Summary("玩家3", "第三位玩家（選填）")] SocketGuildUser player3 = null,
+            [Summary("玩家4", "第四位玩家（選填）")] SocketGuildUser player4 = null,
+            [Summary("玩家5", "第五位玩家（選填）")] SocketGuildUser player5 = null,
+            [Summary("玩家6", "第六位玩家（選填）")] SocketGuildUser player6 = null)
+        {
+            await DeferAsync();
+
+            var user = Context.User as SocketGuildUser;
+            var players = new List<SocketGuildUser> { user, player2 };
+
+            if (player3 != null) players.Add(player3);
+            if (player4 != null) players.Add(player4);
+            if (player5 != null) players.Add(player5);
+            if (player6 != null) players.Add(player6);
+
+            var result = await _oldMaidService.StartGame(Context.Channel, players);
+            var component = _oldMaidService.GetDrawButtons(Context.Channel);
+            
+            await FollowupAsync(result, components: component?.Build());
+        }
+
+        [SlashCommand("ghosthands", "查看你的手牌")]
+        public async Task GhostHandsCommand()
+        {
+            var user = Context.User as SocketGuildUser;
+            var embed = _oldMaidService.GetPlayerHand(Context.Channel, user);
+            
+            // ephemeral: true 表示只有執行指令的人看得到
+            await RespondAsync(embed: embed, ephemeral: true);
+        }
+
+        [SlashCommand("ghoststatus", "查看抽鬼牌遊戲狀態")]
+        public async Task GhostStatusCommand()
+        {
+            await DeferAsync();
+            
+            var status = _oldMaidService.GetStatus(Context.Channel);
+            var component = _oldMaidService.GetDrawButtons(Context.Channel);
+            
+            await FollowupAsync(status, components: component?.Build());
+        }
+
+        [SlashCommand("ghostreset", "重置抽鬼牌遊戲")]
+        public async Task GhostResetCommand()
+        {
+            await DeferAsync();
+            
+            var result = _oldMaidService.ResetGame(Context.Channel);
+            
+            await FollowupAsync(result, ephemeral: true);
         }
     }
 }

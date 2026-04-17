@@ -1,4 +1,5 @@
 ﻿using Discord.WebSocket;
+using MusicBot2.Helpers;
 using MusicBot2.Models;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace MusicBot2.Service
 
                     if (word.ToLower() == Answer.word)
                     {
-                        display += $"\n\n🎉 猜對了我的寶\n單字: **{Answer.word}**\n意思: {Answer.translate} \n 獎勵 {user.DisplayName} {GetChampService.GetRandomRewards()}";
+                        display += $"\n\n🎉 猜對了我的寶\n單字: **{Answer.word}**\n意思: {Answer.translate} \n 獎勵 {user.DisplayName} {RewardsHelpers.GetRandomRewards()}";
                         Answer = null;
                     }
                     return display;

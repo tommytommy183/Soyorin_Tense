@@ -86,11 +86,13 @@ public class Program
             .AddSingleton<WordGuessingService>()
             .AddSingleton<MineGameService>()
             .AddSingleton<RubiksCubeService>()
+            .AddSingleton<GetChampService>()
+            .AddSingleton<OldMaidService>()
             .AddSingleton<ElevenLabsService>(sp =>
                 new ElevenLabsService(
                     sp.GetRequiredService<DiscordSocketClient>(),
                     elevenLabsApiKey
-                ))  // ✅ 使用 Factory 傳入參數
+                ))
             .BuildServiceProvider();
 
         _client.MessageReceived += MessageReceivedHandler;
@@ -174,6 +176,41 @@ public class Program
                     }
                 }
             }
+            else if (component.Data.CustomId.StartsWith("oldmaid_draw_"))
+            {
+                // 立即延遲回應
+                await component.DeferAsync();
+                
+                var position = int.Parse(component.Data.CustomId.Split('_')[2]);
+                var oldMaidService = _services.GetService<OldMaidService>();
+                var (message, newComponent, needFollowup, followupMessage) = await oldMaidService.DrawCard(
+                    component.Channel, 
+                    component.User as SocketGuildUser, 
+                    position
+                );
+                
+                // 使用 ModifyOriginalResponseAsync 更新原訊息，而不是發新訊息
+                await component.ModifyOriginalResponseAsync(msg =>
+                {
+                    msg.Content = message;
+                    msg.Components = newComponent?.Build();
+                });
+
+                // 如果需要後續訊息（電腦玩家的回合）
+                if (needFollowup && !string.IsNullOrEmpty(followupMessage))
+                {
+                    await Task.Delay(500); // 稍微延遲讓玩家看到上一個動作
+                    
+                    var finalComponent = oldMaidService.GetDrawButtons(component.Channel);
+                    
+                    // 再次更新同一個訊息
+                    await component.ModifyOriginalResponseAsync(msg =>
+                    {
+                        msg.Content = message + "\n\n" + followupMessage;
+                        msg.Components = finalComponent?.Build();
+                    });
+                }
+            }
         }
         else
         {
@@ -233,7 +270,7 @@ public class Program
         var channel = message.Channel as IMessageChannel;
         var user = message.Author as SocketGuildUser;
         _uuser = user;
-        champService = new GetChampService(channel);
+        champService = new GetChampService();
 
         if (user == null)
             return;
@@ -247,7 +284,7 @@ public class Program
         else if (cmd.ToLower().StartsWith("skill"))
         {
             var champName = cmd.Substring(5).Trim();
-            await champService.GetChampSkillsAsync(champName);
+            await champService.GetChampSkillsAsync(channel, champName);
         }
         else if (cmd.ToLower().StartsWith("mine"))
         {
@@ -263,7 +300,7 @@ public class Program
             var champName = cmd.Substring(5).ToLower().Trim().Split(' ')[0];
             var skillPos = cmd.Substring(5).ToLower().Trim().Split(' ')[1];
             var userGuess = cmd.Substring(5).ToLower().Trim().Split(' ')[2];
-            await champService.GuessChampSkillAsync(champName, skillPos, userGuess);
+            await champService.GuessChampSkillAsync(channel, champName, skillPos, userGuess);
         }
         else if (cmd.ToLower().StartsWith("p"))
         {
