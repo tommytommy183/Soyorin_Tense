@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YoutubeExplode.Channels;
 
-namespace MusicBot2.IGHelper
+namespace MusicBot2.Service
 {
     public class IGHelper
     {
