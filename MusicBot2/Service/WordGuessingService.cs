@@ -13,6 +13,7 @@ namespace MusicBot2.Service
         public WordsGuessingVM Answer;
         private readonly WordGuessingService _wordService;
         private readonly GetChampService _getChampService;
+        private const string FirstWords = "pornhubersSoBig";
         public WordGuessingService()
         {
             Answer = null;
@@ -32,7 +33,16 @@ namespace MusicBot2.Service
 
                     Answer = answerVM;
                     Console.WriteLine($"正確答案: {Answer.word}");
-                    return $"開始猜瞜，這次的文字是 {answerVM.word.Length} 個字";
+
+                    //先幫他猜一個單字
+                    string FirstGuessingWords = FirstWords.Substring(0, answerVM.word.Length);
+
+                    var result = CheckWord(Answer.word, FirstGuessingWords);
+
+                    var display = Display(FirstGuessingWords, result);
+
+                    return $"開始猜瞜，這次的文字是 {answerVM.word.Length} 個字，啊我先幫你猜一個了不客氣\n" + display;
+
                 }
                 else
                 {
