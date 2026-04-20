@@ -50,15 +50,14 @@ namespace MusicBot2.Service
             try
             {
                 // 1️⃣ 調用 ElevenLabs API 產生語音
-                Console.WriteLine($"📡 正在產生 TTS 音訊...");
                 var audioData = await GenerateSpeech(text, model, voiceID);
-                
+
                 // 2️⃣ 儲存音訊檔案
-                audioFile = Path.Combine(_audioStoragePath, $"{DateTime.Now:yyyyMMdd_HHmmss}_{SanitizeFileName(text)}.mp3");
+                audioFile = Path.Combine(_audioStoragePath, $"{DateTime.Now:yyyyMMdd_HHmmss}.mp3");
                 await File.WriteAllBytesAsync(audioFile, audioData);
 
-                Console.WriteLine($"✅ TTS 音檔路徑: {audioFile}");
-                Console.WriteLine($"📏 檔案大小: {new FileInfo(audioFile).Length / 1024} KB");
+                //測試用
+                //audioFile = "";
 
                 // 3️⃣ Bot 連接語音頻道
                 audioClient = await userChannel.ConnectAsync();
