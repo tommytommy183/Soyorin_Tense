@@ -34,6 +34,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.PlayMusicAsync(Context.Channel, user, query);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("p", "播放音樂 (簡短版)")]
@@ -42,6 +43,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.PlayMusicAsync(Context.Channel, user, query);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("bilibili", "播放 Bilibili 音樂")]
@@ -50,6 +52,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.PlayBiblibiliMusicAsync(Context.Channel, user, url);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("skip", "跳過目前歌曲")]
@@ -58,6 +61,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.SkipMusic(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("s", "跳過目前歌曲 (簡短版)")]
@@ -66,6 +70,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.SkipMusic(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("loop", "循環播放目前歌曲")]
@@ -74,6 +79,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.LoopMusic(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("unloop", "取消循環播放")]
@@ -82,6 +88,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.UnLoopMusic(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("related", "開啟/關閉推薦音樂")]
@@ -90,6 +97,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.HandleRelatedMusicAsync(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("find", "搜尋並播放音樂")]
@@ -102,6 +110,7 @@ namespace MusicBot2.SlahCommands
             {
                 await _program.PlayMusicAsync(Context.Channel, user, url);
             }
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("f", "搜尋並播放音樂 (簡短版)")]
@@ -114,6 +123,7 @@ namespace MusicBot2.SlahCommands
             {
                 await _program.PlayMusicAsync(Context.Channel, user, url);
             }
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("list", "顯示目前播放清單")]
@@ -122,6 +132,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.CalledPlayListAsync(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("earrape", "開啟/關閉 Ear Rape 模式")]
@@ -130,6 +141,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var user = Context.User as SocketGuildUser;
             await _program.EarRapeAsync(Context.Channel, user);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("skill", "查詢英雄技能")]
@@ -138,7 +150,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var champService = new GetChampService();
             await champService.GetChampSkillsAsync(Context.Channel as IMessageChannel, champName);
-            await FollowupAsync(" ", ephemeral: true);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("guess", "猜測英雄技能")]
@@ -150,7 +162,7 @@ namespace MusicBot2.SlahCommands
             await DeferAsync();
             var champService = new GetChampService();
             await champService.GuessChampSkillAsync(Context.Channel as IMessageChannel, champName.ToLower(), skillPos.ToLower(), userGuess.ToLower());
-            await FollowupAsync(" ", ephemeral: true);
+            await FollowupAsync("-", ephemeral: true);
         }
 
         [SlashCommand("words", "猜單字")]

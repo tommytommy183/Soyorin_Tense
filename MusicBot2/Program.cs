@@ -341,7 +341,6 @@ public class Program
                 _isRelatedOn = false;
                 _SongBeenPlayedList.Clear();
                 await channel.SendMessageAsync("取消推薦");
-                await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=1400&episode=13");
             }
         }
         //查詢
@@ -386,7 +385,6 @@ public class Program
         else
         {
             await channel.SendMessageAsync("亂打一通");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=50472&episode=1-3");
         }
     }
     #endregion
@@ -397,14 +395,12 @@ public class Program
         if (user?.VoiceChannel == null)
         {
             await channel.SendMessageAsync("不進語音房是要撥個ㄐ8? 我去妳房間撥你衣服比較快 ");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=19672&episode=9");
             return;
         }
 
         if (!await CheckYoutubeUrlAliveAsync(query) && !_isRelatedOn)
         {
             await channel.SendMessageAsync("連結");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=1528&episode=13");
             return;
         }
 
@@ -439,7 +435,6 @@ public class Program
             if (user?.VoiceChannel == null)
             {
                 await channel.SendMessageAsync("不進語音房是要撥個ㄐ8? 我去妳房間撥你衣服比較快 ");
-                await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=19672&episode=9");
                 return;
             }
 
@@ -475,32 +470,27 @@ public class Program
         if (user?.VoiceChannel == null)
         {
             await channel.SendMessageAsync("不進語音房是要跳ㄐㄐ");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=23200&episode=10");
             return;
         }
         if (_isPlaying)
         {
             await channel.SendMessageAsync($"你這個人滿腦子都只想到自己呢 ");
-            await channel.SendMessageAsync($"https://anon-tokyo.com/image?frame=23864&episode=10");
             _isSkipRequest = true;
         }
         else
         {
             await channel.SendMessageAsync("沒歌了是要跳什麼");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=62208&episode=1-3");
         }
     }
     public async Task LoopMusic(IMessageChannel channel, SocketGuildUser user)
     {
         if (user?.VoiceChannel == null)
         {
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=15088&episode=9");
             return;
         }
         if (_isPlaying)
         {
             await channel.SendMessageAsync($"組一輩子Crychic");
-            await channel.SendMessageAsync($"https://anon-tokyo.com/image?frame=8752&episode=13");
             _LoopingSongUrl = _NowPlayingSongUrl;
         }
         else
@@ -513,13 +503,11 @@ public class Program
         if (user?.VoiceChannel == null)
         {
             await channel.SendMessageAsync("你不進語音是結束不掉的");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=28840&episode=4");
             return;
         }
         if (_isPlaying)
         {
             await channel.SendMessageAsync($"要持續一輩子是很困難的");
-            await channel.SendMessageAsync($"https://anon-tokyo.com/image?frame=29160&episode=11");
             _LoopingSongUrl = "";
         }
         else
@@ -533,7 +521,6 @@ public class Program
         if (_songQueue.Count == 0)
         {
             await channel.SendMessageAsync("沒歌你還想要清單?");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=86048&episode=1-3");
             return;
         }
 
@@ -582,7 +569,6 @@ public class Program
         if (_songQueue.Count == 0)
         {
             await channel.SendMessageAsync("沒歌你還想要清單?");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=86048&episode=1-3");
             return;
         }
 
@@ -629,7 +615,6 @@ public class Program
     {
         if (user?.VoiceChannel == null)
         {
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=15088&episode=9");
             return;
         }
         string url;
@@ -638,19 +623,16 @@ public class Program
             if (_SongBeenPlayedList.Count == 0)
             {
                 _SongBeenPlayedList.Add(_NowPlayingSongID);
-                await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=8368&episode=6");
             }
             url = await SearchRelateVideoAsync(channel, _NowPlayingSongName);
             if (string.IsNullOrEmpty(url))
             {
-                await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=27448&episode=1-3");
                 return;
             }
         }
         else
         {
             await channel.SendMessageAsync("沒點歌還想要推薦 那就聽春日影吧");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=184&episode=4");
             _NowPlayingSongID = "-kZBuzsZ7Ho";
             url = "https://www.youtube.com/watch?v=-kZBuzsZ7Ho&ab_channel=MyGO%21%21%21%21%21-Topic";
             _SongBeenPlayedList.Add(_NowPlayingSongID);
@@ -674,7 +656,6 @@ public class Program
             _isRelatedOn = false;
             _SongBeenPlayedList.Clear();
             await channel.SendMessageAsync("取消推薦");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=1400&episode=13");
         }
     }
     public async Task EarRapeAsync(IMessageChannel channel, SocketGuildUser user)
@@ -682,12 +663,9 @@ public class Program
         if (user?.VoiceChannel == null)
         {
             await channel.SendMessageAsync("要進語音诶 還是你想不進語音偷偷ear rape別人？ 想要的話跟我講 我改");
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=16696&episode=1-3");
             return;
         }
         _isEarRapeOn = !_isEarRapeOn;
-        if (_isEarRapeOn) await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=18288&episode=4");
-        else await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=22448&episode=7");
     }
     #endregion
 
@@ -701,7 +679,6 @@ public class Program
             _isPlaying = false;
             await channel.SendMessageAsync("沒歌ㄌ");
             _NowPlayingSongUrl = "";
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=18976&episode=10");
             return;
         }
         //推薦開啟／且歌單只剩一首歌時
@@ -776,7 +753,6 @@ public class Program
         catch (Exception ex)
         {
             await channel.SendMessageAsync($"我從來不覺得寫程式開心過:PlayNextSongAsync {ex.Message} {ex}");
-            await channel.SendMessageAsync($"https://anon-tokyo.com/image?frame=20704&episode=6");
         }
     }
     #endregion
@@ -831,21 +807,18 @@ public class Program
             if (!searchResults.Any())
             {
                 await channel.SendMessageAsync("找不到歌曲");
-                await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=5280&episode=13");
                 return "";
             }
             // 获取第一个搜索结果
             var video = searchResults.First();
             var videoUrl = video.Url;
 
-            await channel.SendMessageAsync("https://anon-tokyo.com/image?frame=89608&episode=1-3");
             await channel.SendMessageAsync($"{video.Url}");
             return $"{videoUrl}";
         }
         catch (Exception ex)
         {
             await channel.SendMessageAsync($"我從來不覺得寫程式開心過:GetYoutubeUrlByName {ex.Message}");
-            await channel.SendMessageAsync($" https://anon-tokyo.com/image?frame=20704&episode=6");
             return "";
         }
     }
@@ -904,7 +877,6 @@ public class Program
         catch (Exception ex)
         {
             await channel.SendMessageAsync($"我從來不覺得寫程式開心過:SearchRelateVideoAsync {ex.Message}");
-            await channel.SendMessageAsync($" https://anon-tokyo.com/image?frame=20704&episode=6");
             return "";
         }
     }
