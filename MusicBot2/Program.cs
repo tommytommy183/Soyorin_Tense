@@ -72,11 +72,12 @@ public class Program
 
         IConfiguration configer = builder.Build();
         string token = configer["Discord:Token"];
+        string googleAIStudioApiKey = configer["GoogleAIStudio:dcBotKey1"];
 
         _client = new DiscordSocketClient(config);
         _commands = new CommandService();
         _interactionService = new InteractionService(_client);
-        string elevenLabsApiKey = configer["ElevenLabs:ApiKey"];  // ✅ 從設定檔讀取
+        string elevenLabsApiKey = configer["ElevenLabs:ApiKey"];
 
         // 設置依賴注入
         _services = new ServiceCollection()
@@ -93,6 +94,9 @@ public class Program
                     sp.GetRequiredService<DiscordSocketClient>(),
                     elevenLabsApiKey
                 ))
+            .AddSingleton<GoogleAIStudioService>(sp =>
+                new GoogleAIStudioService(googleAIStudioApiKey)
+                )
             .BuildServiceProvider();
 
         _client.MessageReceived += MessageReceivedHandler;
@@ -180,15 +184,15 @@ public class Program
             {
                 // 立即延遲回應
                 await component.DeferAsync();
-                
+
                 var position = int.Parse(component.Data.CustomId.Split('_')[2]);
                 var oldMaidService = _services.GetService<OldMaidService>();
                 var (message, newComponent, needFollowup, followupMessage) = await oldMaidService.DrawCard(
-                    component.Channel, 
-                    component.User as SocketGuildUser, 
+                    component.Channel,
+                    component.User as SocketGuildUser,
                     position
                 );
-                
+
                 // 使用 ModifyOriginalResponseAsync 更新原訊息，而不是發新訊息
                 await component.ModifyOriginalResponseAsync(msg =>
                 {
@@ -200,9 +204,9 @@ public class Program
                 if (needFollowup && !string.IsNullOrEmpty(followupMessage))
                 {
                     await Task.Delay(500); // 稍微延遲讓玩家看到上一個動作
-                    
+
                     var finalComponent = oldMaidService.GetDrawButtons(component.Channel);
-                    
+
                     // 再次更新同一個訊息
                     await component.ModifyOriginalResponseAsync(msg =>
                     {

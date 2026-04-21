@@ -1,24 +1,28 @@
 ﻿using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using ElevenLabs.Models;
+using ElevenLabs.Voices;
 using InstagramApiSharp.Classes;
 using MusicBot2.Models;
 using MusicBot2.Service;
 using RiotSharp.Misc;
 using System.ComponentModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MusicBot2.SlahCommands
 {
     public class SlashCommandHandler : InteractionModuleBase<SocketInteractionContext>
     {
         private readonly Program _program;
-        WordGuessingService wordService;
-        MineGameService _mineGameService;
-        ElevenLabsService _elevenLabsService;
-        OldMaidService _oldMaidService;
+        private readonly WordGuessingService wordService;
+        private readonly MineGameService _mineGameService;
+        private readonly ElevenLabsService _elevenLabsService;
+        private readonly OldMaidService _oldMaidService;
         private readonly RubiksCubeService _rubiksCubeService;
+        private readonly GoogleAIStudioService _googleAIStudioService;
 
-        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, OldMaidService oldMaidService, RubiksCubeService rubiksCubeService)
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, OldMaidService oldMaidService, RubiksCubeService rubiksCubeService, GoogleAIStudioService googleAIStudioService)
         {
             _program = program;
             this.wordService = wordService;
@@ -26,6 +30,7 @@ namespace MusicBot2.SlahCommands
             _mineGameService = mineGameService;
             _oldMaidService = oldMaidService;
             _rubiksCubeService = rubiksCubeService;
+            _googleAIStudioService = googleAIStudioService;
         }
 
         [SlashCommand("play", "播放音樂")]
@@ -227,7 +232,25 @@ namespace MusicBot2.SlahCommands
             var user = Context.User as SocketGuildUser;
             var voiceChannel = user.VoiceChannel;
             await _elevenLabsService.SpeakAsync(voiceChannel, text, model, voiceID);
-            await FollowupAsync(" ", ephemeral: true);
+            await FollowupAsync("已接收", ephemeral: true);
+        }
+
+        [SlashCommand("talk", "聊天(測試中)")]
+        public async Task Talk(string text)
+        {
+            await DeferAsync();
+            var user = Context.User as SocketGuildUser;
+
+            //先用google ai studio取得回復
+            string result = await _googleAIStudioService.GenerateTextAsync(text, user,true);
+            //再用elevenlabs說出來 (免費仔哭哭)
+            //var user = Context.User as SocketGuildUser;
+            //var voiceChannel = user.VoiceChannel;
+            //await _elevenLabsService.SpeakAsync(voiceChannel, text, "eleven_v3", "pNInz6obpgDQGcFmaJgB");
+
+
+            //現在測試，直接回文字
+            await FollowupAsync(result, ephemeral: true);
         }
 
         [SlashCommand("rubikscube", "開始魔術方塊遊戲")]
