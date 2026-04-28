@@ -26,6 +26,7 @@ using YoutubeExplode.Common;
 using YoutubeExplode.Exceptions;
 using YoutubeExplode.Search;
 using YoutubeExplode.Videos.Streams;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Program
 {
@@ -48,6 +49,7 @@ public class Program
     private bool _isEarRapeOn = false;
     private InteractionService? _interactionService;
     private IServiceProvider? _services;
+    private GoogleAIStudioService _googleAIStudioService;
     #endregion
 
     #region 基礎設定
@@ -98,6 +100,8 @@ public class Program
                 new GoogleAIStudioService(googleAIStudioApiKey)
                 )
             .BuildServiceProvider();
+
+        _googleAIStudioService = _services.GetRequiredService<GoogleAIStudioService>();
 
         _client.MessageReceived += MessageReceivedHandler;
         _client.Log += Log;
@@ -269,7 +273,24 @@ public class Program
     #region MSreceive
     public async Task MessageReceivedHandler(SocketMessage message)
     {
-        if (message is not SocketUserMessage userMessage || message.Author.IsBot || !message.Content.StartsWith("$$")) return;
+        if (message is not SocketUserMessage userMessage || message.Author.IsBot) return;
+        bool isMentioned = message.MentionedUsers.Any(u => u.Id == _client.CurrentUser.Id);
+
+        if (isMentioned ||
+            message.Content.ToLower().Contains("soyo") || 
+            message.Content.ToLower().Contains("搜幽林") || 
+                message.Content.ToLower().Contains("crychic") || 
+                message.Content.ToLower().Contains("長期") || 
+                message.Content.ToLower().Contains("爽世") || 
+                message.Content.ToLower().Contains("爽食") || 
+                message.Content.ToLower().Contains("素食"))
+        {
+            var talker = message.Author as SocketGuildUser;
+            string result = await _googleAIStudioService.GenerateTextAsync(message.Content, talker, true);
+            await message.Channel.SendMessageAsync(result);
+        }
+
+        if (!message.Content.StartsWith("$$")) return;
         string cmd = message.Content.Substring(2);
         var channel = message.Channel as IMessageChannel;
         var user = message.Author as SocketGuildUser;

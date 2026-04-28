@@ -250,7 +250,7 @@ namespace MusicBot2.SlahCommands
 
 
             //現在測試，直接回文字
-            await FollowupAsync(result, ephemeral: true);
+            await FollowupAsync(result, ephemeral: false);
         }
 
         [SlashCommand("rubikscube", "開始魔術方塊遊戲")]
