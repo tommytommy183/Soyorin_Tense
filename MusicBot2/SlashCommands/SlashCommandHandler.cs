@@ -253,6 +253,27 @@ namespace MusicBot2.SlahCommands
             await FollowupAsync(result, ephemeral: false);
         }
 
+        //直接call api，參數共有:1.file mp3 ,2. model ,3.index_rate (0-1之間，越高越像原聲，越低越像目標聲音), 4. protect (0-1之間，越高越保護原聲，越低越保護目標聲音), 4.pitch (0.5-2之間，默認1，調整音高)
+        [SlashCommand("change_voice", "上傳音檔，選擇聲音模型與參數以改變聲音")]
+        public async Task ChangeVoice(
+            [Summary("file", "要上傳的音樂檔案 (mp3, wav, ogg)")] IAttachment file,
+            [Summary("model", "選擇要讓誰說")][Choice("soyo", "soyo"), Choice("tomori", "tomori")] string model,
+            [Summary("index_rate", "音色相似度 (0-1之間)")] double indexRate = 0.5,
+            [Summary("protect", "原聲保護度 (0-1之間)")] double protect = 0.5,
+            [Summary("pitch", "音高 (0.5-2之間)")] double pitch = 0
+            )
+        {
+            await DeferAsync();
+            var user = Context.User as SocketGuildUser;
+
+            //call 本地api，回傳改聲後的音檔url
+
+
+
+
+            //await FollowupAsync(result, ephemeral: false);
+        }
+
         [SlashCommand("rubikscube", "開始魔術方塊遊戲")]
         public async Task RubiksCubeCommand(
             [Summary("難度", "打亂步數 (預設20步)")] int scrambleMoves = 20)

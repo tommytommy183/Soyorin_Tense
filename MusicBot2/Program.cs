@@ -75,6 +75,7 @@ public class Program
         IConfiguration configer = builder.Build();
         string token = configer["Discord:Token"];
         string googleAIStudioApiKey = configer["GoogleAIStudio:dcBotKey1"];
+        string googleAIStudioApiKey2 = configer["GoogleAIStudio:dcBotKey2"];
 
         _client = new DiscordSocketClient(config);
         _commands = new CommandService();
@@ -97,7 +98,7 @@ public class Program
                     elevenLabsApiKey
                 ))
             .AddSingleton<GoogleAIStudioService>(sp =>
-                new GoogleAIStudioService(googleAIStudioApiKey)
+                new GoogleAIStudioService(googleAIStudioApiKey,googleAIStudioApiKey2)
                 )
             .BuildServiceProvider();
 
