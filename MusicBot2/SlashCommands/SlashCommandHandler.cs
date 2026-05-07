@@ -21,8 +21,9 @@ namespace MusicBot2.SlahCommands
         private readonly OldMaidService _oldMaidService;
         private readonly RubiksCubeService _rubiksCubeService;
         private readonly GoogleAIStudioService _googleAIStudioService;
+        private readonly RVC_Service _rVC_Service;
 
-        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, OldMaidService oldMaidService, RubiksCubeService rubiksCubeService, GoogleAIStudioService googleAIStudioService)
+        public SlashCommandHandler(Program program, WordGuessingService wordService, MineGameService mineGameService, ElevenLabsService elevenLabsService, OldMaidService oldMaidService, RubiksCubeService rubiksCubeService, GoogleAIStudioService googleAIStudioService, RVC_Service rVC_Service)
         {
             _program = program;
             this.wordService = wordService;
@@ -31,6 +32,7 @@ namespace MusicBot2.SlahCommands
             _oldMaidService = oldMaidService;
             _rubiksCubeService = rubiksCubeService;
             _googleAIStudioService = googleAIStudioService;
+            _rVC_Service = rVC_Service;
         }
 
         [SlashCommand("play", "播放音樂")]
@@ -225,7 +227,7 @@ namespace MusicBot2.SlahCommands
         [SlashCommand("speak", "透過ElevenLabs說話")]
         public async Task ElevenLabsTalk(
             [Summary("text", "要讓他說的話")] string text,
-            [Summary("model", "選擇需要使用的模型")][Choice("品質最好", "eleven_v3"), Choice("最穩定", "eleven_multilingual_v2"), Choice("最低延遲", "eleven_flash_v2_5"), Choice("平衡", "eleven_turbo_v2_5")] string model, 
+            [Summary("model", "選擇需要使用的模型")][Choice("品質最好", "eleven_v3"), Choice("最穩定", "eleven_multilingual_v2"), Choice("最低延遲", "eleven_flash_v2_5"), Choice("平衡", "eleven_turbo_v2_5")] string model,
             [Summary("voiceID", "請輸入要使用的voiceID，不填入則預設")] string voiceID = "pNInz6obpgDQGcFmaJgB")
         {
             await DeferAsync();
@@ -236,42 +238,54 @@ namespace MusicBot2.SlahCommands
         }
 
         [SlashCommand("talk", "聊天(測試中)")]
-        public async Task Talk(string text)
+        public async Task Talk(
+            [Summary("text", "要讓他說的話")] string text,
+            [Summary("speaker", "選擇要讓誰說")][Choice("soyo", "soyo"), Choice("tomori", "tomori"), Choice("anon", "anon")] string speaker,
+            [Summary("tts-model", "使用的tts模型")][Choice("tw成熟女聲", "zh-TW-HsiaoChenNeural"), Choice("tw活潑女聲", "zh-TW-HsiaoYuNeura"), Choice("tw男聲", "zh-TW-YunJheNeural"),
+            Choice("cn-AI助理風", "zh-CN-XiaoxiaoNeural"), Choice("cn-廣播風", "zh-CN-YunxiNeural"), Choice("cn-男聲", "zh-CN-XiaoyiNeural")] string tts_model,
+            [Summary("pitch_shift", "音高 (0.5-2之間)")] double pitch = 0
+            )
         {
-            await DeferAsync();
             var user = Context.User as SocketGuildUser;
 
             //先用google ai studio取得回復
-            string result = await _googleAIStudioService.GenerateTextAsync(text, user,true);
+            //string result = await _googleAIStudioService.GenerateTextAsync(text, user, true);
             //再用elevenlabs說出來 (免費仔哭哭)
             //var user = Context.User as SocketGuildUser;
             //var voiceChannel = user.VoiceChannel;
             //await _elevenLabsService.SpeakAsync(voiceChannel, text, "eleven_v3", "pNInz6obpgDQGcFmaJgB");
+            using var httpClient = new HttpClient();
 
-
-            //現在測試，直接回文字
-            await FollowupAsync(result, ephemeral: false);
+            await _rVC_Service.SendTextToSpeach(
+                Context.Channel as ITextChannel,
+                text,
+                speaker,
+                tts_model,
+                pitch
+            );
         }
 
-        //直接call api，參數共有:1.file mp3 ,2. model ,3.index_rate (0-1之間，越高越像原聲，越低越像目標聲音), 4. protect (0-1之間，越高越保護原聲，越低越保護目標聲音), 4.pitch (0.5-2之間，默認1，調整音高)
         [SlashCommand("change_voice", "上傳音檔，選擇聲音模型與參數以改變聲音")]
         public async Task ChangeVoice(
-            [Summary("file", "要上傳的音樂檔案 (mp3, wav, ogg)")] IAttachment file,
-            [Summary("model", "選擇要讓誰說")][Choice("soyo", "soyo"), Choice("tomori", "tomori")] string model,
-            [Summary("index_rate", "音色相似度 (0-1之間)")] double indexRate = 0.5,
-            [Summary("protect", "原聲保護度 (0-1之間)")] double protect = 0.5,
-            [Summary("pitch", "音高 (0.5-2之間)")] double pitch = 0
-            )
+            [Summary("file", "要上傳的音樂檔案 (mp3, wav)")] IAttachment file,
+            [Summary("speaker", "選擇要讓誰說")][Choice("soyo", "soyo"), Choice("tomori", "tomori"), Choice("anon", "anon")] string speaker,
+            [Summary("pitch_shift", "音高 (0.5-2之間)")] double pitch = 0,
+            [Summary("index_rate", "音色相似度 (0-1之間)")] double indexRate = 0.75,
+            [Summary("protect", "原聲保護度 (0-1之間)")] double protect = 0.33
+        )
         {
-            await DeferAsync();
-            var user = Context.User as SocketGuildUser;
+            using var httpClient = new HttpClient();
+            using var stream = await httpClient.GetStreamAsync(file.Url);
 
-            //call 本地api，回傳改聲後的音檔url
-
-
-
-
-            //await FollowupAsync(result, ephemeral: false);
+            await _rVC_Service.SendConvertedAudioToChannelAsync(
+                Context.Channel as ITextChannel,
+                stream,
+                file.Filename,
+                speaker,
+                pitch,
+                indexRate,
+                protect
+            );
         }
 
         [SlashCommand("rubikscube", "開始魔術方塊遊戲")]
@@ -308,7 +322,7 @@ namespace MusicBot2.SlahCommands
 
             // 同時發送按鈕
             var component = _oldMaidService.GetDrawButtons(Context.Channel);
-            
+
             await FollowupAsync(result, components: component?.Build());
         }
 
@@ -332,7 +346,7 @@ namespace MusicBot2.SlahCommands
 
             var result = await _oldMaidService.StartGame(Context.Channel, players);
             var component = _oldMaidService.GetDrawButtons(Context.Channel);
-            
+
             await FollowupAsync(result, components: component?.Build());
         }
 
@@ -341,7 +355,7 @@ namespace MusicBot2.SlahCommands
         {
             var user = Context.User as SocketGuildUser;
             var embed = _oldMaidService.GetPlayerHand(Context.Channel, user);
-            
+
             // ephemeral: true 表示只有執行指令的人看得到
             await RespondAsync(embed: embed, ephemeral: true);
         }
@@ -350,10 +364,10 @@ namespace MusicBot2.SlahCommands
         public async Task GhostStatusCommand()
         {
             await DeferAsync();
-            
+
             var status = _oldMaidService.GetStatus(Context.Channel);
             var component = _oldMaidService.GetDrawButtons(Context.Channel);
-            
+
             await FollowupAsync(status, components: component?.Build());
         }
 
@@ -361,9 +375,9 @@ namespace MusicBot2.SlahCommands
         public async Task GhostResetCommand()
         {
             await DeferAsync();
-            
+
             var result = _oldMaidService.ResetGame(Context.Channel);
-            
+
             await FollowupAsync(result, ephemeral: true);
         }
     }

@@ -92,6 +92,7 @@ public class Program
             .AddSingleton<RubiksCubeService>()
             .AddSingleton<GetChampService>()
             .AddSingleton<OldMaidService>()
+            .AddSingleton<RVC_Service>()
             .AddSingleton<ElevenLabsService>(sp =>
                 new ElevenLabsService(
                     sp.GetRequiredService<DiscordSocketClient>(),
